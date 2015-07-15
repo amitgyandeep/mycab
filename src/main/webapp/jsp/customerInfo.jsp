@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="color/default.css">
 <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
+<script src="js/jquery.dataTables.js"></script>
 <link rel="stylesheet" href="css/jquery.dataTables.css" type="text/css" media="all" />
 	
 <style type="text/css">
@@ -142,7 +143,7 @@
 <div class="row">
       
      <div class="col-md-4 pull-right text-right">
-       Home &gt; Customer<a href="#"></a>
+       Home &gt;
       </div>
       
         </div>
@@ -192,27 +193,30 @@
             </div>
 </div>
 		</div>-->
-<div class="col-md-8 col-xs-pull4">
+<div class="col-md-12 col-xs-pull4">
   <h3>OSD CUSTOMERS</h3> 
   <br>
-  <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-        <thead><tr><th>Sl.No</th>
+  
+  <table id="example" class="table table-striped table-bordered table-responsive" cellspacing="0" >
+        <thead>
+			<tr>
+				<th>Sl.No</th>
 				<th>Name</th>
 				<th>Mobile</th>
 				<th>Email</th>
 				<th>Address</th>
 				<th>Sex</th>
-				<th>Adhar Number</th>
-				<th>Passport Number</th>
-				<th>D L Number</th>
-				<th>Pickup Location</th>
-				<th>Prefered Car</th>
+				<th>Adhar</th>
+				<th>Passport</th>
+				<th>D L </th>
+				<th>Pickup</th>
+				<th>Car</th>
 				<th>Documents</th>
 				<th>Action</th>
-				</thead>
-				<tbody>
-				<tbody>
-			<s:iterator value="#request.customerList" var="car" status="count">
+			</tr>
+		</thead>
+		<tbody>
+				<s:iterator value="#request.customerList" var="car" status="count">
 				<tr><td style="padding: 0 13px;"><s:property value="#count.count" /></td>
 				<td style="padding: 0 13px;"><s:property value="customerName" /></td>
 				<td style="padding: 0 13px;"><s:property value="mobileNumber" /></td>
@@ -224,9 +228,9 @@
 				<td style="padding: 0 13px;"><s:property value="dlNumber" /></td>
 				<td style="padding: 0 13px;"><s:property value="pickupLocation" /></td>
 				<td style="padding: 0 13px;"><s:property value="preferedCar" /></td>
-				<td style="padding: 0 13px;">
-				<s:iterator value="docs" status="count">
-				<a  href='/images/<s:property/>'>File<s:property value="#count.count" /></a>
+				<td style="padding: 0px 6px;">
+				<s:iterator value="docs" status="count" var="document">
+				<a  href='/images/<s:property value="%{#document.path}"/>'><s:property value="%{#document.fileType}"/></a>
 				</s:iterator>
 				</td>
 				<td style="padding: 0 13px;"><!-- <a href="#"><input type="button" value="Approve"/></a>  -->
@@ -234,7 +238,7 @@
         <li>
             <a href="#">Option &#9662;</a>
             <ul class="dropdown">
-                <li><a href='approveUser?inputText=<s:property value="id" />' >Approve</a></li>
+                 <li><a href='approveUser?inputText=<s:property value="id" />' >Approve</a></li>
                 <li><a id='<s:property value="id" />' href='composeMail?customerId=<s:property value="id" />&case=Hold' >Hold</a></li>
                 <li><a href='composeMail?customerId=<s:property value="id" />&case=Reject'>Reject</a></li>
             </ul>
@@ -242,7 +246,7 @@
     </ul>
 			</td>
 			</s:iterator>
-				</tbody>
+		</tbody>
     </table>
   
   
@@ -311,9 +315,8 @@
 
     <!-- Core JavaScript Files -->
 
-		  
-	 <script src="js/jquery-1.9.1.min.js"></script>	
-	 
+		   
+	 <script src="js/jquery.min.js"></script>	
     <script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery.sticky.js"></script>
 	<script src="js/jquery.flexslider-min.js"></script>
@@ -326,15 +329,16 @@
 	<script src="js/nivo-lightbox.min.js"></script>
     <script src="js/custom.js"></script>
 
- <script src="js/jquery.dataTables.js"></script>
-	  	<script type="text/javascript" charset="utf8" src="js/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript" charset="utf8" src="js/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" charset="utf8" src="js/jquery.dataTables.min.js"></script>
 
 </section></section>
 	<script type="text/javascript" charset="utf-8">
 			$(document).ready(function() {
-				$('#example').dataTable(/* {
-				 "pagingType": "full_numbers"
-				} */);
+				$('#example').dataTable({
+				  'pagingType' : 'simple_numbers'
+				});
 
 			} );
 		</script>
