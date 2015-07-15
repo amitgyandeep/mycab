@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean name="customerService" class="com.prj.service.impl.CustomerServiceImpl"
+		scope="prototype">
+		<constructor-arg ref="customerDao" />
+		<property name="documentService" ref="documentService"/>
+	</bean>
+	<bean name="userService" class="com.prj.service.impl.UserServiceImpl"
+		scope="prototype">
+		<constructor-arg ref="userDao" />
+	</bean>
+	<bean name="mailService" class="com.prj.service.impl.MailServiceImpl"
+		scope="prototype">
+		<property name="restTemplate" ref="restTemplate"></property>
+	</bean>
+	<bean name="smsService" class="com.prj.service.impl.SmsServiceImpl"
+		scope="prototype">
+		<property name="restTemplate" ref="restTemplate"></property>
+	</bean>
+
+<bean name="carBookingService" class="com.prj.service.impl.CarBookingService" scope="prototype">
+		<constructor-arg ref="carDAO" />
+		<property name="pricingService" ref="pricingService"/>
+		<property name="securityDepositService" ref="securityDepositService"/>
+
+		
+	</bean>
+<bean name="pricingService" class="com.prj.service.impl.CarPricingService" scope="prototype">
+		<constructor-arg ref="carDAO" />
+				<property name="tariffServiceList">
+	<list>
+<ref bean="standardWeekDayTariffService" />
+		<ref bean="standardWeekEndTariffService" />
+		
+
+	</list>
+</property>
+	</bean>
+	
+	<bean name="carService" class="com.prj.service.impl.CarService" scope="prototype">
+	<constructor-arg ref="carDAO" />
+	</bean>
+	
+<bean name="securityDepositService" class="com.prj.service.impl.SecurityDepositTariffService" scope="prototype">
+		<constructor-arg ref="securityDepositDao" />
+	</bean>
+
+<bean name="standardWeekEndTariffService" class="com.prj.service.impl.StandardWeekendTariffService" scope="prototype">
+<constructor-arg ref="tariffDao" />
+	</bean>
+ <bean name="standardWeekDayTariffService" class="com.prj.service.impl.StandardWeekdayTariffService" scope="prototype">
+<constructor-arg ref="tariffDao" />
+</bean>
+ <bean name="carHubService" class="com.prj.service.impl.CarHubService" scope="prototype">
+<constructor-arg ref="carHubDao" />
+</bean>
+ <bean name="documentService" class="com.prj.service.impl.DocumentServiceImpl" scope="prototype">
+<constructor-arg ref="documentDao" />
+</bean>
+<bean name="restTemplate" class="org.springframework.web.client.RestTemplate"></bean>
+</beans> 

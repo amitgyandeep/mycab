@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+<bean class="com.prj.action.RegistrationAction" name="registrationAction">
+	<property name="customerService" ref="customerService" />
+	<property name="mailService" ref="mailService"/>
+	<property name="smsService" ref="smsService"/>
+	<property name="userService" ref="userService" />
+	<property name="documentService" ref="documentService"/>
+</bean>
+	<bean name="checkUserInSessionInterceptor"
+		class="com.prj.interceptors.CheckUserInSessionInterceptor"
+		scope="prototype">
+
+	</bean>
+
+	<bean name="checkAdminInterceptor"
+		class="com.prj.interceptors.CheckAdminInterceptor"
+		scope="prototype">
+
+	</bean>
+
+<bean class="com.prj.action.LoginAction" name="loginAction">
+	<property name="userService" ref="userService" />
+	<property name="customerService" ref="customerService" />
+</bean>
+
+<bean class="com.prj.action.LogoutAction" name="logoutAction">
+</bean>
+
+<bean class="com.prj.action.MailAction" name="mailSenderAction">
+<property name="mailService" ref="mailService"/>
+<property name="customerService" ref="customerService" />
+</bean>
+
+<bean class="com.prj.action.SmsAction" name="smsSenderAction">
+<property name="smsService" ref="smsService"/>
+</bean>
+<bean class="com.prj.action.AccountAction" name="accountAction">
+	<property name="userService" ref="userService" />
+	<property name="mailService" ref="mailService"/>
+	<property name="smsService" ref="smsService"/>
+	<property name="customerService" ref="customerService" />
+</bean>
+	<bean name="dashboardAction" class="com.prj.action.DashboardAction"
+		scope="prototype">
+		<property name="carHubService" ref="carHubService" />
+		<property name="carService" ref="carService" />
+		<property name="carBookingService" ref="carBookingService" />
+	</bean>
+		<bean name="carBookingAction" class="com.prj.action.CarBookingAction" scope="prototype">
+		<property name="carBookingService" ref="carBookingService" />
+	</bean>
+</beans>

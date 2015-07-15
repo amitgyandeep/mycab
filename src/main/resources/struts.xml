@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.multipart.maxSize" value="20000000" />
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<package name="registration" namespace="/"
+		extends="struts-default,json-default ">
+
+		<interceptors>
+			<interceptor name="checkUserInSessionInterceptor" class="checkUserInSessionInterceptor"></interceptor>
+			<interceptor name="checkAdminInterceptor" class="checkAdminInterceptor"></interceptor>
+
+			<interceptor-stack name="checkUserInSessionInterceptorStack">
+				<interceptor-ref name="checkUserInSessionInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+
+			<interceptor-stack name="checkAdminInterceptorStack">
+				<interceptor-ref name="checkUserInSessionInterceptor" />
+				<interceptor-ref name="checkAdminInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+
+		</interceptors>
+
+		<global-results>
+			<result name="userNotInSession" type="redirect">userLogin</result>
+			<result name="adminPermissionDenied" type="redirect">logoutAction
+			</result>
+		</global-results>
+
+		<action name="index">
+			<result name="success">/index.jsp</result>
+		</action>
+
+		<action name="dashboard" class="dashboardAction">
+			<result name="success">/jsp/home.jsp</result>
+			<result name="userDashBoard" type="chain">userDashBoard</result>
+		</action>
+		<action name="userDashBoard">
+			<result name="success">/jsp/availability.jsp</result>
+		</action>
+
+		<action name="registrationPage">
+			<result name="success">/jsp/registration.jsp</result>
+		</action>
+
+		<action name="registrationAction" class="registrationAction"
+			method="registerCustomer">
+			<interceptor-ref name="defaultStack">
+				<param name="allowedTypes">
+					image/png,image/gif,image/jpeg,image/pjpeg,image/jpg,application/pdf,video/x-ms-rmvb,video/x-ms-wmv,video/x-ms-avi,
+					video/fli,video/x-fli,video/x-atomic3d-feature,video/gl,video/x-gl,video/x-isvideo,video/mpeg,video/x-motion-jpeg,video/quicktime,video/x-sgi-movie,
+					video/x-mpeg,video/vnd.rn-realvideo,video/x-scm
+				</param>
+				<param name="allowedTypes">text/plain</param>
+				<param name="maximumSize">2147483648</param>
+			</interceptor-ref>
+			<result name="success">/jsp/registration.jsp</result>
+			<result name="input">/jsp/registration.jsp</result>
+		</action>
+
+		<action name="showCustomerList" class="registrationAction"
+			method="getCustomerList">
+			<result name="success">/jsp/customerInfo.jsp</result>
+			<result name="input">/jsp/customerInfo.jsp</result>
+		</action>
+
+		<action name="userLogin">
+			<result name="success">/jsp/login.jsp</result>
+		</action>
+		
+		<action name="loginAction" class="loginAction" method="authenticateUser">
+			<result name="adminDashBoard" type="redirect">showCustomerList</result>
+			<result name="success">/jsp/availability.jsp</result>
+			<result name="input">/jsp/login.jsp</result>
+		</action>
+
+		<action name="logoutAction" class="logoutAction">
+			<result name="success" type="redirect">index</result>
+		</action>
+
+		<action name="sendEmail" class="mailSenderAction" method="sendMail">
+			<result name="success">/jsp/adminPages/composeMail.jsp</result>
+			<result name="input">/jsp/adminPages/composeMail.jsp</result>
+		</action>
+
+
+		<action name="sendSms" class="smsSenderAction" method="sendMail">
+			<result name="success">/jsp/adminPages/composeMail.jsp</result>
+			<result name="input">/jsp/adminPages/composeMail.jsp</result>
+		</action>
+
+		<action name="showChangePassword">
+			<interceptor-ref name="checkUserInSessionInterceptorStack"></interceptor-ref>
+			<result>/jsp/change-password.jsp </result>
+		</action>
+
+		<action name="showForgetPassword">
+			<result>/jsp/forgot-password.jsp</result>
+		</action>
+
+		<action name="changePassword" class="accountAction" method="changePassword">
+			<interceptor-ref name="checkUserInSessionInterceptorStack"></interceptor-ref>
+			<result name="success">/jsp/change-password.jsp</result>
+			<result name="input">/jsp/change-password.jsp</result>
+		</action>
+
+		<action name="forgotPasswordRequest" class="accountAction"
+			method="forgetPassword">
+			<result name="success">/jsp/forgot-password.jsp</result>
+		</action>
+
+		<action name="osd">
+			<result name="success">/jsp/osd.jsp</result>
+		</action>
+
+		<action name="tariffs">
+			<result name="success">/jsp/tariffs.jsp</result>
+		</action>
+
+		<action name="tripMachines">
+			<result name="success">/jsp/fleet-all-cat.jsp</result>
+		</action>
+
+		<action name="fleet">
+			<result name="success">/jsp/fleet.jsp</result>
+		</action>
+
+		<action name="availability" class="dashboardAction" method="getAvailableCars">
+			<result name="success">/jsp/availability-without-login.jsp</result>
+			<result name="input">/jsp/availability-without-login.jsp</result>
+		</action>
+
+		<action name="tripAvailability" class="dashboardAction" method="getAvailableCars">
+			<result name="success">/jsp/availability-without-login.jsp</result>
+			<result name="input">/jsp/availability-without-login.jsp</result>
+		</action>
+		<action name="tripDetailAvailability" class="dashboardAction"
+			method="getAvailableCars">
+			<result name="success">/jsp/availability.jsp</result>
+			<result name="input">/jsp/availability.jsp</result>
+		</action>
+
+		<action name="tripBooking" class="carBookingAction" method="tripBooking">
+			<interceptor-ref name="checkUserInSessionInterceptorStack"></interceptor-ref>
+			<result name="success">/jsp/availability.jsp</result>
+			<result name="input">/jsp/availability-without-login.jsp</result>
+		</action>
+
+		<action name="approveUser" class="registrationAction" method="approveUser">
+			<interceptor-ref name="checkUserInSessionInterceptorStack"></interceptor-ref>
+			<result name="success" type="redirect">showCustomerList</result>
+			<result name="input">/jsp/customerInfo.jsp</result>
+		</action>
+
+
+	</package>
+</struts>

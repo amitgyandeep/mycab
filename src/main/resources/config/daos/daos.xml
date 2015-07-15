@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	
+	<bean id="customerDao" class="com.prj.dao.impl.CustomerDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="userDao" class="com.prj.dao.impl.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="carDAO" class="com.prj.stubs.CarDaoStub">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="carHubDao" class="com.prj.stubs.CarHubStub">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+		<bean id="securityDepositDao" class="com.prj.stubs.SecurityDeposityDaoStub">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="tariffDao" class="com.prj.stubs.TariffDaoStub">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="documentDao" class="com.prj.dao.impl.DocumentDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+</beans>
