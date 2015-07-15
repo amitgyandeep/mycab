@@ -84,11 +84,11 @@ public class RegistrationAction extends ActionSupport implements RequestAware {
 
 					String smsText = SMSMessageHelper.getRegisterMessage( customerDB.getCustomerName() );
 
-					//smsService.sendSms( smsText , "91" + customerDB.getMobileNumber() , ApplicationConstants.CLIENT_ID , ApplicationConstants.SYSTEM_ID ,	ApplicationConstants.VEHICLE_ID );
+					smsService.sendSms( smsText , "91" + customerDB.getMobileNumber() , ApplicationConstants.CLIENT_ID , ApplicationConstants.SYSTEM_ID ,	ApplicationConstants.VEHICLE_ID );
 
 					LOGGER.info( "NEW CUSTOMER REQUEST SMS SENT" );
 
-					//mailService.sendEmail( "Requested for OSD " , smsText , customerDB.getEmail() , ApplicationConstants.SYSTEM_ID , ApplicationConstants.VEHICLE_ID );
+					mailService.sendEmail( "Requested for OSD " , smsText , customerDB.getEmail() , ApplicationConstants.SYSTEM_ID , ApplicationConstants.VEHICLE_ID );
 
 					LOGGER.info( "NEW CUSTOMER REQUEST EMAIL SENT" );
 
