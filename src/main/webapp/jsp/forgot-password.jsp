@@ -176,7 +176,7 @@
 <div class="col-lg-5">
 <form class="form-signin" action="forgotPasswordRequest" id="forgotPassword">
         <label class="sr-only" for="inputPassword">Enter registered mobile #</label>
-        <input type="password" required="" placeholder="Enter registered mobile" class="form-control"  name="customer.mobileNumber" >
+        <input type="password" required="" placeholder="Enter registered mobile" class="form-control" maxlength="10"  name="customer.mobileNumber" >
   <br>
         <button type="submit" class="btn btn-lg btn-denger btn-block">Continue</button>
       </form>  
