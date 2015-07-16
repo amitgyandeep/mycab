@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <html lang="en"><head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -170,16 +171,27 @@
 <div class="col-lg-5">
 <form class="form-signin" action="forgotPasswordRequest">
         <label class="sr-only" for="inputPassword">Enter registered mobile #</label>
-        <input type="password" required="" placeholder="Enter registered mobile" class="form-control" id="inputPassword" name="customer.mobileNumber">
+        <input type="password" required="" placeholder="Enter registered mobile" class="form-control"  name="customer.mobileNumber" >
   <br>
         <button type="submit" class="btn btn-lg btn-denger btn-block">Continue</button>
       </form>  
     </div>
 </div>
-<div class="row"> 
-<div class="col-lg-12">  
-<p><a hrfe="#">Your password has been sent to the registered email ID.</a></p> </div>  
-</div>
+<div class="row">
+
+
+							<div class="col-lg-12">
+							
+									<s:if test="#request.passwordSent=='passwordSent'">
+										<p>	<a hrfe="#">Your password has been sent to the registered
+											email ID.</a></p>
+									</s:if>
+								
+							</div>
+
+
+
+						</div>
 </div>
 
 </div>

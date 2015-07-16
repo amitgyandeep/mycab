@@ -102,7 +102,7 @@ public class AccountAction extends ActionSupport implements SessionAware, Reques
 			String smsText = "Dear " + customer.getCustomerName() + ", your password is " + user.getPassword();
 
 			smsService.sendSms( smsText , customer.getMobileNumber() , ApplicationConstants.CLIENT_ID , ApplicationConstants.SYSTEM_ID , ApplicationConstants.VEHICLE_ID );
-
+			request.put( "passwordSent" , "passwordSent" );
 			LOGGER.info( "sms sent for forgot password" );
 
 			return SUCCESS;
