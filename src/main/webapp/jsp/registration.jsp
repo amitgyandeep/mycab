@@ -363,11 +363,14 @@ span a:hover {
         <script type="text/javascript">
             // When the document is ready
             $(document).ready(function () {
-                
+            	var dt = new Date();
+            	dt.setFullYear(new Date().getFullYear()-18);
+            	
                 $('#datepicker').datepicker({
                     format: "dd/mm/yyyy",
                     orientation: "bottom left",
-                    endDate: '+0d',
+                    endDate:dt,
+                   /*  endDate: '+0d', */
                     autoclose: true
                 });  
             
