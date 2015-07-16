@@ -33,6 +33,11 @@
     text-transform: uppercase;
 }
 </style>
+ <style>
+.error, label{
+	color:red;
+}
+</style> 
 </head>
 
 <body data-target=".navbar-custom" data-spy="scroll" id="page-top">
@@ -169,7 +174,7 @@
 <br>
 <div class="row">
 <div class="col-lg-5">
-<form class="form-signin" action="forgotPasswordRequest">
+<form class="form-signin" action="forgotPasswordRequest" id="forgotPassword">
         <label class="sr-only" for="inputPassword">Enter registered mobile #</label>
         <input type="password" required="" placeholder="Enter registered mobile" class="form-control"  name="customer.mobileNumber" >
   <br>
@@ -273,4 +278,7 @@
 
 
 
-</section></section></body></html>
+</section></section>
+ <script src="validateJS/jquery.validate.min.js"></script>
+<script src="validateJS/validate.js"></script> 
+</body></html>

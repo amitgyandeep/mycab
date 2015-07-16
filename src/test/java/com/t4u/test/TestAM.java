@@ -1,17 +1,23 @@
 package com.t4u.test;
 
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class TestAM {
 
 	public static void main( String[] args ) {
 
-		String tm = "10:53 PM";
-		DateTimeFormatter builder = DateTimeFormat.forPattern( "hh:mm a" );
-		DateTime dateTime = builder.parseDateTime( tm );
+		String tm = "16/07/2015 10:34 PM";
 
-		System.out.println( dateTime.getHourOfDay() + ":" + dateTime.getMinuteOfHour() );
+		SimpleDateFormat formatter = new SimpleDateFormat( "dd/MM/yyyy hh:mm a" );
+		try {
+			Date convertedDate = formatter.parse( tm );
+			System.out.println( "Date from dd/MM/yyyy String in Java : " + convertedDate );
+		} catch ( ParseException e ) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 }

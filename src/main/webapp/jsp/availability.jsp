@@ -251,14 +251,15 @@ span a:hover{
 
 
 
-
+<s:if test="#request.availableCars.size()>0">
   <div class="col-lg-9 overflow">
     <s:iterator value="#request.availableCars"  status="count">
+    <s:form action="tripBooking" theme="simple">
 <div class="row">
 <div class="col-lg-12">
   <div class="col-lg-7"><img style="width:171%;" src="img/BMW-5-series.png" alt="" class="img-responsiv"></div>
    <div class="col-lg-12 text-success">Available at: <s:property value="hub.name"/></div>
-<div class="col-lg-12"><button class="btn btn-default " type="button"><span>Fare: Rs: <s:property value="getPrice()"  />   &nbsp;|&nbsp;</span> <span> 2 days   &nbsp;|&nbsp;</span><span>5 Hours</span></button></div>
+<div class="col-lg-12"><button class="btn btn-default " type="button"><span>Fare: Rs: &nbsp;<input type="text" disabled="disabled" value='<s:property value="getPrice()"  />'/>   &nbsp;|&nbsp;</span> <span> 2 days   &nbsp;|&nbsp;</span><span>5 Hours</span></button></div>
      
 
 
@@ -271,7 +272,9 @@ span a:hover{
   </div>
 </div>
   </div>
+ 
   </div>
+  </s:form>
   </s:iterator>
 <%-- <div class="row">
 <div class="col-lg-12">
@@ -327,7 +330,7 @@ span a:hover{
 </div>
   </div>
   </div> --%></div>
-
+</s:if>
   
 </div>
 

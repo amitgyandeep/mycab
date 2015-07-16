@@ -91,7 +91,22 @@
 					form.submit();
 				}
 			});
-			
+			$("#forgotPassword").validate({
+				rules : {
+					'customer.mobileNumber' : {
+						required : true,
+						number : true,
+						EqualTo:true
+					}
+					
+				},messages : {	
+					'customer.mobileNumber' : {
+						required : "Please enter Mobile Number",
+						EqualTo:"value must be of 10 digit",
+					
+					},},submitHandler : function(form) {
+						form.submit();
+					}});
 		}
 	}
 

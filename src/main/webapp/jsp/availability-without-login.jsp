@@ -241,51 +241,6 @@
                            </s:form>
                            </div>
                            </s:iterator>
-                          <%--  <div class="row">
-                              <div class="col-lg-12">
-                                 <div class="col-lg-7"><img class="img-responsiv" alt="" src="img/car.png" style="width:171%;"></div>
-                                 <div class="col-lg-12 text-success">Available at: Gurgaon Sector 1</div>
-                                 <div class="col-lg-12"><button type="button" class="btn btn-default "><span>Fare: Rs:XXXX    &nbsp;|&nbsp;</span> <span> 2 days   &nbsp;|&nbsp;</span><span>5 Hours</span></button></div>
-                                 <div style="margin-top: 30px;" class="col-lg-12">
-                                    <div class="row">
-                                       <div class="col-lg-6"> <label class="sr-only" for="inputPassword">Enter Promo Code</label>
-                                          <input type="password" required="" placeholder="Enter Promo Code" class="form-control" id="inputPassword">
-                                       </div>
-                                       <div class="col-lg-3"><button class="btn btn-sm btn-denger btn-block" type="submit">Book</button></div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="col-lg-12">
-                                 <div class="col-lg-7"><img class="img-responsiv" alt="" src="img/car.png" style="width:171%;"></div>
-                                 <div class="col-lg-12 text-success">Available at: Gurgaon Sector 1</div>
-                                 <div class="col-lg-12"><button type="button" class="btn btn-default "><span>Fare: Rs:XXXX    &nbsp;|&nbsp;</span> <span> 2 days   &nbsp;|&nbsp;</span><span>5 Hours</span></button></div>
-                                 <div style="margin-top: 30px;" class="col-lg-12">
-                                    <div class="row">
-                                       <div class="col-lg-6"> <label class="sr-only" for="inputPassword">Enter Promo Code</label>
-                                          <input type="password" required="" placeholder="Enter Promo Code" class="form-control" id="inputPassword">
-                                       </div>
-                                       <div class="col-lg-3"><button class="btn btn-sm btn-denger btn-block" type="submit">Book</button></div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="col-lg-12">
-                                 <div class="col-lg-7"><img class="img-responsiv" alt="" src="img/car.png" style="width:171%;"></div>
-                                 <div class="col-lg-12 text-success">Available at: Gurgaon Sector 1</div>
-                                 <div class="col-lg-12"><button type="button" class="btn btn-default "><span>Fare: Rs:XXXX    &nbsp;|&nbsp;</span> <span> 2 days   &nbsp;|&nbsp;</span><span>5 Hours</span></button></div>
-                                 <div style="margin-top: 30px;" class="col-lg-12">
-                                    <div class="row">
-                                       <div class="col-lg-6"> <label class="sr-only" for="inputPassword">Enter Promo Code</label>
-                                          <input type="password" required="" placeholder="Enter Promo Code" class="form-control" id="inputPassword">
-                                       </div>
-                                       <div class="col-lg-3"><button class="btn btn-sm btn-denger btn-block" type="submit">Book</button></div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div> --%>
                         </div>
                      </div>
                   </div>

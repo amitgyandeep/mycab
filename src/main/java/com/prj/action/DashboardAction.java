@@ -1,13 +1,13 @@
 package com.prj.action;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -83,9 +83,16 @@ public class DashboardAction extends ActionSupport implements RequestAware, Sess
 
 		String startDate = customerRequestObject.getStartDate() + " " + customerRequestObject.getStartTime();
 		String endDate = customerRequestObject.getEndDate() + " " + customerRequestObject.getEndTime();
-		DateTimeFormatter formatter = DateTimeFormat.forPattern( "mm/dd/yyyy hh:mm a" );
-		pickupDate = formatter.parseDateTime( startDate );
-		dropOffDate = formatter.parseDateTime( endDate );
+
+		SimpleDateFormat formatter = new SimpleDateFormat( "dd/MM/yyyy hh:mm a" );
+		try {
+			pickupDate = new DateTime( formatter.parse( startDate ) );
+			dropOffDate = new DateTime( formatter.parse( endDate ) );
+
+		} catch ( ParseException e ) {
+			LOGGER.info( "problem in date conversion in  DashboardAction" );
+			e.printStackTrace();
+		}
 
 	}
 

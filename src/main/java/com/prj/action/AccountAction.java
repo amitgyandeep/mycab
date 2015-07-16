@@ -68,9 +68,9 @@ public class AccountAction extends ActionSupport implements SessionAware, Reques
 
 			Customer customer = customerService.getcustomerByEmailId( loggedUser.getEmailId() );
 
-			String smsText = "Dear Customer, your password has been changed to " + newPassword;
+			//String smsText = "Dear Customer, your password has been changed to " + newPassword;
 
-			smsService.sendSms( smsText , customer.getMobileNumber() , ApplicationConstants.CLIENT_ID , ApplicationConstants.SYSTEM_ID , ApplicationConstants.VEHICLE_ID );
+			//smsService.sendSms( smsText , customer.getMobileNumber() , ApplicationConstants.CLIENT_ID , ApplicationConstants.SYSTEM_ID , ApplicationConstants.VEHICLE_ID );
 
 			return SUCCESS;
 		} else {
@@ -97,11 +97,12 @@ public class AccountAction extends ActionSupport implements SessionAware, Reques
 			mailService.sendEmail( props.getProperty( "forgot.password.subject" ) , props.getProperty( "forgot.password.body" ) + ": " + user.getPassword() ,
 				user.getEmailId() , ApplicationConstants.SYSTEM_ID , ApplicationConstants.VEHICLE_ID );
 
-			LOGGER.info( "mail sent for forgot password" );
+			LOGGER.info( "Mail sent for forgot password" );
 
 			String smsText = "Dear " + customer.getCustomerName() + ", your password is " + user.getPassword();
 
 			smsService.sendSms( smsText , customer.getMobileNumber() , ApplicationConstants.CLIENT_ID , ApplicationConstants.SYSTEM_ID , ApplicationConstants.VEHICLE_ID );
+
 			request.put( "passwordSent" , "passwordSent" );
 			LOGGER.info( "sms sent for forgot password" );
 
@@ -122,7 +123,7 @@ public class AccountAction extends ActionSupport implements SessionAware, Reques
 			props.load( resourceStream );
 
 		} catch ( IOException e ) {
-			LOGGER.info( "problem in loading applicationSetup properties file" );
+			LOGGER.info( "problem in loading applicationSetup properties file" + e.getMessage() );
 		}
 	}
 
