@@ -9,10 +9,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.prj.model.CarHub;
 import com.prj.model.CustomerRequestObject;
+import com.prj.model.TripInvoice;
 import com.prj.model.User;
 import com.prj.service.impl.CarBookingService;
-import com.prj.util.DateTimeUtility;
 
 public class CarBookingAction extends ActionSupport implements SessionAware, RequestAware {
 
@@ -28,21 +29,35 @@ public class CarBookingAction extends ActionSupport implements SessionAware, Req
 
 	private DateTime pickupDate;
 
+	private String tripCost;
+
 	private static final Logger LOGGER = LoggerFactory.getLogger( CarBookingAction.class );
 
 	public String tripBooking() {
 
 		User user = ( User ) session.get( "loggedUser" );
 		if ( user != null ) {
-			customerRequestObject = ( CustomerRequestObject ) request.get( "customerRequest" );
+			dropOffDate = ( DateTime ) session.get( "dropOffDate" );
+			pickupDate = ( DateTime ) session.get( "pickupDate" );
+			CarHub carHub = ( CarHub ) session.get( "carHub" );
 
-			pickupDate = DateTimeUtility.getDateInitialized( customerRequestObject.getStartDate() , customerRequestObject.getStartTime() );
-			dropOffDate = DateTimeUtility.getDateInitialized( customerRequestObject.getEndDate() , customerRequestObject.getEndTime() );
+			//customerRequestObject.setCarHub( carHub );
+			//need to calculate invoice 
+			/* Dummy values  for testing*/
+			TripInvoice invoice = new TripInvoice();
+			invoice.setSecurityDeposit( 5000.00 );
+			invoice.setAdjustedFromWallet( 1000.00 );
+			invoice.setAdnlsecurityDeposit( 1000.00 );
+			invoice.setDiscount( 0.00 );
+			invoice.setServiceTax( 650.00 );
+			invoice.setTripCost( Double.parseDouble( tripCost ) );
+			invoice.setTotal( 1000.00 + 5000.00 + 0.00 + 650.00 + Double.parseDouble( tripCost ) );
 
+			request.put( "tripInvoice" , invoice );
+			return SUCCESS;
 		} else {
 			return INPUT;
 		}
-		return null;
 
 	}
 
@@ -84,6 +99,16 @@ public class CarBookingAction extends ActionSupport implements SessionAware, Req
 	public void setCustomerRequestObject( CustomerRequestObject customerRequestObject ) {
 
 		this.customerRequestObject = customerRequestObject;
+	}
+
+	public String getTripCost() {
+
+		return tripCost;
+	}
+
+	public void setTripCost( String tripCost ) {
+
+		this.tripCost = tripCost;
 	}
 
 }

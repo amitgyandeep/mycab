@@ -22,6 +22,7 @@ public class CheckUserInSessionInterceptor implements Interceptor {
 		HttpServletRequest request = ( HttpServletRequest ) ac.get( StrutsStatics.HTTP_REQUEST );
 
 		Map<String,Object> session = ac.getSession();
+
 		User user = ( User ) session.get( "loggedUser" );
 		if ( user == null ) {
 			return "userNotInSession";

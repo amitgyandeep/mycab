@@ -62,11 +62,14 @@ public class DashboardAction extends ActionSupport implements RequestAware, Sess
 			request.put( "startTime" , customerRequestObject.getStartTime() );
 			request.put( "endDate" , customerRequestObject.getEndDate() );
 			request.put( "endTime" , customerRequestObject.getEndTime() );
-			request.put( "carHub" , customerRequestObject.getCarHub() );
-			request.put( "carModel" , customerRequestObject.getCarModel() );
+			session.put( "carHub" , customerRequestObject.getCarHub() );
+			session.put( "carModel" , customerRequestObject.getCarModel() );
 
 			pickupDate = DateTimeUtility.getDateInitialized( customerRequestObject.getStartDate() , customerRequestObject.getStartTime() );
 			dropOffDate = DateTimeUtility.getDateInitialized( customerRequestObject.getEndDate() , customerRequestObject.getEndTime() );
+
+			session.put( "pickupDate" , pickupDate );
+			session.put( "dropOffDate" , dropOffDate );
 
 			LOGGER.info( "StartDate and EndDtae cunstructed" );
 

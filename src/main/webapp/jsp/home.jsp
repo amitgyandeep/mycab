@@ -642,9 +642,7 @@ select{
             });
         </script>
         <script type="text/javascript">
-            // When the document is ready
             $(document).ready(function () {
-                
                 $('#datepicker6').datepicker({
                     format: "dd/mm/yyyy",
                     orientation: "top left",

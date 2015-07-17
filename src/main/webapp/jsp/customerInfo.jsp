@@ -239,8 +239,8 @@
             <a href="#">Option &#9662;</a>
             <ul class="dropdown">
                  <li><a href='approveUser?inputText=<s:property value="id" />' >Approve</a></li>
-                <li><a id='<s:property value="id" />' href='composeMail?customerId=<s:property value="id" />&case=Hold' >Hold</a></li>
-                <li><a href='composeMail?customerId=<s:property value="id" />&case=Reject'>Reject</a></li>
+                <li><a  href='holdUser?inputText=<s:property value="id" />'  >Hold</a></li>
+                <li><a href='rejectUser?inputText=<s:property value="id" />' >Reject</a></li>
             </ul>
         </li>
     </ul>

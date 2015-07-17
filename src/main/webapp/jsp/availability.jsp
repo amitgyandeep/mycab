@@ -152,10 +152,10 @@ span a:hover{
 		<div class="col-md-4 profile">
         <div class="row left-aside-osd">
         <div class="row">
-<div class="col-lg-6"><span> <a href="#&quot;">My profile</a></span></div><div class="col-lg-6"><s:property value="#session.customerInSession.customerName"/><span> <a href="#&quot;"> Edit</a></span></div>
+<div class="col-lg-6"><span> <a href="#&quot;">My profile</a></span></div><div class="col-lg-6"><span> <a href="#&quot;"> Edit</a></span></div>
 </div>
 <div class="row">
-<div class="col-lg-6"><img class="img-profile" src="img/avatar.png"></div><div class="col-lg-6"></div>
+<div class="col-lg-6"><img class="img-profile" src="img/avatar.png"></div><div class="col-lg-6"><s:property value="#session.customerInSession.customerName"/></div>
 </div>
 <div class="row">
 <h6 class="col-lg-12">Edit Information</h6>
@@ -226,7 +226,7 @@ span a:hover{
                                  <div class="input-group">
                                     <s:textfield  list="carHubs" theme="simple" style="width:100%;" required="" 
 														placeholder="Gurgaon"
-														class="form-control hasDatepicker" name="customerRequestObject.carHub.name" autocomplete="off" value="%{#request.carHub.name}"/>
+														class="form-control hasDatepicker" name="customerRequestObject.carHub.name" autocomplete="off" value="%{#session.carHub.name}"/>
 													<datalist id="carHubs">
 														<s:iterator value="#session.carHubs">
 															<option value='<s:property value="name"/>'>
@@ -255,11 +255,12 @@ span a:hover{
   <div class="col-lg-9 overflow">
     <s:iterator value="#request.availableCars"  status="count">
    <s:form  id="#count.count" action="tripBooking" theme="simple">
+     <input type="text" hidden="" name="customerRequestObject.carModel.name" value='<s:property value="model.name"/>'/>
 <div class="row">
 <div class="col-lg-12">
   <div class="col-lg-7"><img style="width:171%;" src="img/BMW-5-series.png" alt="" class="img-responsiv"></div>
    <div class="col-lg-12 text-success">Available at: <s:property value="hub.name"/></div>
-<div class="col-lg-12"><button class="btn btn-default " type="button"><span>Fare: Rs: &nbsp;<label><s:property value="getPrice()"  /></label>     &nbsp;|&nbsp;</span> <span> 2 days   &nbsp;|&nbsp;</span><span>5 Hours</span></button></div>
+<div class="col-lg-12"><button class="btn btn-default " type="button"><span>Fare: Rs: &nbsp;<input type="text" hidden="" name="tripCost" value='<s:property value="getPrice()"  />'/><label><s:property value="getPrice()"  /></label>     &nbsp;|&nbsp;</span> <span> 2 days   &nbsp;|&nbsp;</span><span>5 Hours</span></button></div>
      
 
 
@@ -372,6 +373,7 @@ span a:hover{
                     format: "dd/mm/yyyy",
                     orientation: "top left",
                     startDate: new Date(),
+                    autoclose: true
                 });  
             
             });
@@ -383,7 +385,8 @@ span a:hover{
                 $('#datepicker2').datepicker({
                     format: "dd/mm/yyyy",
                     orientation: "top left",
-                    startDate: new Date()
+                    startDate: new Date(),
+                    autoclose: true
                 });  
             
             });

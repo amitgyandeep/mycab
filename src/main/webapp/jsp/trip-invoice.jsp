@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <html lang="en"><head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -64,7 +65,7 @@ span a:hover {
 <div class="container">
 <div class="row">
 <div class="col-lg-9"></div>
-<div class="col-lg-3"><p style="float:right;"><img src="img/live-support.png" style="float:left;"><a href="#" class="top-link">SIGN IN</a><a href="#" class="top-link">FAQs</a><a href="#" class="top-link">Link</a></p></div>
+<div class="col-lg-3"><p style="float:right;"><img src="img/live-support.png" style="float:left;"><a href="logoutAction" class="top-link">SIGN OUT</a><a href="#" class="top-link">FAQs</a><a href="#" class="top-link">Link</a></p></div>
 
 </div>
 
@@ -145,15 +146,15 @@ span a:hover {
 <div class="col-lg-6"><span> <a href="#&quot;">My profile</a></span></div><div class="col-lg-6"><span> <a href="#&quot;"> Edit</a></span></div>
 </div>
 <div class="row">
-<div class="col-lg-6"><img class="img-profile" src="img/avatar.png"></div><div class="col-lg-6">Rajneesh Bhatt</div>
+<div class="col-lg-6"><img class="img-profile" src="img/avatar.png"></div><div class="col-lg-6"><s:property value="#session.customerInSession.customerName"/></div>
 </div>
 <div class="row">
 <h6 class="col-lg-12">Edit Information</h6>
 <span class="col-lg-12"><a href="#">Upcoming Events</a><a></a></span>
 <span class="col-lg-12"><a href="#">Useful Info / Links</a></span>
 <span class="col-lg-12"><a href="#">Upcoming Trips</a></span>
-<span class="col-lg-12"><a href="#">New Trip</a></span>
-<span class="col-lg-12"><a href="#">Change password</a></span>
+<span class="col-lg-12"><a href="tripDetailAvailability">New Trip</a></span>
+<span class="col-lg-12"><a href="showChangePassword">Change password</a></span>
 
 </div>
                         
@@ -178,21 +179,21 @@ span a:hover {
 <div class="row">
 <div class="col-lg-9"> 
 <div class="row">  
-  <span class="col-lg-9"><strong>Security Deposit:</strong></span> <span class="col-lg-3">Rs. 5,000</span></div>
+  <span class="col-lg-9"><strong>Security Deposit:</strong></span> <span class="col-lg-3">Rs. <s:property value="#request.tripInvoice.securityDeposit"/></span></div>
 <div class="row">  
 <span class="col-lg-9">Adnl security deposit (Upgrade) </span><span class="col-lg-3">Rs. . . . . . .  .</span></div>
 <div class="row">  
-<span class="col-lg-9"><strong>Trip Cost:</strong></span><span class="col-lg-3">Rs. 8,000</span></div>
+<span class="col-lg-9"><strong>Trip Cost:</strong></span><span class="col-lg-3">Rs. <s:property value="#request.tripInvoice.tripCost"/></span></div>
   <div class="row">  
-  <span class="col-lg-9">(See Calculation/Auto Calculated</span><span class="col-lg-3"></span></div>
+  <span class="col-lg-9">(See Calculation/Auto Calculated)</span><span class="col-lg-3"></span></div>
   <div class="row">  
-  <span class="col-lg-9">Adjusted from Wallet:</span><span class="col-lg-3">Rs. XXXX</span></div>
+  <span class="col-lg-9">Adjusted from Wallet:</span><span class="col-lg-3">Rs. <s:property value="#request.tripInvoice.adjustedFromWallet"/></span></div>
   <div class="row">  
-  <span class="col-lg-9">Less Discount:	</span><span class="col-lg-3">Rs. XXXX</span></div>
+  <span class="col-lg-9">Less Discount:	</span><span class="col-lg-3">Rs. <s:property value="#request.tripInvoice.discount"/></span></div>
   <div class="row">  
-  <span class="col-lg-9"><strong>Service Tax: </strong></span><span class="col-lg-3">Rs. XXXX</span></div>
+  <span class="col-lg-9"><strong>Service Tax: </strong></span><span class="col-lg-3">Rs. <s:property value="#request.tripInvoice.serviceTax"/></span></div>
     <div class="row">  
-  <span class="col-lg-9"><strong>Total:</strong></span><span class="col-lg-3">Rs. XXXX</span></div>
+  <span class="col-lg-9"><strong>Total:</strong></span><span class="col-lg-3">Rs. <s:property value="#request.tripInvoice.total"/></span></div>
   <div class="row">  
   <span class="col-lg-6">T&amp;C Selection:</span><span class="col-lg-6"></span></div>
 

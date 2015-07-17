@@ -84,7 +84,8 @@ public class RegistrationAction extends ActionSupport implements RequestAware {
 
 					String smsText = SMSMessageHelper.getRegisterMessage( customerDB.getCustomerName() );
 
-					smsService.sendSms( smsText , "91" + customerDB.getMobileNumber() , ApplicationConstants.CLIENT_ID , ApplicationConstants.SYSTEM_ID ,	ApplicationConstants.VEHICLE_ID );
+					smsService.sendSms( smsText , "91" + customerDB.getMobileNumber() , ApplicationConstants.CLIENT_ID , ApplicationConstants.SYSTEM_ID ,
+						ApplicationConstants.VEHICLE_ID );
 
 					LOGGER.info( "NEW CUSTOMER REQUEST SMS SENT" );
 
@@ -206,7 +207,7 @@ public class RegistrationAction extends ActionSupport implements RequestAware {
 
 			LOGGER.info( "SMS SENT FOR APPROVED CUSTOMER" );
 
-			mailService.sendEmail( "User Aprroved For OSD" , smsText + ". Your password is" + user.getPassword() , customer.getEmail() , ApplicationConstants.SYSTEM_ID ,
+			mailService.sendEmail( "User Aprroved For OSD" , smsText + ". Your password is " + user.getPassword() , customer.getEmail() , ApplicationConstants.SYSTEM_ID ,
 				ApplicationConstants.VEHICLE_ID );
 
 			LOGGER.info( "EMAIL SENT FOR APPROVED CUSTOMER" );

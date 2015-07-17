@@ -166,7 +166,7 @@
                            <div class="row">
                               <div class="form-group col-md-8 col-sm-6 col-xs-12">
                                  <div class="input-group">
-                                    <input type="text" class="form-control hasDatepicker" name="customerRequestObject.startDate" placeholder="Selected Trip Date" id="datepicker1" value='<s:property value="#request.startDate"/>'/>
+                                    <input type="text" class="form-control hasDatepicker" required="" name="customerRequestObject.startDate" placeholder="Selected Trip Date" id="datepicker1" value='<s:property value="#request.startDate"/>'/>
                                     <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
                                  </div>
                               </div>
@@ -181,7 +181,7 @@
                            <div class="row">
                               <div class="form-group col-md-8 col-sm-6 col-xs-12">
                                  <div class="input-group">
-                                    <input type="text" id="datepicker2" name="customerRequestObject.endDate" placeholder="Selected Drop Date " class="form-control hasDatepicker" value='<s:property value="#request.endDate"/>'>
+                                    <input type="text" id="datepicker2" required="" name="customerRequestObject.endDate" placeholder="Selected Drop Date " class="form-control hasDatepicker" value='<s:property value="#request.endDate"/>'>
                                     <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
                                  </div>
                               </div>
@@ -202,7 +202,7 @@
                                
                                <s:textfield  list="carHubs" theme="simple" style="width:100%;" required="" 
 														placeholder="Gurgaon"
-														class="form-control hasDatepicker" name="customerRequestObject.carHub.name" autocomplete="off" value="%{#request.carHub.name}"/>
+														class="form-control hasDatepicker" name="customerRequestObject.carHub.name" autocomplete="off" value="%{#session.carHub.name}"/>
 													<datalist id="carHubs">
 														<s:iterator value="#session.carHubs">
 															<option value='<s:property value="name"/>'>
@@ -227,13 +227,14 @@
                            <div class="row">
                            <s:form  id="#count.count" action="tripBooking" theme="simple">
                               <div class="col-lg-12">
+                              <s:hidden name="customerRequestObject.car.model" value="car.model"/>
                                  <div class="col-lg-7"><img style="width:171%;" src="img/car.png" alt="" class="img-responsiv"></div>
                                  <div class="col-lg-12 text-success">Available at: <s:property value="hub.name"/></div>
                                  <div class="col-lg-12"><button class="btn btn-default " type="button"><span>Fare: Rs:&nbsp;<label><s:property value="getPrice()"  /></label>  &nbsp;|&nbsp;</span> <span> 1 days   &nbsp;|&nbsp;</span><span>5 Hours</span></button></div>
                                  <div class="col-lg-12" style="margin-top: 30px;">
                                     <div class="row">
                                        <div class="col-lg-6"> <label for="inputPassword" class="sr-only">Enter Promo Code</label>
-                                          <input type="password"  class="form-control" placeholder="Enter Promo Code" required="" name="promoCode">
+                                          <input type="password"  class="form-control" placeholder="Enter Promo Code"  name="promoCode" autocomplete="off">
                                        </div>
                                        <div class="col-lg-3"><button type="submit" class="btn btn-sm btn-denger btn-block">Book</button></div>
                                     </div>
@@ -328,8 +329,10 @@
                 $('#datepicker1').datepicker({
                     format: "dd/mm/yyyy",
                     orientation: "top left",
-                    startDate: new Date()
-                });  
+                    startDate: new Date(),
+                    autoclose: true,
+                    
+                });
             
             });
         </script>
@@ -340,7 +343,8 @@
                 $('#datepicker2').datepicker({
                     format: "dd/mm/yyyy",
                     orientation: "top left",
-                    startDate: new Date()
+                    startDate: new Date(),
+                    autoclose: true
                 });  
             
             });
