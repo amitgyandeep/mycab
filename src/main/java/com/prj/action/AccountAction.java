@@ -18,6 +18,7 @@ import com.prj.service.interfaces.ICustomerService;
 import com.prj.service.interfaces.IMailService;
 import com.prj.service.interfaces.ISmsService;
 import com.prj.service.interfaces.IUserService;
+import com.prj.service.serviceHelper.SMSMessageHelper;
 
 public class AccountAction extends ActionSupport implements SessionAware, RequestAware {
 
@@ -74,7 +75,7 @@ public class AccountAction extends ActionSupport implements SessionAware, Reques
 
 			return SUCCESS;
 		} else {
-			LOGGER.info( "old password does not matched" );
+			LOGGER.info( "OLD PASSWORD DOES NOT MATCHED" );
 			request.put( "newPassword" , newPassword );
 			request.put( "passwordIncorrect" , "passwordIncorrect" );
 			return INPUT;
@@ -85,31 +86,38 @@ public class AccountAction extends ActionSupport implements SessionAware, Reques
 
 		initializeProperties();
 
-		LOGGER.info( "forget Password properties file loaded" );
+		LOGGER.info( "properties file loaded" );
 
 		Customer customer = customerService.getCustomerByMobileNumber( this.customer.getMobileNumber() );
 
 		LOGGER.info( "customer found for given mobile number is " + customer );
 
-		if ( props != null && customer != null ) {
+		if ( customer != null ) {
 			User user = userService.getUserByEmailId( customer.getEmail() );
+			if ( user != null ) {
+				String smsText = SMSMessageHelper.getForgotPasswordMessage( customer.getCustomerName() , user.getPassword() );
 
-			mailService.sendEmail( props.getProperty( "forgot.password.subject" ) , props.getProperty( "forgot.password.body" ) + ": " + user.getPassword() ,
-				user.getEmailId() , ApplicationConstants.SYSTEM_ID , ApplicationConstants.VEHICLE_ID );
+				mailService.sendEmail( props.getProperty( "forgot.password.subject" ) , smsText + ": " + user.getPassword() , user.getEmailId() ,
+					ApplicationConstants.SYSTEM_ID , ApplicationConstants.VEHICLE_ID );
 
-			LOGGER.info( "Mail sent for forgot password" );
+				LOGGER.info( "Mail sent for forgot password" );
 
-			String smsText = "Dear " + customer.getCustomerName() + ", your password is " + user.getPassword();
+				//smsService.sendSms( smsText , customer.getMobileNumber() , ApplicationConstants.CLIENT_ID , ApplicationConstants.SYSTEM_ID , ApplicationConstants.VEHICLE_ID );
 
-			smsService.sendSms( smsText , customer.getMobileNumber() , ApplicationConstants.CLIENT_ID , ApplicationConstants.SYSTEM_ID , ApplicationConstants.VEHICLE_ID );
+				request.put( "passwordSent" , "passwordSent" );
+				LOGGER.info( "sms sent for forgot password" );
 
-			request.put( "passwordSent" , "passwordSent" );
-			LOGGER.info( "sms sent for forgot password" );
-
-			return SUCCESS;
+				return SUCCESS;
+			} else {
+				request.put( "notAUser" , "notAUser" );
+				LOGGER.info( "No User Associated with provided registered number " );
+				return INPUT;
+			}
+		} else {
+			request.put( "wrongNumber" , "wrongNumber" );
+			LOGGER.info( "CUSTOMER NOT FOUND FOR PROVIDED MOBILE NUMBER FOR FORGOT PASSWORD" );
+			return INPUT;
 		}
-		LOGGER.info( "Either porperties file or customer is null in forgotpassword or System error" );
-		return INPUT;
 
 	}
 

@@ -221,6 +221,7 @@
                            </div>
                         </div>
                         </s:form>
+                        <s:if test="#request.availableCars.size()>0">
                         <div class="col-lg-9 overflow">
                         <s:iterator value="#request.availableCars"  status="count">
                            <div class="row">
@@ -228,7 +229,7 @@
                               <div class="col-lg-12">
                                  <div class="col-lg-7"><img style="width:171%;" src="img/car.png" alt="" class="img-responsiv"></div>
                                  <div class="col-lg-12 text-success">Available at: <s:property value="hub.name"/></div>
-                                 <div class="col-lg-12"><button class="btn btn-default " type="button"><span>Fare: Rs:<s:property value="getPrice()"  />  &nbsp;|&nbsp;</span> <span> 2 days   &nbsp;|&nbsp;</span><span>5 Hours</span></button></div>
+                                 <div class="col-lg-12"><button class="btn btn-default " type="button"><span>Fare: Rs:&nbsp;<label><s:property value="getPrice()"  /></label>  &nbsp;|&nbsp;</span> <span> 1 days   &nbsp;|&nbsp;</span><span>5 Hours</span></button></div>
                                  <div class="col-lg-12" style="margin-top: 30px;">
                                     <div class="row">
                                        <div class="col-lg-6"> <label for="inputPassword" class="sr-only">Enter Promo Code</label>
@@ -242,6 +243,7 @@
                            </div>
                            </s:iterator>
                         </div>
+                        </s:if>
                      </div>
                   </div>
                   <div class="col-lg-1 pull-ight"></div>

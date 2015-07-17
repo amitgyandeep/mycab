@@ -1,7 +1,5 @@
 package com.prj.action;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -18,6 +16,7 @@ import com.prj.model.CustomerRequestObject;
 import com.prj.service.interfaces.ICarBookingService;
 import com.prj.service.interfaces.ICarHubService;
 import com.prj.service.interfaces.ICarService;
+import com.prj.util.DateTimeUtility;
 
 public class DashboardAction extends ActionSupport implements RequestAware, SessionAware {
 
@@ -66,8 +65,11 @@ public class DashboardAction extends ActionSupport implements RequestAware, Sess
 			request.put( "carHub" , customerRequestObject.getCarHub() );
 			request.put( "carModel" , customerRequestObject.getCarModel() );
 
-			getDateInitialized();
+			pickupDate = DateTimeUtility.getDateInitialized( customerRequestObject.getStartDate() , customerRequestObject.getStartTime() );
+			dropOffDate = DateTimeUtility.getDateInitialized( customerRequestObject.getEndDate() , customerRequestObject.getEndTime() );
+
 			LOGGER.info( "StartDate and EndDtae cunstructed" );
+
 			List<Car> cars = carBookingService.getAvailableCarsByModel( customerRequestObject.getCarModel() , customerRequestObject.getCarHub() , pickupDate.toDate() ,
 				dropOffDate.toDate() );
 
@@ -75,23 +77,6 @@ public class DashboardAction extends ActionSupport implements RequestAware, Sess
 			return SUCCESS;
 		} else {
 			return INPUT;
-		}
-
-	}
-
-	public void getDateInitialized() {
-
-		String startDate = customerRequestObject.getStartDate() + " " + customerRequestObject.getStartTime();
-		String endDate = customerRequestObject.getEndDate() + " " + customerRequestObject.getEndTime();
-
-		SimpleDateFormat formatter = new SimpleDateFormat( "dd/MM/yyyy hh:mm a" );
-		try {
-			pickupDate = new DateTime( formatter.parse( startDate ) );
-			dropOffDate = new DateTime( formatter.parse( endDate ) );
-
-		} catch ( ParseException e ) {
-			LOGGER.info( "problem in date conversion in  DashboardAction" );
-			e.printStackTrace();
 		}
 
 	}

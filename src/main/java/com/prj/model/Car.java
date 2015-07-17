@@ -59,7 +59,7 @@ public class Car extends CabsBaseModel implements Serializable {
 
 	public double getPrice() {
 
-		double price = 0;
+		double price = 0.00;
 		for ( Tariff tariff : tariffs ) {
 			price += tariff.getCost();
 		}

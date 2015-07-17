@@ -254,12 +254,12 @@ span a:hover{
 <s:if test="#request.availableCars.size()>0">
   <div class="col-lg-9 overflow">
     <s:iterator value="#request.availableCars"  status="count">
-    <s:form action="tripBooking" theme="simple">
+   <s:form  id="#count.count" action="tripBooking" theme="simple">
 <div class="row">
 <div class="col-lg-12">
   <div class="col-lg-7"><img style="width:171%;" src="img/BMW-5-series.png" alt="" class="img-responsiv"></div>
    <div class="col-lg-12 text-success">Available at: <s:property value="hub.name"/></div>
-<div class="col-lg-12"><button class="btn btn-default " type="button"><span>Fare: Rs: &nbsp;<input type="text" disabled="disabled" value='<s:property value="getPrice()"  />'/>   &nbsp;|&nbsp;</span> <span> 2 days   &nbsp;|&nbsp;</span><span>5 Hours</span></button></div>
+<div class="col-lg-12"><button class="btn btn-default " type="button"><span>Fare: Rs: &nbsp;<label><s:property value="getPrice()"  /></label>     &nbsp;|&nbsp;</span> <span> 2 days   &nbsp;|&nbsp;</span><span>5 Hours</span></button></div>
      
 
 
@@ -276,60 +276,7 @@ span a:hover{
   </div>
   </s:form>
   </s:iterator>
-<%-- <div class="row">
-<div class="col-lg-12">
-  <div class="col-lg-7"><img class="img-responsiv" alt="" src="img/MERCEDES-E-CLASS.png" style="width:171%;"></div>
-   <div class="col-lg-12 text-success">Available at: Gurgaon Sector 1</div>
-<div class="col-lg-12"><button type="button" class="btn btn-default "><span>Fare: Rs:XXXX    &nbsp;|&nbsp;</span> <span> 2 days   &nbsp;|&nbsp;</span><span>5 Hours</span></button></div>
-     
-
-
-<div style="margin-top: 30px;" class="col-lg-12">
-
-  <div class="row">
-    <div class="col-lg-6"> <label class="sr-only" for="inputPassword">Enter Promo Code</label>
-        <input type="password" required="" placeholder="Enter Promo Code" class="form-control" id="inputPassword"></div>
-  <div class="col-lg-3"><button class="btn btn-sm btn-denger btn-block" type="submit">Book</button></div>
-  </div>
 </div>
-  </div>
-  </div> --%>
-<%-- <div class="row">
-<div class="col-lg-12">
-  <div class="col-lg-7"><img class="img-responsiv" alt="" src="img/Toyota-Fortuner.png" style="width:171%;"></div>
-   <div class="col-lg-12 text-success">Available at: Gurgaon Sector 1</div>
-<div class="col-lg-12"><button type="button" class="btn btn-default "><span>Fare: Rs:XXXX    &nbsp;|&nbsp;</span> <span> 2 days   &nbsp;|&nbsp;</span><span>5 Hours</span></button></div>
-     
-
-
-<div style="margin-top: 30px;" class="col-lg-12">
-
-  <div class="row">
-    <div class="col-lg-6"> <label class="sr-only" for="inputPassword">Enter Promo Code</label>
-        <input type="password" required="" placeholder="Enter Promo Code" class="form-control" id="inputPassword"></div>
-  <div class="col-lg-3"><button class="btn btn-sm btn-denger btn-block" type="submit">Book</button></div>
-  </div>
-</div>
-  </div>
-  </div> --%>
-<%-- <div class="row">
-<div class="col-lg-12">
-  <div class="col-lg-7"><img class="img-responsiv" alt="" src="img/ford-figo.png" style="width:171%;"></div>
-   <div class="col-lg-12 text-success">Available at: Gurgaon Sector 1</div>
-<div class="col-lg-12"><button type="button" class="btn btn-default "><span>Fare: Rs:XXXX    &nbsp;|&nbsp;</span> <span> 2 days   &nbsp;|&nbsp;</span><span>5 Hours</span></button></div>
-     
-
-
-<div style="margin-top: 30px;" class="col-lg-12">
-
-  <div class="row">
-    <div class="col-lg-6"> <label class="sr-only" for="inputPassword">Enter Promo Code</label>
-        <input type="password" required="" placeholder="Enter Promo Code" class="form-control" id="inputPassword"></div>
-  <div class="col-lg-3"><button class="btn btn-sm btn-denger btn-block" type="submit">Book</button></div>
-  </div>
-</div>
-  </div>
-  </div> --%></div>
 </s:if>
   
 </div>

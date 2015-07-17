@@ -14,6 +14,9 @@ public class SMSMessageHelper {
 
 	private static String INVOICE = "Dear $fullname$, your final invoice amount is $amount$. Details are updated in your account and mail.";
 
+	/* FORGOT PASSWORD has not been provided */
+	private static String FORGOT_PASSWORD = "Dear $fullname$, your password is  ${password}$";
+
 	public static String getRegisterMessage( String username ) {
 
 		return REGISTER.replace( "$fullname$" , username );
@@ -43,6 +46,11 @@ public class SMSMessageHelper {
 
 		return ALLOT.replace( "$fullname$" , username ).replace( "$bookingID$ " , bookingId ).replace( "$carname$" , carname ).replace( "$carregno$" , carregno )
 			.replace( "$hubname$" , hubname ).replace( "pickuptime" , pickuptime );
+	}
+
+	public static String getForgotPasswordMessage( String username , String password ) {
+
+		return FORGOT_PASSWORD.replace( "$fullname$" , username ).replace( "$password$" , password );
 	}
 
 }

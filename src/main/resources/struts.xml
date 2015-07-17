@@ -112,6 +112,7 @@
 		<action name="forgotPasswordRequest" class="accountAction"
 			method="forgetPassword">
 			<result name="success">/jsp/forgot-password.jsp</result>
+			<result name="input">/jsp/forgot-password.jsp</result>
 		</action>
 
 		<action name="osd">

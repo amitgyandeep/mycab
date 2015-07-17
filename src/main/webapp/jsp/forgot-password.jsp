@@ -44,7 +44,7 @@
 <div class="container">
 <div class="row">
 <div class="col-lg-9"></div>
-<div class="col-lg-3"><p style="float:right;"><img style="float:left;" src="img/live-support.png"><a class="top-link" href="#">SIGN IN</a><a class="top-link" href="#">FAQs</a><a class="top-link" href="#">Link</a></p></div>
+<div class="col-lg-3"><p style="float:right;"><img style="float:left;" src="img/live-support.png"><a class="top-link" href="userLogin">SIGN IN</a><a class="top-link" href="#">FAQs</a><a class="top-link" href="#">Link</a></p></div>
 
 </div>
 
@@ -120,7 +120,7 @@
   <div class="container">
 <div class="row">
       
-     <div class="col-md-4 pull-right text-right">        Home &gt; <a href="#">Login</a>
+     <div class="col-md-4 pull-right text-right">        Home &gt; <a href="userLogin">Login</a>
       </div>
       
         </div>
@@ -171,15 +171,25 @@
 		</div>
 <div style="" class="col-md-7">
   <h3>Forgot password?</h3>
+  	
+
 <br>
 <div class="row">
+<s:if test="#request.notAUser=='notAUser'">
+  	<div style="color:red;">No User Associated with provided registered number</div>
+  	</s:if>
+  	<s:if test="#request.wrongNumber=='wrongNumber'">
+  	<div style="color:red;">Provided registered number is not valid</div>
+  	</s:if>
 <div class="col-lg-5">
-<form class="form-signin" action="forgotPasswordRequest" id="forgotPassword">
+
+<s:form class="form-signin" action="forgotPasswordRequest" id="forgotPassword" theme="simple" method="post">
         <label class="sr-only" for="inputPassword">Enter registered mobile #</label>
         <input type="password" required="" placeholder="Enter registered mobile" class="form-control" maxlength="10"  name="customer.mobileNumber" >
   <br>
         <button type="submit" class="btn btn-lg btn-denger btn-block">Continue</button>
-      </form>  
+      </s:form>
+        
     </div>
 </div>
 <div class="row">
