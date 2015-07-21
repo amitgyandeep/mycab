@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 import com.opensymphony.xwork2.ActionSupport;
 import com.prj.model.Car;
 import com.prj.model.CarHub;
-import com.prj.model.CustomerRequestObject;
+import com.prj.model.CustomerRequestModel;
 import com.prj.service.interfaces.ICarBookingService;
 import com.prj.service.interfaces.ICarHubService;
 import com.prj.service.interfaces.ICarService;
@@ -30,7 +30,7 @@ public class DashboardAction extends ActionSupport implements RequestAware, Sess
 
 	private ICarService carService;
 
-	private CustomerRequestObject customerRequestObject;
+	private CustomerRequestModel customerRequestModel;
 
 	private Car car;
 
@@ -57,23 +57,23 @@ public class DashboardAction extends ActionSupport implements RequestAware, Sess
 
 	public String getAvailableCars() {
 
-		if ( customerRequestObject != null ) {
-			request.put( "startDate" , customerRequestObject.getStartDate() );
-			request.put( "startTime" , customerRequestObject.getStartTime() );
-			request.put( "endDate" , customerRequestObject.getEndDate() );
-			request.put( "endTime" , customerRequestObject.getEndTime() );
-			session.put( "carHub" , customerRequestObject.getCarHub() );
-			session.put( "carModel" , customerRequestObject.getCarModel() );
+		if ( customerRequestModel != null ) {
+			request.put( "startDate" , customerRequestModel.getStartDate() );
+			request.put( "startTime" , customerRequestModel.getStartTime() );
+			request.put( "endDate" , customerRequestModel.getEndDate() );
+			request.put( "endTime" , customerRequestModel.getEndTime() );
+			session.put( "carHub" , customerRequestModel.getCarHub() );
+			session.put( "carModel" , customerRequestModel.getCarModel() );
 
-			pickupDate = DateTimeUtility.getDateInitialized( customerRequestObject.getStartDate() , customerRequestObject.getStartTime() );
-			dropOffDate = DateTimeUtility.getDateInitialized( customerRequestObject.getEndDate() , customerRequestObject.getEndTime() );
+			pickupDate = DateTimeUtility.getDateInitialized( customerRequestModel.getStartDate() , customerRequestModel.getStartTime() );
+			dropOffDate = DateTimeUtility.getDateInitialized( customerRequestModel.getEndDate() , customerRequestModel.getEndTime() );
 
 			session.put( "pickupDate" , pickupDate );
 			session.put( "dropOffDate" , dropOffDate );
 
 			LOGGER.info( "StartDate and EndDtae cunstructed" );
 
-			List<Car> cars = carBookingService.getAvailableCarsByModel( customerRequestObject.getCarModel() , customerRequestObject.getCarHub() , pickupDate.toDate() ,
+			List<Car> cars = carBookingService.getAvailableCarsByModel( customerRequestModel.getCarModel() , customerRequestModel.getCarHub() , pickupDate.toDate() ,
 				dropOffDate.toDate() );
 
 			request.put( "availableCars" , cars );
@@ -124,14 +124,14 @@ public class DashboardAction extends ActionSupport implements RequestAware, Sess
 		this.carBookingService = carBookingService;
 	}
 
-	public CustomerRequestObject getCustomerRequestObject() {
+	public CustomerRequestModel getCustomerRequestModel() {
 
-		return customerRequestObject;
+		return customerRequestModel;
 	}
 
-	public void setCustomerRequestObject( CustomerRequestObject customerRequestObject ) {
+	public void setCustomerRequestModel( CustomerRequestModel customerRequestModel ) {
 
-		this.customerRequestObject = customerRequestObject;
+		this.customerRequestModel = customerRequestModel;
 	}
 
 	public Map<String,Object> getSession() {

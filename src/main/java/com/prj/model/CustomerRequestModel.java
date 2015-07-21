@@ -8,7 +8,7 @@ import java.io.Serializable;
  * Class Model to handle customer Request from dashboard
  *
  */
-public class CustomerRequestObject implements Serializable {
+public class CustomerRequestModel implements Serializable {
 
 	private CarHub carHub;
 

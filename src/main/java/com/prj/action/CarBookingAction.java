@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.prj.model.CarHub;
-import com.prj.model.CustomerRequestObject;
+import com.prj.model.CustomerRequestModel;
 import com.prj.model.TripInvoice;
 import com.prj.model.User;
 import com.prj.service.impl.CarBookingService;
@@ -23,7 +23,7 @@ public class CarBookingAction extends ActionSupport implements SessionAware, Req
 
 	private CarBookingService carBookingService;
 
-	CustomerRequestObject customerRequestObject;
+	CustomerRequestModel customerRequestObject;
 
 	private DateTime dropOffDate;
 
@@ -91,12 +91,12 @@ public class CarBookingAction extends ActionSupport implements SessionAware, Req
 		this.carBookingService = carBookingService;
 	}
 
-	public CustomerRequestObject getCustomerRequestObject() {
+	public CustomerRequestModel getCustomerRequestObject() {
 
 		return customerRequestObject;
 	}
 
-	public void setCustomerRequestObject( CustomerRequestObject customerRequestObject ) {
+	public void setCustomerRequestObject( CustomerRequestModel customerRequestObject ) {
 
 		this.customerRequestObject = customerRequestObject;
 	}

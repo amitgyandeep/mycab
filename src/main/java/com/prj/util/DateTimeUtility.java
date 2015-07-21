@@ -22,7 +22,7 @@ public class DateTimeUtility {
 
 		} catch ( ParseException e ) {
 			LOGGER.info( "problem in date conversion in  DateTimeUtility" );
-			e.printStackTrace();
+
 		}
 		return buildDateTime;
 

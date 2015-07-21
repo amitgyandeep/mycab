@@ -192,14 +192,14 @@ span a:hover{
  
                                   <div class="form-group col-md-8 col-sm-6 col-xs-12">
                                   <div class="input-group">
-                                  <input type="text" class="form-control hasDatepicker" placeholder="Selected Trip Date" id="datepicker1" name="customerRequestObject.startDate" value='<s:property value="#request.startDate"/>'/>
+                                  <input type="text" onkeydown="return false;" class="form-control hasDatepicker" placeholder="Selected Trip Date" id="datepicker1" name="customerRequestModel.startDate" value='<s:property value="#request.startDate"/>'/>
                                    <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
                                   </div>
                                   </div>
                                  <div class="form-group col-lg-4 col-sm-6 col-xs-12">
                                  <span></span>
                                  <s:select class="form-control" style="color:gray;"
-												name="customerRequestObject.startTime"
+												name="customerRequestModel.startTime"
 												value="%{#request.startTime}"
 												list="#{'12:00 AM':'12:00 AM','1:00 AM':'1:00 AM','2:00 AM':'2:00 AM','3:00 AM':'3:00 AM','4:00 AM':'4:00 AM','5:00 AM':'5:00 AM','6:00 AM':'6:00 AM','7:00 AM':'7:00 AM','8:00 AM':'8:00 AM','9:00 AM':'9:00 AM','10:00 AM':'10:00 AM','11:00 AM':'11:00 AM','12:00 PM':'12:00 PM','1:00 PM':'1:00 PM','2:00 PM':'2:00 PM','3:00 PM':'3:00 PM','4:00 PM':'4:00 PM','5:00 PM':'5:00 PM','6:00 PM':'6:00 PM','7:00 PM':'7:00 PM','8:00 PM':'8:00 PM','9:00 PM':'9:00 PM','10:00 PM':'10:00 PM','11:00 PM':'11:00 PM'}"
 												theme="simple">
@@ -208,14 +208,14 @@ span a:hover{
 <div class="row">
                                   <div class="form-group col-md-8 col-sm-6 col-xs-12">
                                   <div class="input-group">
-                                  <input type="text" id="datepicker2" placeholder="Selected Drop Date " class="form-control hasDatepicker" name="customerRequestObject.endDate" value='<s:property value="#request.endDate"/>'/>
+                                  <input type="text" onkeydown="return false;" id="datepicker2" onkeydown="return false;" placeholder="Selected Drop Date " class="form-control hasDatepicker" name="customerRequestModel.endDate" value='<s:property value="#request.endDate"/>'/>
                                   <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
                                   </div>
                                  </div>
                                  <div class="form-group col-lg-4 col-sm-6 col-xs-12">
                                  <span></span>
                                 <s:select class="form-control" style="color:gray;"
-												name="customerRequestObject.endTime"
+												name="customerRequestModel.endTime"
 												value="%{#request.endTime}"
 												list="#{'12:00 AM':'12:00 AM','1:00 AM':'1:00 AM','2:00 AM':'2:00 AM','3:00 AM':'3:00 AM','4:00 AM':'4:00 AM','5:00 AM':'5:00 AM','6:00 AM':'6:00 AM','7:00 AM':'7:00 AM','8:00 AM':'8:00 AM','9:00 AM':'9:00 AM','10:00 AM':'10:00 AM','11:00 AM':'11:00 AM','12:00 PM':'12:00 PM','1:00 PM':'1:00 PM','2:00 PM':'2:00 PM','3:00 PM':'3:00 PM','4:00 PM':'4:00 PM','5:00 PM':'5:00 PM','6:00 PM':'6:00 PM','7:00 PM':'7:00 PM','8:00 PM':'8:00 PM','9:00 PM':'9:00 PM','10:00 PM':'10:00 PM','11:00 PM':'11:00 PM'}"
 												theme="simple">
@@ -226,7 +226,7 @@ span a:hover{
                                  <div class="input-group">
                                     <s:textfield  list="carHubs" theme="simple" style="width:100%;" required="" 
 														placeholder="Gurgaon"
-														class="form-control hasDatepicker" name="customerRequestObject.carHub.name" autocomplete="off" value="%{#session.carHub.name}"/>
+														class="form-control hasDatepicker" name="customerRequestModel.carHub.name" autocomplete="off" value="%{#session.carHub.name}"/>
 													<datalist id="carHubs">
 														<s:iterator value="#session.carHubs">
 															<option value='<s:property value="name"/>'>
@@ -255,7 +255,7 @@ span a:hover{
   <div class="col-lg-9 overflow">
     <s:iterator value="#request.availableCars"  status="count">
    <s:form  id="#count.count" action="tripBooking" theme="simple">
-     <input type="text" hidden="" name="customerRequestObject.carModel.name" value='<s:property value="model.name"/>'/>
+     <input type="text" hidden="" name="customerRequestModel.carModel.name" value='<s:property value="model.name"/>'/>
 <div class="row">
 <div class="col-lg-12">
   <div class="col-lg-7"><img style="width:171%;" src="img/BMW-5-series.png" alt="" class="img-responsiv"></div>

@@ -146,7 +146,7 @@ select{
                                <!--   <input type="text" placeholder="Enter Your City Or HUB" class="form-control hasDatepicker"> -->
 													<input list="carHub1" name="customerRequestObject.carHub.name" 
 														placeholder="Enter Your City Or HUB"
-														class="form-control hasDatepicker" autocomplete="off" required="">
+														class="form-control hasDatepicker" autocomplete="off" >
 													<datalist id="carHub1">
 														<s:iterator value="#session.carHubs">
 															<option value='<s:property value="name"/>'>
@@ -161,7 +161,7 @@ select{
                                  <div class="form-group col-lg-12 col-sm-6 col-xs-12">
                                  <div class="input-group">
                               <!--    <input type="text" id="datepicker" placeholder="Enter Your Vehicle" class="form-control hasDatepicker"> -->
-                                 <input list="cars1"  placeholder="Enter Your Vehicle" class="form-control hasDatepicker" name="customerRequestObject.carModel.name" autocomplete="off" required="">
+                                 <input list="cars1"  placeholder="Enter Your Vehicle" class="form-control hasDatepicker" name="customerRequestObject.carModel.name" autocomplete="off" >
 													<datalist id="cars1">
 														<s:iterator value="#session.cars">
 															<option value='<s:property value="model.name"/>'>
@@ -225,7 +225,7 @@ select{
                                  <div class="form-group col-md-12 col-sm-6 col-xs-12">
                                  <div class="input-group">
                               <!--    <input type="text" placeholder="Enter Your City Or HUB" class="form-control hasDatepicker"> -->
-                               	<input list="carHubs2" required="" 
+                               	<input list="carHubs2"  
 														placeholder="Enter Your City Or HUB"
 														class="form-control hasDatepicker" name="customerRequestObject.carHub.name" autocomplete="off">
 													<datalist id="carHubs2">
@@ -242,7 +242,7 @@ select{
                                  <div class="form-group col-lg-12 col-sm-6 col-xs-12">
                                  <div class="input-group">
                                <!--   <input type="text" id="datepicker" placeholder="Enter Your Vehicle" class="form-control hasDatepicker"> -->
-                                 <input list="cars2" required=""
+                                 <input list="cars2" 
 														placeholder="Enter Your Vehicle"
 														class="form-control hasDatepicker" name="customerRequestObject.carModel.name" autocomplete="off">
 													<datalist id="cars2">
@@ -309,7 +309,7 @@ select{
                                  <div class="form-group col-md-12 col-sm-6 col-xs-12">
                                  <div class="input-group">
                                <!--   <input type="text" placeholder="Enter Your City Or HUB" class="form-control hasDatepicker"> -->
-                                 	<input list="carHubs3" required="" 
+                                 	<input list="carHubs3"  
 														placeholder="Enter Your City Or HUB"
 														class="form-control hasDatepicker" name="customerRequestObject.carHub.name" autocomplete="off">
 													<datalist id="carHubs3">
@@ -326,7 +326,7 @@ select{
                                  <div class="form-group col-lg-12 col-sm-6 col-xs-12">
                                  <div class="input-group">
                                <!--   <input type="text" id="datepicker" placeholder="Enter Your Vehicle" class="form-control hasDatepicker"> -->
-                                 <input list="cars3" required=""
+                                 <input list="cars3" 
 														placeholder="Enter Your Vehicle"
 														class="form-control hasDatepicker" name="customerRequestObject.carModel.name" autocomplete="off">
 													<datalist id="cars3">
@@ -584,7 +584,11 @@ select{
                     orientation: "top left",
                     startDate: new Date(),
                     autoclose: true
-                });  
+                }).on('changeDate', function(selected){
+                    startDate = new Date(selected.date.valueOf());
+                    startDate.setDate(startDate.getDate(new Date(selected.date.valueOf())));
+                    $('#datepicker2').datepicker('setStartDate', startDate);
+                });     
             
             });
         </script>
@@ -610,7 +614,11 @@ select{
                     orientation: "top left",
                     startDate: new Date(),
                     autoclose: true
-                });  
+                }).on('changeDate', function(selected){
+                    startDate = new Date(selected.date.valueOf());
+                    startDate.setDate(startDate.getDate(new Date(selected.date.valueOf())));
+                    $('#datepicker4').datepicker('setStartDate', startDate);
+                });     
             
             });
         </script>
@@ -637,7 +645,11 @@ select{
                     	 startDate: new Date(),
                     	 autoclose: true
                     	 
-                });  
+                }).on('changeDate', function(selected){
+                    startDate = new Date(selected.date.valueOf());
+                    startDate.setDate(startDate.getDate(new Date(selected.date.valueOf())));
+                    $('#datepicker6').datepicker('setStartDate', startDate);
+                });    
                
             });
         </script>
