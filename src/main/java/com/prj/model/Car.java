@@ -5,6 +5,11 @@ import java.util.List;
 
 public class Car extends CabsBaseModel implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private String regNumber;
 
 	private CarSegment segment;

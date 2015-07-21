@@ -3,15 +3,16 @@ package com.prj.model;
 import java.io.Serializable;
 import java.util.List;
 
-public class Tariff implements Serializable {
+public class Tariff extends BaseEntity implements Serializable {
 
-	private int id;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private TariffType type;
 
 	private CarModel model;
-
-	private TariffPlan plan;
 
 	private List<DaysOfWeek> applicableDays;
 
@@ -25,22 +26,12 @@ public class Tariff implements Serializable {
 
 	private float ratePerKM;
 
-	public int getId() {
-
-		return id;
-	}
-
-	public void setId( int id ) {
-
-		this.id = id;
-	}
-
 	public TariffType getType() {
 
 		return type;
 	}
 
-	public void setType( TariffType type ) {
+	public void setType(TariffType type) {
 
 		this.type = type;
 	}
@@ -50,7 +41,7 @@ public class Tariff implements Serializable {
 		return applicableDays;
 	}
 
-	public void setApplicableDays( List<DaysOfWeek> applicableDays ) {
+	public void setApplicableDays(List<DaysOfWeek> applicableDays) {
 
 		this.applicableDays = applicableDays;
 	}
@@ -60,7 +51,7 @@ public class Tariff implements Serializable {
 		return cost;
 	}
 
-	public void setCost( double cost ) {
+	public void setCost(double cost) {
 
 		this.cost = cost;
 	}
@@ -70,7 +61,7 @@ public class Tariff implements Serializable {
 		return cutOffHours;
 	}
 
-	public void setCutOffHours( float cutOffHours ) {
+	public void setCutOffHours(float cutOffHours) {
 
 		this.cutOffHours = cutOffHours;
 	}
@@ -80,7 +71,7 @@ public class Tariff implements Serializable {
 		return cutOffKMs;
 	}
 
-	public void setCutOffKMs( float cutOffKMs ) {
+	public void setCutOffKMs(float cutOffKMs) {
 
 		this.cutOffKMs = cutOffKMs;
 	}
@@ -90,7 +81,7 @@ public class Tariff implements Serializable {
 		return ratePerHour;
 	}
 
-	public void setRatePerHour( float ratePerHour ) {
+	public void setRatePerHour(float ratePerHour) {
 
 		this.ratePerHour = ratePerHour;
 	}
@@ -100,7 +91,7 @@ public class Tariff implements Serializable {
 		return ratePerKM;
 	}
 
-	public void setRatePerKM( float ratePerKM ) {
+	public void setRatePerKM(float ratePerKM) {
 
 		this.ratePerKM = ratePerKM;
 	}
@@ -110,19 +101,9 @@ public class Tariff implements Serializable {
 		return model;
 	}
 
-	public void setModel( CarModel model ) {
+	public void setModel(CarModel model) {
 
 		this.model = model;
-	}
-
-	public TariffPlan getPlan() {
-
-		return plan;
-	}
-
-	public void setPlan( TariffPlan plan ) {
-
-		this.plan = plan;
 	}
 
 }
