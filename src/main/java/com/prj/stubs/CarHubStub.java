@@ -8,29 +8,21 @@ import org.appfuse.dao.hibernate.GenericDaoHibernate;
 import com.prj.dao.interfaces.ICarHubDao;
 import com.prj.model.CarHub;
 
-public class CarHubStub extends GenericDaoHibernate<CarHub,Integer> implements ICarHubDao {
+public class CarHubStub extends GenericDaoHibernate<CarHub, Integer> implements
+		ICarHubDao {
 
 	public CarHubStub() {
 
-		super( CarHub.class );
+		super(CarHub.class);
 	}
 
-	public final static CarHub hebbal = new CarHub( "HEBBAL" );
-
-	public final static CarHub newbelroad = new CarHub( "NEW BEL ROAD" );
-
-	public final static CarHub mekaricircle = new CarHub( "MEKARI CIRCLE" );
-
-	public final static CarHub sanjaynagar = new CarHub( "SANJAY NAGAR" );
+	public final static CarHub delhi = new CarHub("Delhi");
 
 	public List<CarHub> getCarHubs() {
-
 		List<CarHub> carHubs = new ArrayList<CarHub>();
 
-		carHubs.add( CarHubStub.hebbal );
-		carHubs.add( CarHubStub.newbelroad );
-		carHubs.add( CarHubStub.mekaricircle );
-		carHubs.add( CarHubStub.sanjaynagar );
+		carHubs.add(CarHubStub.delhi);
+
 		return carHubs;
 
 	}

@@ -39,7 +39,7 @@ public class StandardWeekendTariffService implements ITariffService {
 		double totalCost = 0;
 		Duration duration = new Duration( startDate , endDate );
 
-		if ( duration.getStandardDays() == 0 ) {
+		if ( startDate.getDayOfMonth()==endDate.getDayOfMonth()) {
 			if ( !isWeekend( startDate , tariff.getApplicableDays() ) ) {
 				return null;
 			}
@@ -83,7 +83,7 @@ public class StandardWeekendTariffService implements ITariffService {
 
 		int billableDays = 0;
 
-		for ( DateTime date = startDate ; date.isBefore( endDate ) || date.isEqual( endDate ) ; date = date.plusDays( 1 ) ) {
+		for ( DateTime date = startDate ; date.getMillisOfDay()>endDate.getMillisOfDay() ; date = date.plusDays( 1 ) ) {
 
 			if ( isWeekend( date , days ) )
 				billableDays++;
