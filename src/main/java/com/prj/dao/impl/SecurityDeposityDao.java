@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.appfuse.dao.hibernate.GenericDaoHibernate;
 
-import com.prj.dao.interfaces.ISecurityDepositDao;
+import com.prj.dao.ISecurityDepositDao;
 import com.prj.model.CarModel;
 import com.prj.model.CarSegment;
 import com.prj.model.SecurityDeposit;

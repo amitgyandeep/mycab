@@ -9,7 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.HibernateCallback;
 
-import com.prj.dao.interfaces.IUserDao;
+import com.prj.dao.IUserDao;
 import com.prj.model.User;
 
 public class UserDaoImpl extends GenericDaoHibernate<User,Integer> implements IUserDao {

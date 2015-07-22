@@ -11,8 +11,8 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.prj.model.Customer;
 import com.prj.model.Role;
 import com.prj.model.User;
-import com.prj.service.interfaces.ICustomerService;
-import com.prj.service.interfaces.IUserService;
+import com.prj.service.ICustomerService;
+import com.prj.service.IUserService;
 
 @SuppressWarnings("serial")
 public class LoginAction extends ActionSupport implements SessionAware, RequestAware {

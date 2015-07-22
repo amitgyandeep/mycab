@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.appfuse.service.impl.GenericManagerImpl;
 
-import com.prj.dao.interfaces.ICarDao;
+import com.prj.dao.ICarDao;
 import com.prj.model.Car;
-import com.prj.service.interfaces.ICarService;
+import com.prj.service.ICarService;
 
 public class CarService extends GenericManagerImpl<Car,Integer> implements ICarService {
 

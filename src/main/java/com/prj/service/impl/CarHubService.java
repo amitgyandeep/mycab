@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.appfuse.service.impl.GenericManagerImpl;
 
-import com.prj.dao.interfaces.ICarHubDao;
+import com.prj.dao.ICarHubDao;
 import com.prj.model.CarHub;
-import com.prj.service.interfaces.ICarHubService;
+import com.prj.service.ICarHubService;
 
 public class CarHubService extends GenericManagerImpl<CarHub,Integer> implements ICarHubService {
 

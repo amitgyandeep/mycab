@@ -1,4 +1,4 @@
-package com.prj.dao.interfaces;
+package com.prj.dao;
 
 import org.appfuse.dao.GenericDao;
 

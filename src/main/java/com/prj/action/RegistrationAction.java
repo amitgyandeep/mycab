@@ -17,11 +17,11 @@ import com.prj.model.Document;
 import com.prj.model.FileTypeEnum;
 import com.prj.model.StatusEnum;
 import com.prj.model.User;
-import com.prj.service.interfaces.ICustomerService;
-import com.prj.service.interfaces.IDocumentService;
-import com.prj.service.interfaces.IMailService;
-import com.prj.service.interfaces.ISmsService;
-import com.prj.service.interfaces.IUserService;
+import com.prj.service.ICustomerService;
+import com.prj.service.IDocumentService;
+import com.prj.service.IMailService;
+import com.prj.service.ISmsService;
+import com.prj.service.IUserService;
 import com.prj.service.serviceHelper.SMSMessageHelper;
 
 @SuppressWarnings("serial")

@@ -5,8 +5,8 @@ import java.util.Map;
 import org.apache.struts2.interceptor.RequestAware;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.prj.service.interfaces.ICustomerService;
-import com.prj.service.interfaces.ISmsService;
+import com.prj.service.ICustomerService;
+import com.prj.service.ISmsService;
 
 @SuppressWarnings("serial")
 public class SmsAction extends ActionSupport implements RequestAware {

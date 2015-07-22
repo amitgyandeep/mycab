@@ -2,10 +2,10 @@ package com.prj.service.impl;
 
 import org.appfuse.service.impl.GenericManagerImpl;
 
-import com.prj.dao.interfaces.ISecurityDepositDao;
+import com.prj.dao.ISecurityDepositDao;
 import com.prj.model.CarSegment;
 import com.prj.model.SecurityDeposit;
-import com.prj.service.interfaces.ISecurityDepositService;
+import com.prj.service.ISecurityDepositService;
 
 public class SecurityDepositTariffService extends GenericManagerImpl<SecurityDeposit,Integer> implements ISecurityDepositService {
 

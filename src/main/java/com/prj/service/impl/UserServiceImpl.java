@@ -2,11 +2,11 @@ package com.prj.service.impl;
 
 import org.appfuse.service.impl.GenericManagerImpl;
 
-import com.prj.dao.interfaces.IUserDao;
+import com.prj.dao.IUserDao;
 import com.prj.model.Customer;
 import com.prj.model.Role;
 import com.prj.model.User;
-import com.prj.service.interfaces.IUserService;
+import com.prj.service.IUserService;
 
 public class UserServiceImpl extends GenericManagerImpl<User,Integer> implements IUserService {
 

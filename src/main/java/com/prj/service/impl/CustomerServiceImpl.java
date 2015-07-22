@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.appfuse.service.impl.GenericManagerImpl;
 
-import com.prj.dao.interfaces.ICustomerDao;
+import com.prj.dao.ICustomerDao;
 import com.prj.model.Customer;
 import com.prj.model.Document;
-import com.prj.service.interfaces.ICustomerService;
-import com.prj.service.interfaces.IDocumentService;
+import com.prj.service.ICustomerService;
+import com.prj.service.IDocumentService;
 
 public class CustomerServiceImpl extends GenericManagerImpl<Customer,Integer> implements ICustomerService {
 

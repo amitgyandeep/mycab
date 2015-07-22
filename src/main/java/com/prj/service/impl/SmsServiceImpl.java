@@ -3,7 +3,7 @@ package com.prj.service.impl;
 import org.springframework.web.client.RestTemplate;
 
 import com.prj.model.ApplicationConstants;
-import com.prj.service.interfaces.ISmsService;
+import com.prj.service.ISmsService;
 
 public class SmsServiceImpl implements ISmsService {
 

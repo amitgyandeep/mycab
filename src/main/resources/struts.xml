@@ -39,6 +39,7 @@
 		<action name="dashboard" class="dashboardAction">
 			<result name="success">/jsp/home.jsp</result>
 			<result name="userDashBoard" type="chain">userDashBoard</result>
+			<result name="adminDashBoard" type="chain">showCustomerList</result>
 		</action>
 		<action name="userDashBoard">
 			<result name="success">/jsp/availability.jsp</result>

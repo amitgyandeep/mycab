@@ -1,4 +1,4 @@
-package com.prj.service.interfaces;
+package com.prj.service;
 
 import java.util.Date;
 import java.util.List;

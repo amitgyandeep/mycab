@@ -6,12 +6,12 @@ import java.util.List;
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
 
-import com.prj.dao.interfaces.ITariffDao;
+import com.prj.dao.ITariffDao;
 import com.prj.model.CarModel;
 import com.prj.model.DaysOfWeek;
 import com.prj.model.Tariff;
 import com.prj.model.TariffType;
-import com.prj.service.interfaces.ITariffService;
+import com.prj.service.ITariffService;
 
 public class StandardWeekendTariffService implements ITariffService {
 

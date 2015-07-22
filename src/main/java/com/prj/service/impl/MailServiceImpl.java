@@ -4,7 +4,7 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import com.prj.model.ApplicationConstants;
-import com.prj.service.interfaces.IMailService;
+import com.prj.service.IMailService;
 
 public class MailServiceImpl implements IMailService {
 

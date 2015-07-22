@@ -6,12 +6,12 @@ import java.util.List;
 
 import org.appfuse.service.impl.GenericManagerImpl;
 
-import com.prj.dao.interfaces.ICarDao;
+import com.prj.dao.ICarDao;
 import com.prj.model.Car;
 import com.prj.model.CarModel;
 import com.prj.model.Tariff;
-import com.prj.service.interfaces.ICarPricingService;
-import com.prj.service.interfaces.ITariffService;
+import com.prj.service.ICarPricingService;
+import com.prj.service.ITariffService;
 
 public class CarPricingService extends GenericManagerImpl<Car,Integer> implements ICarPricingService {
 

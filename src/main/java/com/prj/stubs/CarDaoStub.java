@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 
-import com.prj.dao.interfaces.ICarDao;
+import com.prj.dao.ICarDao;
 import com.prj.model.Car;
 import com.prj.model.CarHub;
 import com.prj.model.CarModel;

@@ -5,13 +5,13 @@ import java.util.List;
 
 import org.appfuse.service.impl.GenericManagerImpl;
 
-import com.prj.dao.interfaces.ICarDao;
+import com.prj.dao.ICarDao;
 import com.prj.model.Car;
 import com.prj.model.CarHub;
 import com.prj.model.CarModel;
-import com.prj.service.interfaces.ICarBookingService;
-import com.prj.service.interfaces.ICarPricingService;
-import com.prj.service.interfaces.ISecurityDepositService;
+import com.prj.service.ICarBookingService;
+import com.prj.service.ICarPricingService;
+import com.prj.service.ISecurityDepositService;
 
 public class CarBookingService extends GenericManagerImpl<Car,Integer> implements ICarBookingService {
 

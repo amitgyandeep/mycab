@@ -8,8 +8,8 @@ import org.slf4j.LoggerFactory;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.prj.model.Email;
-import com.prj.service.interfaces.ICustomerService;
-import com.prj.service.interfaces.IMailService;
+import com.prj.service.ICustomerService;
+import com.prj.service.IMailService;
 
 @SuppressWarnings("serial")
 public class MailAction extends ActionSupport implements RequestAware {

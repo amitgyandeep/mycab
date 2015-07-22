@@ -9,7 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.HibernateCallback;
 
-import com.prj.dao.interfaces.ICustomerDao;
+import com.prj.dao.ICustomerDao;
 import com.prj.model.Customer;
 
 public class CustomerDaoImpl extends GenericDaoHibernate<Customer,Integer> implements ICustomerDao {

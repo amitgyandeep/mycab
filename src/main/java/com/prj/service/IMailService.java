@@ -1,4 +1,4 @@
-package com.prj.service.interfaces;
+package com.prj.service;
 
 
 public interface IMailService {

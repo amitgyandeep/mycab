@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.appfuse.service.impl.GenericManagerImpl;
 
-import com.prj.dao.interfaces.IDocumentDao;
+import com.prj.dao.IDocumentDao;
 import com.prj.model.Customer;
 import com.prj.model.Document;
-import com.prj.service.interfaces.IDocumentService;
+import com.prj.service.IDocumentService;
 
 public class DocumentServiceImpl extends GenericManagerImpl<Document,Integer> implements IDocumentService {
 

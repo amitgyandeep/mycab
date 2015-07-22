@@ -10,7 +10,7 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.HibernateCallback;
 
-import com.prj.dao.interfaces.IDocumentDao;
+import com.prj.dao.IDocumentDao;
 import com.prj.model.Customer;
 import com.prj.model.Document;
 

@@ -14,10 +14,10 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.prj.model.ApplicationConstants;
 import com.prj.model.Customer;
 import com.prj.model.User;
-import com.prj.service.interfaces.ICustomerService;
-import com.prj.service.interfaces.IMailService;
-import com.prj.service.interfaces.ISmsService;
-import com.prj.service.interfaces.IUserService;
+import com.prj.service.ICustomerService;
+import com.prj.service.IMailService;
+import com.prj.service.ISmsService;
+import com.prj.service.IUserService;
 import com.prj.service.serviceHelper.SMSMessageHelper;
 
 public class AccountAction extends ActionSupport implements SessionAware, RequestAware {

@@ -13,9 +13,11 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.prj.model.Car;
 import com.prj.model.CarHub;
 import com.prj.model.CustomerRequestModel;
-import com.prj.service.interfaces.ICarBookingService;
-import com.prj.service.interfaces.ICarHubService;
-import com.prj.service.interfaces.ICarService;
+import com.prj.model.Role;
+import com.prj.model.User;
+import com.prj.service.ICarBookingService;
+import com.prj.service.ICarHubService;
+import com.prj.service.ICarService;
 import com.prj.util.DateTimeUtility;
 
 public class DashboardAction extends ActionSupport implements RequestAware, SessionAware {
@@ -47,11 +49,17 @@ public class DashboardAction extends ActionSupport implements RequestAware, Sess
 		List<CarHub> carHubs = carHubService.getCarHubs();
 		session.put( "cars" , cars );
 		session.put( "carHubs" , carHubs );
-		if ( session.get( "loggedUser" ) == null ) {
-			return SUCCESS;
-		} else {
-			return "userDashBoard";
+		User user = ( User ) session.get( "loggedUser" );
+		if ( user != null ) {
+
+			if ( user.getRole().getId().equals( Role.ADMIN ) )
+				return "adminDashboard";
+
+			if ( user.getRole().getId().equals( Role.CUSTOMER ) )
+				return "userDashBoard";
 		}
+
+		return SUCCESS;
 
 	}
 
