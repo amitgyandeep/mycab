@@ -116,7 +116,7 @@ span a:hover {
   <div class="container">
 <div class="row">
       
-     <div class="col-sm-3 pull-right text-right">Home &gt; <a href="#">User Home Page</a>
+     <div class="col-sm-3 pull-right text-right">Home &gt; <a href="#">Trip Initial Invoice</a>
       </div>
       
         </div>
@@ -193,7 +193,7 @@ span a:hover {
   <div class="row">  
   <span class="col-lg-9"><strong>Service Tax: </strong></span><span class="col-lg-3">Rs. <s:property value="#request.tripInvoice.serviceTax"/></span></div>
     <div class="row">  
-  <span class="col-lg-9"><strong>Total:</strong></span><span class="col-lg-3">Rs. <s:property value="#request.tripInvoice.total"/></span></div>
+  <span class="col-lg-9"><strong>Total:</strong></span><span class="col-lg-3"><b>Rs. <s:property value="#request.tripInvoice.total"/></b></span></div>
   <div class="row">  
   <span class="col-lg-6">T&amp;C Selection:</span><span class="col-lg-6"></span></div>
 

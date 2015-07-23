@@ -12,7 +12,7 @@ public class TestAM {
 	public static void main( String[] args ) {
 
 		String tm = "16/07/2015 10:34 PM";
-		String tm2 = "16/07/2015 10:34 PM";
+		String tm2 = "16/07/2015 10:38 PM";
 
 		SimpleDateFormat formatter = new SimpleDateFormat( "dd/MM/yyyy hh:mm a" );
 		try {
@@ -24,7 +24,7 @@ public class TestAM {
 
 			Duration duration = new Duration( d1 , d2 );
 
-			System.out.println( "Date from dd/MM/yyyy String in Java : " + duration.getStandardDays() );
+			System.out.println( "Date from dd/MM/yyyy String in Java : " + duration.getStandardHours() );
 		} catch ( ParseException e ) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

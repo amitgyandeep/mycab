@@ -574,7 +574,7 @@ list-style-type: none;
 														<div class="row">
 															<div class="col-lg-6">
 																<label for="inputPassword" class="sr-only">Enter
-																	Promo Code</label> <input type="password" class="form-control"
+																	Promo Code</label> <input type="text" class="form-control"
 																	placeholder="Enter Promo Code" name="promoCode"
 																	autocomplete="off">
 															</div>

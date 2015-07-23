@@ -79,7 +79,7 @@ public class DashboardAction extends ActionSupport implements RequestAware, Sess
 
 			Duration duration = new Duration( pickupDate , dropOffDate );
 
-			if ( duration.getStandardDays() < 0 || duration.getStandardDays() == 0 ) {
+			if ( duration.getStandardHours() < 0 || duration.getStandardHours() == 0 ) {
 				addActionError( "Invalid Date / Time selection" );
 				return INPUT;
 			}

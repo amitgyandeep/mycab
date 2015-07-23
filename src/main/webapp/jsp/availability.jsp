@@ -168,7 +168,7 @@ list-style-type: none;
 <span class="col-lg-12"><a href="#">Upcoming Events</a><a></a></span>
 <span class="col-lg-12"><a href="#">Useful Info / Links</a></span>
 <span class="col-lg-12"><a href="#">Upcoming Trips</a></span>
-<span class="col-lg-12"><a href="#">New Trip</a></span>
+<span class="col-lg-12"><a href="tripDetailAvailability">New Trip</a></span>
 <span class="col-lg-12"><a href="showChangePassword">Change password</a></span>
 
 </div>
@@ -199,7 +199,7 @@ list-style-type: none;
  
                                   <div class="form-group col-md-8 col-sm-6 col-xs-12">
                                   <div class="input-group">
-                                  <input type="text" onkeydown="return false;" class="form-control hasDatepicker" placeholder="Selected Trip Date" id="datepicker1" name="customerRequestModel.startDate" value='<s:property value="#request.startDate"/>'/>
+                                  <input type="text" required="" onkeydown="return false;" class="form-control hasDatepicker" placeholder="Selected Trip Date" id="datepicker1" name="customerRequestModel.startDate" value='<s:property value="#request.startDate"/>'/>
                                    <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
                                   </div>
                                   </div>
@@ -215,7 +215,7 @@ list-style-type: none;
 <div class="row">
                                   <div class="form-group col-md-8 col-sm-6 col-xs-12">
                                   <div class="input-group">
-                                  <input type="text" onkeydown="return false;" id="datepicker2" onkeydown="return false;" placeholder="Selected Drop Date " class="form-control hasDatepicker" name="customerRequestModel.endDate" value='<s:property value="#request.endDate"/>'/>
+                                  <input type="text" required="" onkeydown="return false;" id="datepicker2" onkeydown="return false;" placeholder="Selected Drop Date " class="form-control hasDatepicker" name="customerRequestModel.endDate" value='<s:property value="#request.endDate"/>'/>
                                   <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
                                   </div>
                                  </div>
@@ -276,7 +276,7 @@ list-style-type: none;
 
   <div class="row">
     <div class="col-lg-6"> <label for="inputPassword" class="sr-only">Enter Promo Code</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Enter Promo Code" required=""></div>
+        <input type="text" id="inputPassword" class="form-control" placeholder="Enter Promo Code"></div>
   <div class="col-lg-3"><button type="submit" class="btn btn-sm btn-denger btn-block">Book</button></div>
   </div>
 </div>

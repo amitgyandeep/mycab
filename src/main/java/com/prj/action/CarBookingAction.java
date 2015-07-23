@@ -23,7 +23,7 @@ public class CarBookingAction extends ActionSupport implements SessionAware, Req
 
 	private CarBookingService carBookingService;
 
-	CustomerRequestModel customerRequestObject;
+	CustomerRequestModel customerRequestModel;
 
 	private DateTime dropOffDate;
 
@@ -91,14 +91,14 @@ public class CarBookingAction extends ActionSupport implements SessionAware, Req
 		this.carBookingService = carBookingService;
 	}
 
-	public CustomerRequestModel getCustomerRequestObject() {
+	public CustomerRequestModel getCustomerRequestModel() {
 
-		return customerRequestObject;
+		return customerRequestModel;
 	}
 
-	public void setCustomerRequestObject( CustomerRequestModel customerRequestObject ) {
+	public void setCustomerRequestModel( CustomerRequestModel customerRequestModel ) {
 
-		this.customerRequestObject = customerRequestObject;
+		this.customerRequestModel = customerRequestModel;
 	}
 
 	public String getTripCost() {
