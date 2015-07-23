@@ -37,6 +37,12 @@ select{
     padding: 2px;
 }
 </style>
+<style type="text/css">
+.errorMessage li{
+color:red;
+list-style-type: none;
+}
+</style>
 </head>
 
 <body data-target=".navbar-custom" data-spy="scroll" id="page-top">
@@ -109,17 +115,18 @@ select{
                     <div class="col-md-12 text-center">
  
                     <div class="col-lg-4 tab-contact">
+                      <s:actionerror/>
                       <form class="bookform form-inline row" id="form1" action="availability" theme="simple" method="post">
                                   <div class="row">
                                   <div class="form-group col-md-6 col-sm-6 col-xs-12">
                                   <div class="input-group">
-                                  <input type="text" onkeydown="return false;" id="datepicker1" required="" placeholder="Pick Up Date" class="form-control hasDatepicker" name="customerRequestObject.startDate">
+                                  <input type="text" onkeydown="return false;" id="datepicker1" required="" placeholder="Pick Up Date" class="form-control hasDatepicker" name="customerRequestModel.startDate">
                                    <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
                                   </div>
                                   </div>
                                  <div class="form-group col-lg-6 col-sm-6 col-xs-12">
                                  <span></span>
-												<s:select class="form-control" style="color:gray;" name="customerRequestObject.startTime"
+												<s:select class="form-control" style="color:gray;" name="customerRequestModel.startTime"
 						list="#{'12:00 AM':'12:00 AM','1:00 AM':'1:00 AM','2:00 AM':'2:00 AM','3:00 AM':'3:00 AM','4:00 AM':'4:00 AM','5:00 AM':'5:00 AM','6:00 AM':'6:00 AM','7:00 AM':'7:00 AM','8:00 AM':'8:00 AM','9:00 AM':'9:00 AM','10:00 AM':'10:00 AM','11:00 AM':'11:00 AM','12:00 PM':'12:00 PM','1:00 PM':'1:00 PM','2:00 PM':'2:00 PM','3:00 PM':'3:00 PM','4:00 PM':'4:00 PM','5:00 PM':'5:00 PM','6:00 PM':'6:00 PM','7:00 PM':'7:00 PM','8:00 PM':'8:00 PM','9:00 PM':'9:00 PM','10:00 PM':'10:00 PM','11:00 PM':'11:00 PM'}"
 													theme="simple">
 												</s:select>
@@ -128,13 +135,13 @@ select{
                                   <div class="row">
                                   <div class="form-group col-md-6 col-sm-6 col-xs-12">
                                   <div class="input-group">
-                                  <input type="text" id="datepicker2" required="" onkeydown="return false;" placeholder="Drop Off Date" class="form-control hasDatepicker" name="customerRequestObject.endDate">
+                                  <input type="text" id="datepicker2" required="" onkeydown="return false;" placeholder="Drop Off Date" class="form-control hasDatepicker" name="customerRequestModel.endDate">
                                   <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
                                   </div>
                                  </div>
                                  <div class="form-group col-lg-6 col-sm-6 col-xs-12">
                                  <span></span>
-					<s:select class="form-control" style="color:gray;" name="customerRequestObject.endTime"
+					<s:select class="form-control" style="color:gray;" name="customerRequestModel.endTime"
 						list="#{'12:00 AM':'12:00 AM','1:00 AM':'1:00 AM','2:00 AM':'2:00 AM','3:00 AM':'3:00 AM','4:00 AM':'4:00 AM','5:00 AM':'5:00 AM','6:00 AM':'6:00 AM','7:00 AM':'7:00 AM','8:00 AM':'8:00 AM','9:00 AM':'9:00 AM','10:00 AM':'10:00 AM','11:00 AM':'11:00 AM','12:00 PM':'12:00 PM','1:00 PM':'1:00 PM','2:00 PM':'2:00 PM','3:00 PM':'3:00 PM','4:00 PM':'4:00 PM','5:00 PM':'5:00 PM','6:00 PM':'6:00 PM','7:00 PM':'7:00 PM','8:00 PM':'8:00 PM','9:00 PM':'9:00 PM','10:00 PM':'10:00 PM','11:00 PM':'11:00 PM'}"
 													theme="simple">
 												</s:select>
@@ -144,7 +151,7 @@ select{
                                  <div class="form-group col-md-12 col-sm-6 col-xs-12">
                                  <div class="input-group">
                                <!--   <input type="text" placeholder="Enter Your City Or HUB" class="form-control hasDatepicker"> -->
-													<input list="carHub1" name="customerRequestObject.carHub.name" 
+													<input list="carHub1" name="customerRequestModel.carHub.name" 
 														placeholder="Enter Your City Or HUB"
 														class="form-control hasDatepicker" autocomplete="off" >
 													<datalist id="carHub1">
@@ -161,7 +168,7 @@ select{
                                  <div class="form-group col-lg-12 col-sm-6 col-xs-12">
                                  <div class="input-group">
                               <!--    <input type="text" id="datepicker" placeholder="Enter Your Vehicle" class="form-control hasDatepicker"> -->
-                                 <input list="cars1"  placeholder="Enter Your Vehicle" class="form-control hasDatepicker" name="customerRequestObject.carModel.name" autocomplete="off" >
+                                 <input list="cars1"  placeholder="Enter Your Vehicle" class="form-control hasDatepicker" name="customerRequestModel.carModel.name" autocomplete="off" >
 													<datalist id="cars1">
 														<s:iterator value="#session.cars">
 															<option value='<s:property value="model.name"/>'>
@@ -191,17 +198,18 @@ select{
                     <div class="col-md-12 text-center">
  
                     <div class="col-lg-4 tab-contact">
+                    <s:actionerror/>
                       <form class="bookform form-inline row" id="form2" action="availability" theme="simple" method="post">
                                   <div class="row">
                                   <div class="form-group col-md-6 col-sm-6 col-xs-12">
                                   <div class="input-group">
-                                  <input type="text" id="datepicker3" onkeydown="return false;" placeholder="Pick Up Date" class="form-control hasDatepicker" name="customerRequestObject.startDate" required="">
+                                  <input type="text" id="datepicker3" onkeydown="return false;" placeholder="Pick Up Date" class="form-control hasDatepicker" name="customerRequestModel.startDate" required="">
                                    <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
                                   </div>
                                   </div>
                                  <div class="form-group col-lg-6 col-sm-6 col-xs-12">
                                  <span></span>
-                                <s:select class="form-control" style="color:gray;" name="customerRequestObject.startTime"
+                                <s:select class="form-control" style="color:gray;" name="customerRequestModel.startTime"
 						list="#{'12:00 AM':'12:00 AM','1:00 AM':'1:00 AM','2:00 AM':'2:00 AM','3:00 AM':'3:00 AM','4:00 AM':'4:00 AM','5:00 AM':'5:00 AM','6:00 AM':'6:00 AM','7:00 AM':'7:00 AM','8:00 AM':'8:00 AM','9:00 AM':'9:00 AM','10:00 AM':'10:00 AM','11:00 AM':'11:00 AM','12:00 PM':'12:00 PM','1:00 PM':'1:00 PM','2:00 PM':'2:00 PM','3:00 PM':'3:00 PM','4:00 PM':'4:00 PM','5:00 PM':'5:00 PM','6:00 PM':'6:00 PM','7:00 PM':'7:00 PM','8:00 PM':'8:00 PM','9:00 PM':'9:00 PM','10:00 PM':'10:00 PM','11:00 PM':'11:00 PM'}"
 													theme="simple">
 												</s:select>
@@ -210,12 +218,12 @@ select{
                                   <div class="row">
                                   <div class="form-group col-md-6 col-sm-6 col-xs-12">
                                   <div class="input-group">
-                                  <input type="text" id="datepicker4" onkeydown="return false;" placeholder="Drop Off Date" class="form-control hasDatepicker" name="customerRequestObject.endDate" required="">
+                                  <input type="text" id="datepicker4" onkeydown="return false;" placeholder="Drop Off Date" class="form-control hasDatepicker" name="customerRequestModel.endDate" required="">
                                   <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
                                   </div>
                                  </div>
                                  <div class="form-group col-lg-6 col-sm-6 col-xs-12">
-                                 <span></span><s:select class="form-control" style="color:gray;" name="customerRequestObject.endTime"
+                                 <span></span><s:select class="form-control" style="color:gray;" name="customerRequestModel.endTime"
 						list="#{'12:00 AM':'12:00 AM','1:00 AM':'1:00 AM','2:00 AM':'2:00 AM','3:00 AM':'3:00 AM','4:00 AM':'4:00 AM','5:00 AM':'5:00 AM','6:00 AM':'6:00 AM','7:00 AM':'7:00 AM','8:00 AM':'8:00 AM','9:00 AM':'9:00 AM','10:00 AM':'10:00 AM','11:00 AM':'11:00 AM','12:00 PM':'12:00 PM','1:00 PM':'1:00 PM','2:00 PM':'2:00 PM','3:00 PM':'3:00 PM','4:00 PM':'4:00 PM','5:00 PM':'5:00 PM','6:00 PM':'6:00 PM','7:00 PM':'7:00 PM','8:00 PM':'8:00 PM','9:00 PM':'9:00 PM','10:00 PM':'10:00 PM','11:00 PM':'11:00 PM'}"
 													theme="simple">
 												</s:select>
@@ -227,7 +235,7 @@ select{
                               <!--    <input type="text" placeholder="Enter Your City Or HUB" class="form-control hasDatepicker"> -->
                                	<input list="carHubs2"  
 														placeholder="Enter Your City Or HUB"
-														class="form-control hasDatepicker" name="customerRequestObject.carHub.name" autocomplete="off">
+														class="form-control hasDatepicker" name="customerRequestModel.carHub.name" autocomplete="off">
 													<datalist id="carHubs2">
 														<s:iterator value="#session.carHubs">
 															<option value='<s:property value="name"/>'>
@@ -244,7 +252,7 @@ select{
                                <!--   <input type="text" id="datepicker" placeholder="Enter Your Vehicle" class="form-control hasDatepicker"> -->
                                  <input list="cars2" 
 														placeholder="Enter Your Vehicle"
-														class="form-control hasDatepicker" name="customerRequestObject.carModel.name" autocomplete="off">
+														class="form-control hasDatepicker" name="customerRequestModel.carModel.name" autocomplete="off">
 													<datalist id="cars2">
 														<s:iterator value="#session.cars">
 															<option value='<s:property value="model.name"/>'>
@@ -274,16 +282,17 @@ select{
                     <div class="col-md-12 text-center">
  
                     <div class="col-lg-4 tab-contact">
+                      <s:actionerror/>
                       <form class="bookform form-inline row" id="form3" action="availability" theme="simple" method="post">
                                   <div class="row">
                                   <div class="form-group col-md-6 col-sm-6 col-xs-12">
                                   <div class="input-group">
-                                  <input type="text" id="datepicker5" required="" onkeydown="return false;" placeholder="Pick Up Date" class="form-control hasDatepicker" name="customerRequestObject.startDate">
+                                  <input type="text" id="datepicker5" required="" onkeydown="return false;" placeholder="Pick Up Date" class="form-control hasDatepicker" name="customerRequestModel.startDate">
                                    <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
                                   </div>
                                   </div>
                                  <div class="form-group col-lg-6 col-sm-6 col-xs-12">
-                                 <span></span><s:select class="form-control" style="color:gray;" name="customerRequestObject.startTime"
+                                 <span></span><s:select class="form-control" style="color:gray;" name="customerRequestModel.startTime"
 						list="#{'12:00 AM':'12:00 AM','1:00 AM':'1:00 AM','2:00 AM':'2:00 AM','3:00 AM':'3:00 AM','4:00 AM':'4:00 AM','5:00 AM':'5:00 AM','6:00 AM':'6:00 AM','7:00 AM':'7:00 AM','8:00 AM':'8:00 AM','9:00 AM':'9:00 AM','10:00 AM':'10:00 AM','11:00 AM':'11:00 AM','12:00 PM':'12:00 PM','1:00 PM':'1:00 PM','2:00 PM':'2:00 PM','3:00 PM':'3:00 PM','4:00 PM':'4:00 PM','5:00 PM':'5:00 PM','6:00 PM':'6:00 PM','7:00 PM':'7:00 PM','8:00 PM':'8:00 PM','9:00 PM':'9:00 PM','10:00 PM':'10:00 PM','11:00 PM':'11:00 PM'}"
 													theme="simple">
 												</s:select>
@@ -292,14 +301,14 @@ select{
                                   <div class="row">
                                   <div class="form-group col-md-6 col-sm-6 col-xs-12">
                                   <div class="input-group">
-                                  <input type="text" id="datepicker6"  required="" onkeydown="return false;" placeholder="Drop Off Date" class="form-control hasDatepicker" name="customerRequestObject.endDate">
+                                  <input type="text" id="datepicker6"  required="" onkeydown="return false;" placeholder="Drop Off Date" class="form-control hasDatepicker" name="customerRequestModel.endDate">
                                   <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
                                   </div>
                                  </div>
                                  <div class="form-group col-lg-6 col-sm-6 col-xs-12">
                                  <span></span>
 										<s:select class="form-control" style="color:gray;"
-											name="customerRequestObject.endTime"
+											name="customerRequestModel.endTime"
 											list="#{'12:00 AM':'12:00 AM','1:00 AM':'1:00 AM','2:00 AM':'2:00 AM','3:00 AM':'3:00 AM','4:00 AM':'4:00 AM','5:00 AM':'5:00 AM','6:00 AM':'6:00 AM','7:00 AM':'7:00 AM','8:00 AM':'8:00 AM','9:00 AM':'9:00 AM','10:00 AM':'10:00 AM','11:00 AM':'11:00 AM','12:00 PM':'12:00 PM','1:00 PM':'1:00 PM','2:00 PM':'2:00 PM','3:00 PM':'3:00 PM','4:00 PM':'4:00 PM','5:00 PM':'5:00 PM','6:00 PM':'6:00 PM','7:00 PM':'7:00 PM','8:00 PM':'8:00 PM','9:00 PM':'9:00 PM','10:00 PM':'10:00 PM','11:00 PM':'11:00 PM'}"
 											theme="simple">
 										</s:select>
@@ -311,7 +320,7 @@ select{
                                <!--   <input type="text" placeholder="Enter Your City Or HUB" class="form-control hasDatepicker"> -->
                                  	<input list="carHubs3"  
 														placeholder="Enter Your City Or HUB"
-														class="form-control hasDatepicker" name="customerRequestObject.carHub.name" autocomplete="off">
+														class="form-control hasDatepicker" name="customerRequestModel.carHub.name" autocomplete="off">
 													<datalist id="carHubs3">
 														<s:iterator value="#session.carHubs">
 															<option value='<s:property value="name"/>'>
@@ -328,7 +337,7 @@ select{
                                <!--   <input type="text" id="datepicker" placeholder="Enter Your Vehicle" class="form-control hasDatepicker"> -->
                                  <input list="cars3" 
 														placeholder="Enter Your Vehicle"
-														class="form-control hasDatepicker" name="customerRequestObject.carModel.name" autocomplete="off">
+														class="form-control hasDatepicker" name="customerRequestModel.carModel.name" autocomplete="off">
 													<datalist id="cars3">
 														<s:iterator value="#session.cars">
 															<option value='<s:property value="model.name"/>'>

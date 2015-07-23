@@ -27,9 +27,8 @@
 		</interceptors>
 
 		<global-results>
-			<result name="userNotInSession" type="redirect">dashboard</result>
-			<result name="adminPermissionDenied" type="redirect">logoutAction
-			</result>
+			<result name="userNotInSession" type="redirect">userLogin</result>
+			<result name="adminPermissionDenied" type="redirect">logoutAction</result>
 		</global-results>
 
 		<action name="index">
@@ -135,7 +134,7 @@
 
 		<action name="availability" class="dashboardAction" method="getAvailableCars">
 			<result name="success">/jsp/availability-without-login.jsp</result>
-			<result name="input">/jsp/availability-without-login.jsp</result>
+			<result name="input">/jsp/home.jsp</result>
 		</action>
 
 		<action name="tripAvailability" class="dashboardAction" method="getAvailableCars">

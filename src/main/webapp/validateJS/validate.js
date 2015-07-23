@@ -25,17 +25,18 @@
 						required : true
 					},
 					'customer.adharNumber' : {
+						specialChar:true,
 						required : true
 					},
 					'adharFile' : {
 						
 						required : true
 					},
-					'passportFile' : {
-						specialChar:true,
+					'passport' : {
+						
 						required : true
 					},
-					'dLFile' : {
+					'drivingLicence' : {
 						
 						required : true
 					},
@@ -69,7 +70,15 @@
 					},
 					'customer.pickupLocation':{
 						required:true
-					}
+					},
+					'customer.adharNumber':{
+						required:true,
+						specialChar:true
+					},
+					'customer.passportNumber':{
+						required:true,
+						specialChar:true
+					},
 			
 				},
 				messages : {
@@ -86,6 +95,22 @@
 						required : "Please enter Mobile Number",
 						EqualTo:"value must be of 10 digit"
 					},
+					'customer.passportNumber':{
+						required : "Please enter passport Number",
+						specialChar : "Letters only please!",
+						
+					},
+					'customer.dlNumber':{
+						required : "Please enter driving Licence Number",
+						specialChar : "Letters only please!",
+						
+					},
+					'customer.adharNumber':{
+						required : "Please enter adhar Number",
+						specialChar : "Letters only please!",
+						
+					},
+					
 				},
 				submitHandler : function(form) {
 					form.submit();

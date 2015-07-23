@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 import org.joda.time.DateTime;
+import org.joda.time.Duration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -75,6 +76,13 @@ public class DashboardAction extends ActionSupport implements RequestAware, Sess
 
 			pickupDate = DateTimeUtility.getDateInitialized( customerRequestModel.getStartDate() , customerRequestModel.getStartTime() );
 			dropOffDate = DateTimeUtility.getDateInitialized( customerRequestModel.getEndDate() , customerRequestModel.getEndTime() );
+
+			Duration duration = new Duration( pickupDate , dropOffDate );
+
+			if ( duration.getStandardDays() < 0 || duration.getStandardDays() == 0 ) {
+				addActionError( "Invalid Date / Time selection" );
+				return INPUT;
+			}
 
 			session.put( "pickupDate" , pickupDate );
 			session.put( "dropOffDate" , dropOffDate );

@@ -80,6 +80,12 @@ span a:hover {
 	padding: 2px;
 }
 </style>
+<style type="text/css">
+.errorMessage li{
+color:red;
+list-style-type: none;
+}
+</style>
 </head>
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
 	<div class="container">
@@ -461,6 +467,7 @@ span a:hover {
 					<div class="col-md-8">
 						<h3>Trip Details / Availability</h3>
 						<br>
+						<s:actionerror/>
 						<div class="row">
 							<s:form action="tripAvailability">
 								<div class="col-lg-5">
@@ -700,7 +707,11 @@ span a:hover {
 				startDate : new Date(),
 				autoclose : true,
 
-			});
+			}).on('changeDate', function(selected){
+                startDate = new Date(selected.date.valueOf());
+                startDate.setDate(startDate.getDate(new Date(selected.date.valueOf())));
+                $('#datepicker2').datepicker('setStartDate', startDate);
+            });   
 
 		});
 	</script>

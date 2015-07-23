@@ -3,11 +3,13 @@ package com.prj.model;
 import java.io.Serializable;
 import java.util.List;
 
+import org.hibernate.annotations.Parameter;
+import org.hibernate.annotations.TypeDef;
+
+@TypeDef(name = "tariffTypeEnum", typeClass = GenericEnumUserType.class, parameters = { @Parameter(name = "enumClassName", value = "com.prj.model.TariffType") ,
+	@Parameter(name = "identifierMethod", value = "toInt") , @Parameter(name = "valueOfMethod", value = "fromInt") })
 public class Tariff extends BaseEntity implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private TariffType type;
@@ -31,7 +33,7 @@ public class Tariff extends BaseEntity implements Serializable {
 		return type;
 	}
 
-	public void setType(TariffType type) {
+	public void setType( TariffType type ) {
 
 		this.type = type;
 	}
@@ -41,7 +43,7 @@ public class Tariff extends BaseEntity implements Serializable {
 		return applicableDays;
 	}
 
-	public void setApplicableDays(List<DaysOfWeek> applicableDays) {
+	public void setApplicableDays( List<DaysOfWeek> applicableDays ) {
 
 		this.applicableDays = applicableDays;
 	}
@@ -51,7 +53,7 @@ public class Tariff extends BaseEntity implements Serializable {
 		return cost;
 	}
 
-	public void setCost(double cost) {
+	public void setCost( double cost ) {
 
 		this.cost = cost;
 	}
@@ -61,7 +63,7 @@ public class Tariff extends BaseEntity implements Serializable {
 		return cutOffHours;
 	}
 
-	public void setCutOffHours(float cutOffHours) {
+	public void setCutOffHours( float cutOffHours ) {
 
 		this.cutOffHours = cutOffHours;
 	}
@@ -71,7 +73,7 @@ public class Tariff extends BaseEntity implements Serializable {
 		return cutOffKMs;
 	}
 
-	public void setCutOffKMs(float cutOffKMs) {
+	public void setCutOffKMs( float cutOffKMs ) {
 
 		this.cutOffKMs = cutOffKMs;
 	}
@@ -81,7 +83,7 @@ public class Tariff extends BaseEntity implements Serializable {
 		return ratePerHour;
 	}
 
-	public void setRatePerHour(float ratePerHour) {
+	public void setRatePerHour( float ratePerHour ) {
 
 		this.ratePerHour = ratePerHour;
 	}
@@ -91,7 +93,7 @@ public class Tariff extends BaseEntity implements Serializable {
 		return ratePerKM;
 	}
 
-	public void setRatePerKM(float ratePerKM) {
+	public void setRatePerKM( float ratePerKM ) {
 
 		this.ratePerKM = ratePerKM;
 	}
@@ -101,7 +103,7 @@ public class Tariff extends BaseEntity implements Serializable {
 		return model;
 	}
 
-	public void setModel(CarModel model) {
+	public void setModel( CarModel model ) {
 
 		this.model = model;
 	}

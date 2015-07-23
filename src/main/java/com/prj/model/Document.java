@@ -10,7 +10,7 @@ import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
 @Entity
-@Table(name = "tbl_customer_doc")
+@Table(name = "car_customer_doc")
 @TypeDef(name = "FileTypeEnumMapping", typeClass = GenericEnumUserType.class, parameters = { @Parameter(name = "enumClassName", value = "com.prj.model.FileTypeEnum") ,
 	@Parameter(name = "identifierMethod", value = "toInt") , @Parameter(name = "valueOfMethod", value = "fromInt") })
 public class Document extends BaseEntity {

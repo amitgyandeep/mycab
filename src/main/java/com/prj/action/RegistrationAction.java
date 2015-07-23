@@ -2,6 +2,7 @@ package com.prj.action;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -77,6 +78,7 @@ public class RegistrationAction extends ActionSupport implements RequestAware {
 
 					customer.setStatus( StatusEnum.NEW );
 					customer.setUserDirectory( userDirectory );
+					customer.setCreated_date( new Date() );
 
 					customerDB = customerService.save( customer );
 
@@ -195,7 +197,7 @@ public class RegistrationAction extends ActionSupport implements RequestAware {
 		if ( user != null ) {
 
 			customer.setStatus( StatusEnum.APPROVED );
-
+			customer.setUpdated_date( new Date() );
 			customerService.save( customer );
 
 			LOGGER.info( "Customer get Approved" );
