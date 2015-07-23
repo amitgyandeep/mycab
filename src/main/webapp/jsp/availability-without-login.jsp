@@ -86,6 +86,7 @@ color:red;
 list-style-type: none;
 }
 </style>
+
 </head>
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
 	<div class="container">
@@ -549,10 +550,9 @@ list-style-type: none;
 								<div class="col-lg-9 overflow">
 									<s:iterator value="#request.availableCars" status="count">
 										<div class="row">
-											<s:form id="#count.count" action="tripBooking" theme="simple">
+											<s:form id="#count.count"  theme="simple" action="">
 												<div class="col-lg-12">
-													<s:hidden name="customerRequestModel.car.model"
-														value="car.model" />
+													<s:hidden name="customerRequestModel.carModel.name"	value="car.model" />
 													<div class="col-lg-7">
 														<img style="width: 171%;" src="img/car.png" alt=""
 															class="img-responsiv">
@@ -579,8 +579,13 @@ list-style-type: none;
 																	autocomplete="off">
 															</div>
 															<div class="col-lg-3">
-																<button type="submit"
-																	class="btn btn-sm btn-denger btn-block">Book</button>
+																<s:url id="deleteUrl" action="tripBooking">
+							<s:param name="carModel" value='model' />
+						</s:url>
+						<s:a href="%{deleteUrl}" style="text-decoration:none;">
+							<button type="button" class="btn btn-sm btn-denger btn-block">Book</button>
+						</s:a>	
+						<%-- <button type="submit" class="btn btn-sm btn-denger btn-block" onclick="javascript:myfunc('<s:property value="model.name" />');">Book</button> --%>
 															</div>
 														</div>
 													</div>
@@ -728,5 +733,22 @@ list-style-type: none;
 
 		});
 	</script>
+	<script type="text/javascript">
+function myfunc(carModel,id){
+	
+	var urlText = "tripBooking";
+	  var form = document.createElement("form");
+	    var element1 = document.createElement("input");
+	    form.method = "POST";
+	    form.action = urlText;  
+	    element1.value=carModel;
+	    element1.name="carModel";
+	    form.appendChild(element1);
+	    document.body.appendChild(form);
+	    form.submit();
+	    
+}
+
+</script>
 </body>
 </html>

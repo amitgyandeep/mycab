@@ -2,36 +2,44 @@ package com.prj.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
+
+import org.hibernate.annotations.Type;
+
 /*@Entity
 @Table(name = "car_booking")
 @TypeDef(name = "bookingStatusEnum", typeClass = GenericEnumUserType.class, parameters = { @Parameter(name = "enumClassName", value = "com.prj.model.BookingStatus") ,
 	@Parameter(name = "identifierMethod", value = "toInt") , @Parameter(name = "valueOfMethod", value = "fromInt") })*/
 public class Booking extends CabsBaseModel {
 
-	/*@Column(name = "booking_ref")*/
 	private String bookingRef;
 
-	/*	@JoinColumn(name = "id", referencedColumnName = "user_id")*/
+	@ManyToOne
+	@JoinColumn(name = "id", referencedColumnName = "id")
 	private User user;
 
-	/*@Column(name = "vehicle_reg_num")*/
+	@Column(name = "vehicle_reg_num")
 	private String vehicleRegNum;
 
-	/*@Column(name = "start_date_time")*/
+	@Column(name = "start_date_time")
 	private Date startDateTime;
 
-	/*	@Column(name = "end_date_time")*/
+	@Column(name = "end_date_time")
 	private Date endDateTime;
 
-	/*@Column(name = "actual_date_time")*/
+	@Column(name = "actual_end_date_time")
 	private Date actualEndDateTime;
 
+	@Transient
 	private BillingInformation estimate;
 
+	@Transient
 	private BillingInformation invoice;
 
-	/*	@Column(name = "booking_status")
-		@Type(type = "bookingStatusEnum")*/
+	@Type(type = "bookingStatusEnum")
 	private BookingStatus status;
 
 	public String getBookingRef() {

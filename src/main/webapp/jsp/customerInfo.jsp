@@ -96,7 +96,7 @@
                                     <div class="row">
                                           <div class="col-md-4">
                                                    <div class="site-logo">
-                                                            <a href="index.html" class="brand"><img src="img/logo.png"></a>
+                                                            <a href="dashboard" class="brand"><img src="img/logo.png"></a>
                                                     </div>
                                           </div>
                                           
@@ -112,10 +112,10 @@
                                                       <!-- Collect the nav links, forms, and other content for toggling -->
                                                      <div style="height: 1px;" class="navbar-collapse collapse" id="menu">
                                                             <ul class="nav navbar-nav navbar-right">
-                                                                  <li class=""><a href="index.html">Home</a></li>
-                                                                  <li class="active"><a href="osd.html">OSD</a></li>
-																   <li class=""><a href="feet-all-cat.html">Trip Machines</a></li>
-                                                                  <li class=""><a href="tariffs.html">Tariffs</a></li>	
+                                                                  <li class=""><a href="dashboard">Home</a></li>
+                                                                  <li class="active"><a href="osd">OSD</a></li>
+																   <li class=""><a href="tripMachines">Trip Machines</a></li>
+                                                                  <li class=""><a href="tariffs">Tariffs</a></li>	
                                                                   <li><a href="#works">Blog</a></li>				                                                                  
                                                                   
                                                                   <li class=""><a href="#contact">Contact</a></li>

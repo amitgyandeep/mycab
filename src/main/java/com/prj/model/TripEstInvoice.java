@@ -17,8 +17,8 @@ import org.joda.time.DateTime;
 @Table(name = "car_invoice")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
-@DiscriminatorValue(value = "INVOICE")
-public class TripInvoice extends BillingInformation implements Serializable {
+@DiscriminatorValue(value = "ESTIMATED")
+public class TripEstInvoice extends BillingInformation implements Serializable {
 
 	private Double securityDeposit;
 

@@ -26,6 +26,7 @@
 <bean class="com.prj.action.LoginAction" name="loginAction">
 	<property name="userService" ref="userService" />
 	<property name="customerService" ref="customerService" />
+	<property name="carHubService" ref="carHubService" />
 </bean>
 
 <bean class="com.prj.action.LogoutAction" name="logoutAction">

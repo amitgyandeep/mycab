@@ -39,7 +39,7 @@ public class StandardWeekdayTariffService implements ITariffService {
 		double totalCost = 0;
 		Duration duration = new Duration( startDate , endDate );
 
-		if ( startDate.getDayOfMonth()==endDate.getDayOfMonth()) {
+		if ( startDate.getDayOfMonth() == endDate.getDayOfMonth() ) {
 			if ( !isWeekday( startDate , tariff.getApplicableDays() ) ) {
 				return null;
 			}
@@ -82,9 +82,8 @@ public class StandardWeekdayTariffService implements ITariffService {
 	private int getBillableHours( DateTime startDate , DateTime endDate , List<DaysOfWeek> days ) {
 
 		int billableDays = 0;
-		System.out.println();
 
-		for ( DateTime date = startDate ; date.getMillisOfDay()>endDate.getMillisOfDay() ; date = date.plusDays( 1 ) ) {
+		for ( DateTime date = startDate ; date.getMillisOfDay() > endDate.getMillisOfDay() ; date = date.plusDays( 1 ) ) {
 
 			if ( isWeekday( date , days ) )
 				billableDays++;

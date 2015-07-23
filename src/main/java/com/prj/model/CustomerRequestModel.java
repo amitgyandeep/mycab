@@ -8,6 +8,7 @@ import java.io.Serializable;
  * Class Model to handle customer Request from dashboard
  *
  */
+@SuppressWarnings("serial")
 public class CustomerRequestModel implements Serializable {
 
 	private CarHub carHub;

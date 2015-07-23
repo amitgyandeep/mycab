@@ -15,16 +15,20 @@ public class CheckUserInSessionInterceptor implements Interceptor {
 
 	private static final long serialVersionUID = 1L;
 
-	@SuppressWarnings("unused")
 	public String intercept( ActionInvocation invocation ) throws Exception {
 
 		ActionContext ac = invocation.getInvocationContext();
 		HttpServletRequest request = ( HttpServletRequest ) ac.get( StrutsStatics.HTTP_REQUEST );
 
 		Map<String,Object> session = ac.getSession();
-
 		User user = ( User ) session.get( "loggedUser" );
 		if ( user == null ) {
+			String carModel = request.getParameter( "carModel" );
+			if ( carModel != null ) {
+				session.put( "carModelName" , carModel );
+				session.put( "actionName" , "tripBooking" );
+
+			}
 			return "userNotInSession";
 		}
 

@@ -84,6 +84,8 @@ public class DashboardAction extends ActionSupport implements RequestAware, Sess
 				return INPUT;
 			}
 
+			session.put( "standardDays" , duration.getStandardDays() );
+			session.put( "standardHours" , duration.getStandardHours() );
 			session.put( "pickupDate" , pickupDate );
 			session.put( "dropOffDate" , dropOffDate );
 

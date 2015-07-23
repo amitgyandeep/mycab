@@ -2,6 +2,7 @@ package com.prj.model;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class CarModel implements Serializable {
 
 	public CarModel( String name ) {
@@ -35,7 +36,7 @@ public class CarModel implements Serializable {
 
 	public void setName( String name ) {
 
-		this.name = name;
+		this.name = name.trim();
 	}
 
 }

@@ -178,6 +178,7 @@ span a:hover {
 <br>
 <div class="row">
 <div class="col-lg-9"> 
+
 <div class="row">  
   <span class="col-lg-9"><strong>Security Deposit:</strong></span> <span class="col-lg-3">Rs. <s:property value="#request.tripInvoice.securityDeposit"/></span></div>
 <div class="row">  

@@ -11,8 +11,8 @@ public class TestAM {
 
 	public static void main( String[] args ) {
 
-		String tm = "16/07/2015 10:34 PM";
-		String tm2 = "16/07/2015 10:38 PM";
+		String tm = "30/07/2015 12:00 AM";
+		String tm2 = "01/08/2015 11:00 PM";
 
 		SimpleDateFormat formatter = new SimpleDateFormat( "dd/MM/yyyy hh:mm a" );
 		try {
@@ -24,7 +24,7 @@ public class TestAM {
 
 			Duration duration = new Duration( d1 , d2 );
 
-			System.out.println( "Date from dd/MM/yyyy String in Java : " + duration.getStandardHours() );
+			System.out.println( "Difference (hours): " + duration.getStandardHours() / 24 );
 		} catch ( ParseException e ) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

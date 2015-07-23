@@ -35,7 +35,7 @@ public class UserServiceImpl extends GenericManagerImpl<User,Integer> implements
 
 	}
 
-	public static String getAlphaNumbericRandom() {
+	public String getAlphaNumbericRandom() {
 
 		String chars = "abcdefghijklmnopqrstuvwxyz0123456789";
 		int numberOfCodes = 0;//controls the length of alpha numberic string

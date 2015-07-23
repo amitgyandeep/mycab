@@ -1,5 +1,6 @@
 package com.prj.action;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.RequestAware;
@@ -8,9 +9,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.prj.model.CarHub;
 import com.prj.model.Customer;
 import com.prj.model.Role;
 import com.prj.model.User;
+import com.prj.service.ICarHubService;
 import com.prj.service.ICustomerService;
 import com.prj.service.IUserService;
 
@@ -25,7 +28,11 @@ public class LoginAction extends ActionSupport implements SessionAware, RequestA
 
 	private ICustomerService customerService;
 
+	private ICarHubService carHubService;
+
 	private User user;
+
+	List<CarHub> carHubs;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger( CarBookingAction.class );
 
@@ -38,20 +45,26 @@ public class LoginAction extends ActionSupport implements SessionAware, RequestA
 			if ( userDb != null ) {
 
 				session.put( "loggedUser" , userDb );
+				carHubs = carHubService.getCarHubs();
+
+				session.put( "carHubs" , carHubs );
 
 				if ( userDb.getRole().getId().equals( Role.ADMIN ) ) {
-					LOGGER.info( "USER IS ADMIN" );
+
 					return "adminDashBoard";
 
 				} else {
-					LOGGER.info( "USER IS CUSTOMER" );
+
 					Customer customer = customerService.getcustomerByEmailId( userDb.getEmailId() );
 					session.put( "customerInSession" , customer );
+					if ( session.get( "actionName" ) != null && session.get( "actionName" ).equals( "tripBooking" ) ) {
+						return "tripBooking";
+					}
 					return SUCCESS;
 				}
 
 			} else {
-				LOGGER.info( "INVALIDE USER" );
+				LOGGER.info( "INVALID USER" );
 				request.put( "invalidUser" , "invalidUser" );
 				request.put( "user" , user );
 				return INPUT;
@@ -109,6 +122,16 @@ public class LoginAction extends ActionSupport implements SessionAware, RequestA
 	public void setCustomerService( ICustomerService customerService ) {
 
 		this.customerService = customerService;
+	}
+
+	public ICarHubService getCarHubService() {
+
+		return carHubService;
+	}
+
+	public void setCarHubService( ICarHubService carHubService ) {
+
+		this.carHubService = carHubService;
 	}
 
 }

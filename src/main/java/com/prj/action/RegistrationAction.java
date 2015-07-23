@@ -64,7 +64,7 @@ public class RegistrationAction extends ActionSupport implements RequestAware {
 
 	private String inputText;
 
-	private String ajaxResponse;
+	//private String ajaxResponse;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger( RegistrationAction.class );
 
@@ -207,12 +207,12 @@ public class RegistrationAction extends ActionSupport implements RequestAware {
 			smsService.sendSms( smsText , "91" + customer.getMobileNumber() , ApplicationConstants.CLIENT_ID , ApplicationConstants.SYSTEM_ID ,
 				ApplicationConstants.VEHICLE_ID );
 
-			LOGGER.info( "SMS SENT FOR APPROVED CUSTOMER" );
+			LOGGER.info( "sms sent for approved customer" );
 
 			mailService.sendEmail( "User Aprroved For OSD" , smsText + ". Your password is " + user.getPassword() , customer.getEmail() , ApplicationConstants.SYSTEM_ID ,
 				ApplicationConstants.VEHICLE_ID );
 
-			LOGGER.info( "EMAIL SENT FOR APPROVED CUSTOMER" );
+			LOGGER.info( "email sent for approved customer " );
 
 			request.put( "newUser" , user );
 			return SUCCESS;
