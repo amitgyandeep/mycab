@@ -54,10 +54,12 @@ public class DashboardAction extends ActionSupport implements RequestAware, Sess
 		if ( user != null ) {
 
 			if ( user.getRole().getId().equals( Role.ADMIN ) )
-				return "adminDashboard";
+				return "adminDashBoard";
 
 			if ( user.getRole().getId().equals( Role.CUSTOMER ) )
 				return "userDashBoard";
+			if ( user.getRole().getId().equals( Role.HUB_USER ) )
+				return "hubDashBoard";
 		}
 
 		return SUCCESS;

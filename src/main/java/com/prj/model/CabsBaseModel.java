@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Transient;
 
 @MappedSuperclass
 public class CabsBaseModel {
@@ -16,16 +17,20 @@ public class CabsBaseModel {
 	@Column(name = "id", nullable = false, unique = true)
 	private Integer id;
 
+	@Column(name = "updated_date")
 	private Date lastUpdateTime;
 
+	@Column(name = "created_date")
 	private Date creationTime;
 
 	private User updatedUser;
 
 	private User createdUser;
 
+	@Transient
 	private LTSP ltsp;
 
+	@Transient
 	private Client client;
 
 	public Integer getId() {

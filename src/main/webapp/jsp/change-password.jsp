@@ -8,6 +8,7 @@
     <title>Orange Self Drive | Forgot Password</title>
 	
     <!-- css -->
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	<link href="css/nivo-lightbox.css" rel="stylesheet">

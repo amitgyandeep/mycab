@@ -22,6 +22,8 @@ public class User extends BaseEntity {
 	@JoinColumn(name = "user_role", referencedColumnName = "id")
 	private Role role;
 
+	private String hubName;
+
 	public String getEmailId() {
 
 		return emailId;
@@ -50,6 +52,16 @@ public class User extends BaseEntity {
 	public void setRole( Role role ) {
 
 		this.role = role;
+	}
+
+	public String getHubName() {
+
+		return hubName;
+	}
+
+	public void setHubName( String hubName ) {
+
+		this.hubName = hubName;
 	}
 
 }

@@ -25,4 +25,10 @@
 	<bean id="documentDao" class="com.prj.dao.impl.DocumentDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	<bean id="bookingDao" class="com.prj.dao.impl.BookingDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="invoiceDao" class="com.prj.dao.impl.InvoiceDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 </beans>

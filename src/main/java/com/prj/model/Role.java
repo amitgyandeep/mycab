@@ -13,6 +13,8 @@ public class Role extends BaseEntity {
 
 	public final static Integer ADMIN = 1;
 
+	public static final Object HUB_USER = 3;
+
 	@Column(name = "role_type")
 	private String roleType;
 

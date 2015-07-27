@@ -7,6 +7,7 @@
 <meta content="" name="author">
 <title>Orange Self Drive</title>
 <!-- css -->
+<link rel="icon" type="image/x-icon" href="img/favicon.ico">
 <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
 <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet"
 	type="text/css">
@@ -579,8 +580,8 @@ list-style-type: none;
 																	autocomplete="off">
 															</div>
 															<div class="col-lg-3">
-																<s:url id="deleteUrl" action="tripBooking">
-							<s:param name="carModel" value='model' />
+																<s:url id="deleteUrl" action="estimatedTripCost">
+							<s:param name="carModel" value='model.name' />
 						</s:url>
 						<s:a href="%{deleteUrl}" style="text-decoration:none;">
 							<button type="button" class="btn btn-sm btn-denger btn-block">Book</button>

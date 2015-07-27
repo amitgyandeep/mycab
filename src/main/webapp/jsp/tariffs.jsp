@@ -7,6 +7,7 @@
     <title>Orange Self Drive | Tarffis</title>
 	
     <!-- css -->
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link type="text/css" rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/nivo-lightbox.css">

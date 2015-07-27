@@ -1,42 +1,56 @@
 package com.prj.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
-import javax.persistence.DiscriminatorValue;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.joda.time.DateTime;
+import org.hibernate.annotations.Parameter;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "car_invoice")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
-@DiscriminatorValue(value = "INVOICE")
-public class TripInvoice extends BillingInformation implements Serializable {
+@TypeDef(name = "invoiceType", typeClass = GenericEnumUserType.class, parameters = { @Parameter(name = "enumClassName", value = "com.prj.model.InvoiceType") ,
+	@Parameter(name = "identifierMethod", value = "toInt") , @Parameter(name = "valueOfMethod", value = "fromInt") })
+public class TripInvoice extends CabsBaseModel implements Serializable {
 
+	@ManyToOne
+	@JoinColumn(name = "booking_id", referencedColumnName = "id")
+	private Booking booking;
+
+	@Column(name = "security_deposit")
 	private Double securityDeposit;
 
+	@Column(name = "adnl_security_deposit")
 	private Double adnlsecurityDeposit;
 
+	@Column(name = "trip_cost")
 	private Double tripCost;
 
+	@Column(name = "adjusted_from_wallet")
 	private Double adjustedFromWallet;
 
 	private Double discount;
 
+	@Column(name = "service_tax")
 	private Double serviceTax;
 
 	private Double total;
 
-	private DateTime pickupDate;
+	@Column(name = "pickup_date")
+	private Date pickupDate;
 
-	private DateTime dropOffDate;
+	@Column(name = "drop_off_date")
+	private Date dropOffDate;
+
+	@Type(type = "invoiceType")
+	private InvoiceType type;
 
 	public Double getSecurityDeposit() {
 
@@ -108,24 +122,44 @@ public class TripInvoice extends BillingInformation implements Serializable {
 		this.total = total;
 	}
 
-	public DateTime getPickupDate() {
+	public Date getPickupDate() {
 
 		return pickupDate;
 	}
 
-	public void setPickupDate( DateTime pickupDate ) {
+	public void setPickupDate( Date pickupDate ) {
 
 		this.pickupDate = pickupDate;
 	}
 
-	public DateTime getDropOffDate() {
+	public Date getDropOffDate() {
 
 		return dropOffDate;
 	}
 
-	public void setDropOffDate( DateTime dropOffDate ) {
+	public void setDropOffDate( Date dropOffDate ) {
 
 		this.dropOffDate = dropOffDate;
+	}
+
+	public InvoiceType getType() {
+
+		return type;
+	}
+
+	public void setType( InvoiceType type ) {
+
+		this.type = type;
+	}
+
+	public Booking getBooking() {
+
+		return booking;
+	}
+
+	public void setBooking( Booking booking ) {
+
+		this.booking = booking;
 	}
 
 }

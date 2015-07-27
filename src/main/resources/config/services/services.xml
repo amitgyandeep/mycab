@@ -62,4 +62,12 @@
 <constructor-arg ref="documentDao" />
 </bean>
 <bean name="restTemplate" class="org.springframework.web.client.RestTemplate"></bean>
+
+<bean name="bookingService" class="com.prj.service.impl.BookingServiceImpl" scope="prototype">
+<constructor-arg ref="bookingDao" />
+<property name="invoiceService" ref="invoiceService"/>
+	</bean>
+<bean name="invoiceService" class="com.prj.service.impl.InvoiceServiceImpl" scope="prototype">
+<constructor-arg ref="invoiceDao" />
+	</bean>
 </beans> 

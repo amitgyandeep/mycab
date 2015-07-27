@@ -26,7 +26,7 @@ public class CheckUserInSessionInterceptor implements Interceptor {
 			String carModel = request.getParameter( "carModel" );
 			if ( carModel != null ) {
 				session.put( "carModelName" , carModel );
-				session.put( "actionName" , "tripBooking" );
+				session.put( "actionName" , "estimatedTripCost" );
 
 			}
 			return "userNotInSession";

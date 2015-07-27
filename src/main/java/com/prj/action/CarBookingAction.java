@@ -10,12 +10,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.prj.model.Booking;
 import com.prj.model.Car;
 import com.prj.model.CarHub;
 import com.prj.model.CarModel;
 import com.prj.model.CustomerRequestModel;
 import com.prj.model.TripInvoice;
 import com.prj.model.User;
+import com.prj.service.IBookingService;
 import com.prj.service.impl.CarBookingService;
 
 @SuppressWarnings("serial")
@@ -27,6 +29,8 @@ public class CarBookingAction extends ActionSupport implements SessionAware, Req
 
 	private CarBookingService carBookingService;
 
+	private IBookingService bookingService;
+
 	CustomerRequestModel customerRequestModel;
 
 	private DateTime dropOffDate;
@@ -37,7 +41,7 @@ public class CarBookingAction extends ActionSupport implements SessionAware, Req
 
 	private static final Logger LOGGER = LoggerFactory.getLogger( CarBookingAction.class );
 
-	public String tripBooking() {
+	public String estimatedTripCost() {
 
 		User user = ( User ) session.get( "loggedUser" );
 		session.remove( "actionName" );
@@ -56,20 +60,11 @@ public class CarBookingAction extends ActionSupport implements SessionAware, Req
 			}
 
 			List<Car> cars = carBookingService.getAvailableCarsByModel( carModel , carHub , pickupDate.toDate() , dropOffDate.toDate() );
-			//dummy values
-			TripInvoice invoice = new TripInvoice();
-			invoice.setPickupDate( pickupDate );
-			invoice.setDropOffDate( dropOffDate );
-			Car car = cars.get( 0 );
-			invoice.setSecurityDeposit( car.getSecurityDesposit() );
-			invoice.setAdjustedFromWallet( 1000.00 );
-			invoice.setAdnlsecurityDeposit( 1000.00 );
-			invoice.setDiscount( 0.00 );
-			invoice.setServiceTax( 14.0 );
-			invoice.setTripCost( car.getPrice() );
-			invoice.setTotal( 1000.00 + 5000.00 + 0.00 + car.getPrice() );
+			session.put( "car" , cars.get( 0 ) );
+			TripInvoice invoice = bookingService.createInvoiceForPreview( cars , user , pickupDate , dropOffDate );
 
-			request.put( "tripInvoice" , invoice );
+			session.put( "tripInvoice" , invoice );
+
 			return SUCCESS;
 		} else {
 			return INPUT;
@@ -77,19 +72,17 @@ public class CarBookingAction extends ActionSupport implements SessionAware, Req
 
 	}
 
-	public static String getInvoiceNO() {
+	public String tripBooking() {
 
-		String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-		String ocrn = "OCRN-";//orange Cab reservation number
-		int numberOfCodes = 0;//controls the length of alpha numeric string
-		String code = "";
-		while ( numberOfCodes < 8 ) {
-			char c = chars.charAt( ( int ) ( Math.random() * chars.length() ) );
-			code += c;
-			numberOfCodes++;
-		}
-		code = ocrn + code;
-		return code;
+		//payment gateway has to come 
+		User user = ( User ) session.get( "loggedUser" );
+		dropOffDate = ( DateTime ) session.get( "dropOffDate" );
+		pickupDate = ( DateTime ) session.get( "pickupDate" );
+		CarHub carHub = ( CarHub ) session.get( "carHub" );
+		TripInvoice invoice = ( TripInvoice ) session.get( "tripInvoice" );
+		Booking booking = bookingService.createBookingAndFirstInvoice( ( Car ) session.get( "car" ) , user , pickupDate , dropOffDate , invoice , carHub );
+		request.put( "booking" , booking );
+		return SUCCESS;
 	}
 
 	public Map<String,Object> getRequest() {
@@ -140,6 +133,16 @@ public class CarBookingAction extends ActionSupport implements SessionAware, Req
 	public void setTripCost( String tripCost ) {
 
 		this.tripCost = tripCost;
+	}
+
+	public IBookingService getBookingService() {
+
+		return bookingService;
+	}
+
+	public void setBookingService( IBookingService bookingService ) {
+
+		this.bookingService = bookingService;
 	}
 
 }

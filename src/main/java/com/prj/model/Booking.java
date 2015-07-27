@@ -1,24 +1,37 @@
 package com.prj.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+import org.hibernate.annotations.Parameter;
 import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
 
-/*@Entity
+@Entity
 @Table(name = "car_booking")
 @TypeDef(name = "bookingStatusEnum", typeClass = GenericEnumUserType.class, parameters = { @Parameter(name = "enumClassName", value = "com.prj.model.BookingStatus") ,
-	@Parameter(name = "identifierMethod", value = "toInt") , @Parameter(name = "valueOfMethod", value = "fromInt") })*/
+	@Parameter(name = "identifierMethod", value = "toInt") , @Parameter(name = "valueOfMethod", value = "fromInt") })
 public class Booking extends CabsBaseModel {
 
+	@Column(name = "booking_ref")
 	private String bookingRef;
 
+	@Column(name = "car_model")
+	private String carModel;
+
+	@Column(name = "car_hub")
+	private String carHub;
+
 	@ManyToOne
-	@JoinColumn(name = "id", referencedColumnName = "id")
+	@JoinColumn(name = "user_id", referencedColumnName = "id")
 	private User user;
 
 	@Column(name = "vehicle_reg_num")
@@ -33,12 +46,10 @@ public class Booking extends CabsBaseModel {
 	@Column(name = "actual_end_date_time")
 	private Date actualEndDateTime;
 
-	@Transient
-	private BillingInformation estimate;
+	@OneToMany(mappedBy = "booking", fetch = FetchType.LAZY)
+	private List<TripInvoice> invoices;
 
-	@Transient
-	private BillingInformation invoice;
-
+	@Column(name = "booking_status")
 	@Type(type = "bookingStatusEnum")
 	private BookingStatus status;
 
@@ -102,26 +113,6 @@ public class Booking extends CabsBaseModel {
 		this.actualEndDateTime = actualEndDateTime;
 	}
 
-	public BillingInformation getEstimate() {
-
-		return estimate;
-	}
-
-	public void setEstimate( BillingInformation estimate ) {
-
-		this.estimate = estimate;
-	}
-
-	public BillingInformation getInvoice() {
-
-		return invoice;
-	}
-
-	public void setInvoice( BillingInformation invoice ) {
-
-		this.invoice = invoice;
-	}
-
 	public BookingStatus getStatus() {
 
 		return status;
@@ -130,6 +121,36 @@ public class Booking extends CabsBaseModel {
 	public void setStatus( BookingStatus status ) {
 
 		this.status = status;
+	}
+
+	public List<TripInvoice> getInvoices() {
+
+		return invoices;
+	}
+
+	public void setInvoices( List<TripInvoice> invoices ) {
+
+		this.invoices = invoices;
+	}
+
+	public String getCarModel() {
+
+		return carModel;
+	}
+
+	public void setCarModel( String carModel ) {
+
+		this.carModel = carModel;
+	}
+
+	public String getCarHub() {
+
+		return carHub;
+	}
+
+	public void setCarHub( String carHub ) {
+
+		this.carHub = carHub;
 	}
 
 }

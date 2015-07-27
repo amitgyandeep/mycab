@@ -174,51 +174,18 @@ span a:hover {
 </div>
 		</div>
 <div class="col-md-7">
-  <h3>Trip Invoice</h3>
+  <h3>Booking Information</h3>
 <br>
 <div class="row">
 <div class="col-lg-9"> 
 
 <div class="row">  
-  <span class="col-lg-9"><strong>Security Deposit:</strong></span> <span class="col-lg-3">Rs. <s:property value="#session.tripInvoice.securityDeposit"/></span></div>
-<div class="row">  
-<span class="col-lg-9">Adnl security deposit (Upgrade) </span><span class="col-lg-3">Rs. . . . . . .  .</span></div>
-<div class="row">  
-<span class="col-lg-9"><strong>Trip Cost:</strong></span><span class="col-lg-3">Rs. <s:property value="#session.tripInvoice.tripCost"/></span></div>
-  <div class="row">  
-  <span class="col-lg-9">(See Calculation/Auto Calculated)</span><span class="col-lg-3"></span></div>
-  <div class="row">  
-  <span class="col-lg-9">Adjusted from Wallet:</span><span class="col-lg-3">Rs. <s:property value="#session.tripInvoice.adjustedFromWallet"/></span></div>
-  <div class="row">  
-  <span class="col-lg-9">Less Discount:	</span><span class="col-lg-3">Rs. <s:property value="#session.tripInvoice.discount"/></span></div>
-  <div class="row">  
-  <span class="col-lg-9"><strong>Service Tax: </strong></span><span class="col-lg-3">Rs. <s:property value="#session.tripInvoice.serviceTax"/></span></div>
-    <div class="row">  
-  <span class="col-lg-9"><strong>Total:</strong></span><span class="col-lg-3"><b>Rs. <s:property value="#session.tripInvoice.total"/></b></span></div>
-  <div class="row">  
-  <span class="col-lg-6">T&amp;C Selection:</span><span class="col-lg-6"></span></div>
-
+  <span class="col-lg-9"><strong>Booking No:</strong> <s:property value="#request.booking.bookingRef"/></span></div>
 </div>
 
   
 
-<div class="col-lg-3">
-<div class="row">
-<div class="col-lg-12">
-<s:form  action="tripBooking" theme="simple">
-<button class="btn btn-warning" type="submit">Pay Now</button>
-</s:form>
-</div>
-</div>
-<div class="row">
-<div class="col-lg-12">
-<br>
-<br>
-<span>Remember to pay the secondary invoice, if applicable, after the trip ends.
-</span>
-</div>
-</div>
-</div>
+
 
 
   

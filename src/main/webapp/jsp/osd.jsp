@@ -7,6 +7,7 @@
     <title>Orange Self Drive | OSD</title>
 	
     <!-- css -->
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	<link href="css/nivo-lightbox.css" rel="stylesheet">
@@ -38,7 +39,7 @@
 <div class="container">
 <div class="row">
 <div class="col-lg-9"></div>
-<div class="col-lg-3"><p style="float:right;"><img style="float:left;" src="img/live-support.png"><a class="top-link" href="#">SIGN IN</a><a class="top-link" href="#">FAQs</a><a class="top-link" href="#">Link</a></p></div>
+<div class="col-lg-3"><p style="float:right;"><img style="float:left;" src="img/live-support.png"><a class="top-link" href="userLogin">SIGN IN</a><a class="top-link" href="#">FAQs</a><a class="top-link" href="#">Link</a></p></div>
 
 </div>
 

@@ -53,12 +53,17 @@ public class LoginAction extends ActionSupport implements SessionAware, RequestA
 
 					return "adminDashBoard";
 
+				}
+				if ( userDb.getRole().getId().equals( Role.HUB_USER ) ) {
+
+					return "hubDashBoard";
+
 				} else {
 
 					Customer customer = customerService.getcustomerByEmailId( userDb.getEmailId() );
 					session.put( "customerInSession" , customer );
-					if ( session.get( "actionName" ) != null && session.get( "actionName" ).equals( "tripBooking" ) ) {
-						return "tripBooking";
+					if ( session.get( "actionName" ) != null && session.get( "actionName" ).equals( "estimatedTripCost" ) ) {
+						return "estimatedTripCost";
 					}
 					return SUCCESS;
 				}

@@ -8,6 +8,7 @@
     <title>Orange Self Drive</title>
 	
     <!-- css -->
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	<link href="css/nivo-lightbox.css" rel="stylesheet">
@@ -261,7 +262,7 @@ list-style-type: none;
 <s:if test="#request.availableCars.size()>0">
   <div class="col-lg-9 overflow">
     <s:iterator value="#request.availableCars"  status="count">
-   <s:form  id="#count.count" action="tripBooking" theme="simple">
+   <s:form  id="#count.count" action="estimatedTripCost" theme="simple">
      <input type="text" hidden="" name="customerRequestModel.carModel.name" value='<s:property value="model.name"/>'/>
 <div class="row">
 <div class="col-lg-12">
