@@ -27,4 +27,6 @@ public interface IBookingService extends GenericManager<Booking,Integer> {
 
 	public List<Booking> getAllBookingByHub( CarHub carHub );
 
+	public List<Booking> getUpcomingTripForUser( User user );
+
 }

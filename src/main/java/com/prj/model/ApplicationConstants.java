@@ -12,5 +12,6 @@ public class ApplicationConstants {
 
 	public static final Integer VEHICLE_ID = 12;
 
-	public static final String FILE_PATH_DIR = "D:/CUSTOMER";
+	/*public static final String FILE_PATH_DIR = "D:/CUSTOMER";*/
+	public static final String FILE_PATH_DIR = "C:/Users/tejomaya/orangeCabUserDocs";
 }

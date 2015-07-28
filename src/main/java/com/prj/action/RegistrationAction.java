@@ -3,7 +3,6 @@ package com.prj.action;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
@@ -129,14 +128,6 @@ public class RegistrationAction extends ActionSupport implements RequestAware {
 
 			return false;
 		}
-	}
-
-	public String getCustomerList() {
-
-		List<Customer> customerList = customerService.getAllCustomers();
-		request.put( "customerList" , customerList );
-
-		return SUCCESS;
 	}
 
 	public void fileUpload( String userDirectory , Customer customer ) {

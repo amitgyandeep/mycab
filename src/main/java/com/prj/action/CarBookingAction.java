@@ -85,6 +85,14 @@ public class CarBookingAction extends ActionSupport implements SessionAware, Req
 		return SUCCESS;
 	}
 
+	public String getUsersUpcomingTrip() {
+
+		User user = ( User ) session.get( "loggedUser" );
+		List<Booking> userBookigs = bookingService.getUpcomingTripForUser( user );
+		request.put( "userBooking" , userBookigs );
+		return SUCCESS;
+	}
+
 	public Map<String,Object> getRequest() {
 
 		return request;

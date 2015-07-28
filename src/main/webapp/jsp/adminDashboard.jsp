@@ -78,6 +78,34 @@
     text-transform: uppercase;
 }
 </style>
+<style type="text/css">
+#menu li
+{
+    list-style: none;
+    float: left;
+    margin-right: 0.5em;
+}
+
+#menu li
+{
+    list-style: none;
+}
+
+#menu a
+{
+    display: block;
+    width: 8em;
+    color: white;
+    background-color: #000099;
+    text-decoration: none;
+    text-align: center;
+}
+
+#menu a:hover
+{
+    background-color: #F36F21;
+}
+</style>
 </head>
 
 <body data-target=".navbar-custom" data-spy="scroll" id="page-top">

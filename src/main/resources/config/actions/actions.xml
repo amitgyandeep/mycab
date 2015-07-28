@@ -57,7 +57,10 @@
 		<property name="bookingService" ref="bookingService" />
 	</bean>
 		<bean name="hubDashboardAction" class="com.prj.action.HubDashboardAction" scope="prototype">
-	
 		<property name="bookingService" ref="bookingService" />
+	</bean>
+		<bean name="adminDashboardAction" class="com.prj.action.AdminDashboardAction" scope="prototype">
+		<property name="bookingService" ref="bookingService" />
+		<property name="customerService" ref="customerService" />
 	</bean>
 </beans>

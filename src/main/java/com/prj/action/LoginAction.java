@@ -51,7 +51,7 @@ public class LoginAction extends ActionSupport implements SessionAware, RequestA
 
 				if ( userDb.getRole().getId().equals( Role.ADMIN ) ) {
 
-					return "adminDashBoard";
+					return "adminDashboard";
 
 				}
 				if ( userDb.getRole().getId().equals( Role.HUB_USER ) ) {

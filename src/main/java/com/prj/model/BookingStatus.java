@@ -1,9 +1,9 @@
 package com.prj.model;
 
-public enum BookingStatus  {
+public enum BookingStatus {
 
-	INPROGRESS(0), OPEN(1),COMPLETED(2);
-	
+	UPCOMING(0), INPROGRESS(1), OPEN(2), COMPLETED(3);
+
 	private int databaseValue;
 
 	private BookingStatus( int value ) {
@@ -21,15 +21,17 @@ public enum BookingStatus  {
 	public static BookingStatus fromInt( int value ) {
 
 		switch ( value ) {
-		case 0:
-			return INPROGRESS;
-		case 2:
-			return COMPLETED;
-		case 1:
-			return OPEN;
+			case 0:
+				return UPCOMING;
+			case 1:
+				return INPROGRESS;
 
-			default:
+			case 2:
 				return OPEN;
+			case 3:
+				return COMPLETED;
+			default:
+				return UPCOMING;
 		}
 	}
 
@@ -55,7 +57,8 @@ public enum BookingStatus  {
 				return "COMPLETED";
 			case OPEN:
 				return "OPEN";
-			
+			case UPCOMING:
+				return "UPCOMING";
 
 		}
 		return "GeneralStatusEnum.toString() in uknown state.. database value: " + this.databaseValue;

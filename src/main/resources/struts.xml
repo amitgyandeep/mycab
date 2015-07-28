@@ -38,7 +38,7 @@
 		<action name="dashboard" class="dashboardAction">
 			<result name="success">/jsp/home.jsp</result>
 			<result name="userDashBoard" type="chain">userDashBoard</result>
-			<result name="adminDashBoard" type="chain">showCustomerList</result>
+			<result name="adminDashboard" type="redirect">adminDashboard</result>
 		</action>
 		<action name="userDashBoard">
 			<result name="success">/jsp/availability.jsp</result>
@@ -67,10 +67,9 @@
 			<result name="input">/jsp/registration.jsp</result>
 		</action>
 
-		<action name="showCustomerList" class="registrationAction"
-			method="getCustomerList">
+		<action name="adminDashboard" class="adminDashboardAction" method="getCustomerList">
 		<interceptor-ref name="checkAdminInterceptorStack"></interceptor-ref>
-			<result name="success">/jsp/customerInfo.jsp</result>
+			<result name="success">/jsp/adminDashboard.jsp</result>
 			<result name="input">/jsp/customerInfo.jsp</result>
 		</action>
 
@@ -79,7 +78,7 @@
 		</action>
 		
 		<action name="loginAction" class="loginAction" method="authenticateUser">
-			<result name="adminDashBoard" type="redirect">showCustomerList</result>
+			<result name="adminDashboard" type="redirect">adminDashboard</result>
 			<result name="success">/jsp/availability.jsp</result>
 			<result name="estimatedTripCost" type="redirect">estimatedTripCost</result>
 			<result name="hubDashBoard" type="redirect">hubAccess</result>

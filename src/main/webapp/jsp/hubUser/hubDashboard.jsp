@@ -82,7 +82,7 @@
         <li><a href="hubAccess">Home</a></li>
         <li><a href="#">Events</a></li>
         <li><a href="#">Close Trip</a></li>
-        <li><a href="#">XXXX</a></li>
+        <li><a href="logoutAction">Logout</a></li>
     </ul>
 </div>
 <br/><br/>
