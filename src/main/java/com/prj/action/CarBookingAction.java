@@ -39,6 +39,8 @@ public class CarBookingAction extends ActionSupport implements SessionAware, Req
 
 	private String tripCost;
 
+	private String bookingId;
+
 	private static final Logger LOGGER = LoggerFactory.getLogger( CarBookingAction.class );
 
 	public String estimatedTripCost() {
@@ -91,6 +93,14 @@ public class CarBookingAction extends ActionSupport implements SessionAware, Req
 		List<Booking> userBookigs = bookingService.getUpcomingTripForUser( user );
 		request.put( "userBooking" , userBookigs );
 		return SUCCESS;
+	}
+
+	public String tripClosing() {
+
+		Booking booking = bookingService.getBookingWithInvoices( Integer.parseInt( bookingId ) );
+		request.put( "booking" , booking );
+		return SUCCESS;
+
 	}
 
 	public Map<String,Object> getRequest() {
@@ -151,6 +161,16 @@ public class CarBookingAction extends ActionSupport implements SessionAware, Req
 	public void setBookingService( IBookingService bookingService ) {
 
 		this.bookingService = bookingService;
+	}
+
+	public String getBookingId() {
+
+		return bookingId;
+	}
+
+	public void setBookingId( String bookingId ) {
+
+		this.bookingId = bookingId;
 	}
 
 }

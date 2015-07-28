@@ -53,4 +53,18 @@ public class BookingDaoImpl extends GenericDaoHibernate<Booking,Integer> impleme
 
 	}
 
+	public Booking getBookingWithInvoices( final Integer bookingId ) {
+
+		return ( Booking ) getHibernateTemplate().execute( new HibernateCallback() {
+
+			public Object doInHibernate( final Session session ) throws HibernateException, SQLException {
+
+				Criteria criteria = getSession().createCriteria( Booking.class );
+				criteria.add( Restrictions.eq( "id" , bookingId ) );
+				return criteria.list();
+			}
+		} );
+
+	}
+
 }
