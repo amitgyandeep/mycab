@@ -96,7 +96,6 @@
       <th>End Date</th>
       <th>Actual End Date</th>
       <th>Vehicle</th>
-
       <th>Booking Status</th>
       <th>Action</th>
       
@@ -117,8 +116,8 @@
         <li>
             <a href="#">Option &#9662;</a>
             <ul class="dropdown">
+             <li><a href='tripClosing?bookingId=<s:property value="id"/>'>Close</a></li>
                 <li><a  href="#">Cancel</a></li>
-                <li><a href="#">Close</a></li>
             </ul>
         </li>
     </ul></td>

@@ -580,10 +580,10 @@ list-style-type: none;
 																	autocomplete="off">
 															</div>
 															<div class="col-lg-3">
-																<s:url id="deleteUrl" action="estimatedTripCost">
+																<s:url id="estimatedTripUrl" action="estimatedTripCost">
 							<s:param name="carModel" value='model.name' />
 						</s:url>
-						<s:a href="%{deleteUrl}" style="text-decoration:none;">
+						<s:a href="%{estimatedTripUrl}" style="text-decoration:none;">
 							<button type="button" class="btn btn-sm btn-denger btn-block">Book</button>
 						</s:a>	
 						<%-- <button type="submit" class="btn btn-sm btn-denger btn-block" onclick="javascript:myfunc('<s:property value="model.name" />');">Book</button> --%>

@@ -61,51 +61,7 @@
         display: block;
     }
 </style>
-	
-		
-	
-<style>
-.header-text h2 span {
-    border-radius: 1px 1px 14px 14px;
-    color: #fff;
-    padding: 7px 60px 1px 45px;
-    text-transform: uppercase;
-}
-.header-text h3 span {
-    color: #fff;
-    font-size: 20px;
-    font-weight: 100;
-    text-transform: uppercase;
-}
-</style>
-<style type="text/css">
-#menu li
-{
-    list-style: none;
-    float: left;
-    margin-right: 0.5em;
-}
 
-#menu li
-{
-    list-style: none;
-}
-
-#menu a
-{
-    display: block;
-    width: 8em;
-    color: white;
-    background-color: #000099;
-    text-decoration: none;
-    text-align: center;
-}
-
-#menu a:hover
-{
-    background-color: #F36F21;
-}
-</style>
 </head>
 
 <body data-target=".navbar-custom" data-spy="scroll" id="page-top">

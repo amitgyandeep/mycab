@@ -57,7 +57,7 @@ public class BookingServiceImpl extends GenericManagerImpl<Booking,Integer> impl
 		Booking booking = new Booking();
 		booking.setBookingRef( getInvoiceNO() );
 		booking.setUser( user );
-		booking.setStatus( BookingStatus.INPROGRESS );
+		booking.setStatus( BookingStatus.UPCOMING );
 		booking.setStartDateTime( pickupDate.toDate() );
 		booking.setEndDateTime( dropOffDate.toDate() );
 		booking.setCreationTime( new Date() );
@@ -70,6 +70,11 @@ public class BookingServiceImpl extends GenericManagerImpl<Booking,Integer> impl
 
 		invoiceService.save( invoice );
 		return booking;
+	}
+
+	public Booking getBookingWithInvoices( Integer bookingId ) {
+
+		return bookingDao.getBookingWithInvoices( bookingId );
 	}
 
 	public static String getInvoiceNO() {
