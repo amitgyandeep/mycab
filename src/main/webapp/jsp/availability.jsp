@@ -168,7 +168,7 @@ list-style-type: none;
 <h6 class="col-lg-12">Edit Information</h6>
 <span class="col-lg-12"><a href="#">Upcoming Events</a><a></a></span>
 <span class="col-lg-12"><a href="#">Useful Info / Links</a></span>
-<span class="col-lg-12"><a href="#">Upcoming Trips</a></span>
+<span class="col-lg-12"><a href="userUpcomingBooking">Upcoming Trips</a></span>
 <span class="col-lg-12"><a href="tripDetailAvailability">New Trip</a></span>
 <span class="col-lg-12"><a href="showChangePassword">Change password</a></span>
 

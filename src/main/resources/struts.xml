@@ -170,9 +170,9 @@
 			<result name="success" type="redirect">adminDashboard</result>
 			<result name="input">/jsp/adminDashboard.jsp</result>
 		</action>
-		<action name="userUpcomingBooking" class="cabBookingAction" method="getUsersUpcomingTrip">
+		<action name="userUpcomingBooking" class="carBookingAction" method="getUsersUpcomingTrip">
 			 <interceptor-ref name="checkUserInSessionInterceptorStack"></interceptor-ref>
-			<result name="success">/userUpcomingTrip.jsp</result>
+			<result name="success">/jsp/userUpcomingTrip.jsp</result>
 			<result name="input">/jsp/availability.jsp</result>
 		</action>
 

@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="color/default.css">
 	 <link rel="stylesheet" href="css/datepicker.css">
+	  <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
 <style>
 .header-text h2 span {
     border-radius: 1px 1px 14px 14px;
@@ -190,55 +191,45 @@ list-style-type: none;
 </div>
 		</div>
 <div class="col-md-8">
-  <h3>Trip Details / Availability</h3>
+  <h3>Upcoming Trips</h3>
 <br>
 	<s:actionerror/>
 <div class="row">
-<div class="col-lg-5"> 
-<div class="row">
- 
-                                  <div class="form-group col-md-8 col-sm-6 col-xs-12">
-                               <table id="example">
+  <table id="example">
     <thead>
       <tr>
-      <th>Hub Name</th>
       <th>Booking Ref</th>
       <th>Start Date</th>
       <th>End Date</th>
-      <th>Actual End Date</th>
+     
       <th>Vehicle</th>
-      <th>Booking Status</th>
-      <th>Action</th>
+     <th>Hub</th>
+     <th>Amount</th>
+     
       
       
       </tr>
     </thead>
     <tbody>
-    <s:iterator value="#request.bookings" status="count">
+    <s:iterator value="#request.userBooking" status="count">
       <tr>
-      <td><s:property value="carHub"/></td>
+     
       <td><s:property value="bookingRef"/></td>
       <td><s:date  format="dd/MM/yyyy hh:mm" name="startDateTime" /></td>
       <td><s:date  format="dd/MM/yyyy hh:mm" name="endDateTime"/></td>
-      <td><s:date  format="dd/MM/yyyy hh:mm" name="actualEndDateTime"/></td>
-      <td><s:property value="carModel"/>,<s:property value="vehicleRegNum"/></td>
-       <td><s:property value="status"/></td>
-       <td><ul>
-        <li>
-            <a href="#">Option &#9662;</a>
-            <ul class="dropdown">
-                <li><a  href="#">Cancel</a></li>
-                <li><a href="#">Close</a></li>
-            </ul>
-        </li>
-    </ul></td>
+     <td><s:property value="carModel"/>,<s:property value="vehicleRegNum"/></td>
+       <td><s:property value="carHub"/></td>
+       <s:iterator>
+     <td></td>
+      </s:iterator>
+      
     </tr>
     </s:iterator>
     </tbody>
   </table>
-                                  </div>
+                            
                        
-                                 </div>
+                   
 
 
   
@@ -246,7 +237,7 @@ list-style-type: none;
 
 
   
-</div>
+
 
 </div>
 <div class="col-lg-1 pull-ight"></div>
@@ -328,6 +319,13 @@ list-style-type: none;
     <script src="js/custom.js"></script>
    <script src="js/bootstrap-datepicker.js"></script>
 
+ <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+  <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+  <script>
+  $(function(){
+    $("#example").dataTable();
+  })
+  </script>
 
 
 </section></section>
