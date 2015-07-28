@@ -164,6 +164,11 @@
 			<result name="success">/jsp/trip-booking_success.jsp</result>
 			<result name="input">/jsp/trip-invoice.jsp</result>
 		</action>
+		
+		<action name="payBooking">
+			 <interceptor-ref name="checkUserInSessionInterceptorStack"></interceptor-ref>
+			<result name="success">/jsp/posttozaakpay.jsp</result>
+		</action>
 
 		<action name="approveUser" class="registrationAction" method="approveUser">
 			<interceptor-ref name="checkAdminInterceptorStack"></interceptor-ref>

@@ -1,5 +1,6 @@
 package com.prj.service.impl;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -33,18 +34,19 @@ public class BookingServiceImpl extends GenericManagerImpl<Booking,Integer> impl
 
 		TripInvoice invoice = new TripInvoice();
 		Car car = cars.get( 0 );
-
+		
+		Double beforeTotal = car.getSecurityDesposit() + car.getPrice();
+		double afterTax = beforeTotal + ( beforeTotal * 14 / 100 );
 		invoice.setPickupDate( pickupDate.toDate() );
 		invoice.setDropOffDate( dropOffDate.toDate() );
 
 		invoice.setSecurityDeposit( car.getSecurityDesposit() );
-		invoice.setAdjustedFromWallet( 1000.00 );
-		invoice.setAdnlsecurityDeposit( 1000.00 );
+		invoice.setAdjustedFromWallet( 0.0);
+		invoice.setAdnlsecurityDeposit( 0.0 );
 		invoice.setDiscount( 0.00 );
-		invoice.setServiceTax( 14.0 );
+		invoice.setServiceTax(beforeTotal * 14 / 100 );
 		invoice.setTripCost( car.getPrice() );
-		Double beforeTotal = 1000.00 + 5000.00 + 0.00 + car.getPrice();
-		double afterTax = beforeTotal + ( beforeTotal * 14 / 100 );
+		
 		invoice.setTotal( afterTax );
 
 		invoice.setType( InvoiceType.ESTIMATE );
