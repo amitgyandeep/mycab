@@ -13,6 +13,7 @@ import org.springframework.orm.hibernate3.HibernateCallback;
 
 import com.prj.dao.IBookingDao;
 import com.prj.model.Booking;
+import com.prj.model.BookingStatus;
 import com.prj.model.CarHub;
 import com.prj.model.User;
 
@@ -47,6 +48,7 @@ public class BookingDaoImpl extends GenericDaoHibernate<Booking,Integer> impleme
 
 				Criteria criteria = getSession().createCriteria( Booking.class );
 				criteria.add( Restrictions.ge( "startDateTime" , new Date() ) );
+				criteria.add( Restrictions.eq( "status",BookingStatus.UPCOMING ) );
 				return criteria.list();
 			}
 		} );
@@ -61,7 +63,22 @@ public class BookingDaoImpl extends GenericDaoHibernate<Booking,Integer> impleme
 
 				Criteria criteria = getSession().createCriteria( Booking.class );
 				criteria.add( Restrictions.eq( "id" , bookingId ) );
-				return criteria.list();
+				return criteria.uniqueResult();
+			}
+		} );
+
+	}
+	
+	
+	public Booking getBookingByReference( final String bookingRef ) {
+
+		return ( Booking ) getHibernateTemplate().execute( new HibernateCallback() {
+
+			public Object doInHibernate( final Session session ) throws HibernateException, SQLException {
+
+				Criteria criteria = getSession().createCriteria( Booking.class );
+				criteria.add( Restrictions.eq( "bookingRef" , bookingRef ) );
+				return criteria.uniqueResult();
 			}
 		} );
 

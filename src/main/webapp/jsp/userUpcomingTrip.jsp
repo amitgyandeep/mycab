@@ -203,9 +203,9 @@ list-style-type: none;
       <th>End Date</th>
      
       <th>Vehicle</th>
-     <th>Hub</th>
-     <th>Amount</th>
      
+     <th>Amount</th>
+     <th>Action</th>
       
       
       </tr>
@@ -215,13 +215,14 @@ list-style-type: none;
       <tr>
      
       <td><s:property value="bookingRef"/></td>
-      <td><s:date  format="dd/MM/yyyy hh:mm" name="startDateTime" /></td>
-      <td><s:date  format="dd/MM/yyyy hh:mm" name="endDateTime"/></td>
-     <td><s:property value="carModel"/>,<s:property value="vehicleRegNum"/></td>
-       <td><s:property value="carHub"/></td>
-       <s:iterator>
-     <td></td>
-      </s:iterator>
+      <td><s:date  format="dd/MM/yyyy hh:mm a" name="startDateTime" /></td>
+      <td><s:date  format="dd/MM/yyyy hh:mm a" name="endDateTime"/></td>
+     <td><s:property value="carModel"/></td>
+     
+     <td><s:property value="getEstimate().total"/></td>
+     <td><a href="cancelBooking.action?bookingId=<s:property value='bookingRef'/>">Change</a>&nbsp;&nbsp;<a href="confirmCancellation.action?bookingId=<s:property value='bookingRef'/>">Cancel</a>  </td>
+       
+      
       
     </tr>
     </s:iterator>

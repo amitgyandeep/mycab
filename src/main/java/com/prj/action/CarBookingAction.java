@@ -102,6 +102,24 @@ public class CarBookingAction extends ActionSupport implements SessionAware, Req
 		return SUCCESS;
 
 	}
+	
+	public String confirmCancellation() {
+
+		
+		request.put( "booking" , bookingService.getBookingByReference(bookingId) );
+		request.put( "cancelAmount" , bookingService.getCancellationAmount(bookingId) );
+		
+		return SUCCESS;
+
+	}
+	
+	public String cancelBooking() {
+
+		bookingService.cancelBooking(bookingId);
+		
+		return SUCCESS;
+
+	}
 
 	public Map<String,Object> getRequest() {
 

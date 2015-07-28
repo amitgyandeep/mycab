@@ -30,5 +30,11 @@ public interface IBookingService extends GenericManager<Booking,Integer> {
 	public List<Booking> getUpcomingTripForUser( User user );
 
 	public Booking getBookingWithInvoices( Integer parseInt );
+	
+	public void cancelBooking(String bookingRef);
+	
+	public double getCancellationAmount(String bookingRef);
+	
+	public Booking getBookingByReference(String bookingRef);
 
 }

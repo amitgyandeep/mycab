@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.appfuse.service.impl.GenericManagerImpl;
 import org.joda.time.DateTime;
+import org.joda.time.Duration;
 
 import com.prj.dao.IBookingDao;
 import com.prj.model.Booking;
@@ -18,75 +19,111 @@ import com.prj.model.User;
 import com.prj.service.IBookingService;
 import com.prj.service.IInvoiceService;
 
-public class BookingServiceImpl extends GenericManagerImpl<Booking,Integer> implements IBookingService {
+public class BookingServiceImpl extends GenericManagerImpl<Booking, Integer>
+		implements IBookingService {
 
 	private IBookingDao bookingDao;
 
 	private IInvoiceService invoiceService;
 
-	public BookingServiceImpl( IBookingDao bookingDao ) {
+	public BookingServiceImpl(IBookingDao bookingDao) {
 
-		super( bookingDao );
+		super(bookingDao);
 		this.bookingDao = bookingDao;
 	}
 
-	public TripInvoice createInvoiceForPreview( List<Car> cars , User user , DateTime pickupDate , DateTime dropOffDate ) {
+	public double getCancellationAmount(String bookingRef) {
+
+		Booking booking = bookingDao.getBookingByReference(bookingRef);
+		Duration duration = new Duration(new DateTime(
+				booking.getStartDateTime()), new DateTime());
+
+		double cancelAmount = booking.getEstimate().getTotal()
+				- booking.getEstimate().getSecurityDeposit();
+
+		if (duration.getStandardHours() > 24) {
+			cancelAmount = 0.15 * cancelAmount;
+		} else {
+			cancelAmount = 0.25 * cancelAmount;
+		}
+
+		return cancelAmount;
+	}
+
+	public void cancelBooking(String bookingRef) {
+
+		Booking booking = bookingDao.getBookingByReference(bookingRef);
+
+		booking.setStatus(BookingStatus.CANCELLED);
+		bookingDao.save(booking);
+
+	}
+
+	public TripInvoice createInvoiceForPreview(List<Car> cars, User user,
+			DateTime pickupDate, DateTime dropOffDate) {
 
 		TripInvoice invoice = new TripInvoice();
-		Car car = cars.get( 0 );
-		
+		Car car = cars.get(0);
+
 		Double beforeTotal = car.getSecurityDesposit() + car.getPrice();
-		double afterTax = beforeTotal + ( beforeTotal * 14 / 100 );
-		invoice.setPickupDate( pickupDate.toDate() );
-		invoice.setDropOffDate( dropOffDate.toDate() );
+		double afterTax = beforeTotal + (beforeTotal * 14 / 100);
+		invoice.setPickupDate(pickupDate.toDate());
+		invoice.setDropOffDate(dropOffDate.toDate());
 
-		invoice.setSecurityDeposit( car.getSecurityDesposit() );
-		invoice.setAdjustedFromWallet( 0.0);
-		invoice.setAdnlsecurityDeposit( 0.0 );
-		invoice.setDiscount( 0.00 );
-		invoice.setServiceTax(beforeTotal * 14 / 100 );
-		invoice.setTripCost( car.getPrice() );
-		
-		invoice.setTotal( afterTax );
+		invoice.setSecurityDeposit(car.getSecurityDesposit());
+		invoice.setAdjustedFromWallet(0.0);
+		invoice.setAdnlsecurityDeposit(0.0);
+		invoice.setDiscount(0.00);
+		invoice.setServiceTax(beforeTotal * 14 / 100);
+		invoice.setTripCost(car.getPrice());
 
-		invoice.setType( InvoiceType.ESTIMATE );
+		invoice.setTotal(afterTax);
+
+		invoice.setType(InvoiceType.ESTIMATE);
 
 		return invoice;
 	}
 
-	public Booking createBookingAndFirstInvoice( Car car , User user , DateTime pickupDate , DateTime dropOffDate , TripInvoice invoice , CarHub carHub ) {
+	public Booking createBookingAndFirstInvoice(Car car, User user,
+			DateTime pickupDate, DateTime dropOffDate, TripInvoice invoice,
+			CarHub carHub) {
 
 		Booking booking = new Booking();
-		booking.setBookingRef( getInvoiceNO() );
-		booking.setUser( user );
-		booking.setStatus( BookingStatus.UPCOMING );
-		booking.setStartDateTime( pickupDate.toDate() );
-		booking.setEndDateTime( dropOffDate.toDate() );
-		booking.setCreationTime( new Date() );
-		booking.setLastUpdateTime( new Date() );
-		booking.setCarModel( car.getModel().getName() );
-		booking.setCarHub( carHub.getName() );
-		booking = save( booking );
+		booking.setBookingRef(getInvoiceNO());
+		booking.setUser(user);
+		booking.setStatus(BookingStatus.UPCOMING);
+		booking.setStartDateTime(pickupDate.toDate());
+		booking.setEndDateTime(dropOffDate.toDate());
+		booking.setCreationTime(new Date());
+		booking.setLastUpdateTime(new Date());
+		booking.setCarModel(car.getModel().getName());
+		booking.setCarHub(carHub.getName());
+		booking = save(booking);
 
-		invoice.setBooking( booking );
+		invoice.setBooking(booking);
 
-		invoiceService.save( invoice );
+		invoiceService.save(invoice);
 		return booking;
 	}
 
-	public Booking getBookingWithInvoices( Integer bookingId ) {
+	public Booking getBookingWithInvoices(Integer bookingId) {
 
-		return bookingDao.getBookingWithInvoices( bookingId );
+		return bookingDao.getBookingWithInvoices(bookingId);
 	}
 
-	public static String getInvoiceNO() {
+	public Booking getBookingByReference(String bookingRef) {
+
+		return bookingDao.getBookingByReference(bookingRef);
+	}
+
+	private String getInvoiceNO() {
 
 		String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-		String ocrn = "OCRN-";//orange Cab reservation number start with
-		int numberOfCodes = 0;//controls the length of alpha numeric string
+		String ocrn = "OCRN-";// orange Cab reservation number start with
+		int numberOfCodes = 0;// controls the length of alpha numeric string
 		String code = "";
-		while ( numberOfCodes < 8 ) {
-			char c = chars.charAt( ( int ) ( Math.random() * chars.length() ) );
+		while (numberOfCodes < 8) {
+			char c = chars.charAt((int) (Math.random() * chars.length()));
 			code += c;
 			numberOfCodes++;
 		}
@@ -99,19 +136,19 @@ public class BookingServiceImpl extends GenericManagerImpl<Booking,Integer> impl
 		return invoiceService;
 	}
 
-	public void setInvoiceService( IInvoiceService invoiceService ) {
+	public void setInvoiceService(IInvoiceService invoiceService) {
 
 		this.invoiceService = invoiceService;
 	}
 
-	public List<Booking> getAllBookingByHub( CarHub carHub ) {
+	public List<Booking> getAllBookingByHub(CarHub carHub) {
 
-		return bookingDao.getAllBookingByHub( carHub );
+		return bookingDao.getAllBookingByHub(carHub);
 	}
 
-	public List<Booking> getUpcomingTripForUser( User user ) {
+	public List<Booking> getUpcomingTripForUser(User user) {
 
-		return bookingDao.getUpcomingTripForUser( user );
+		return bookingDao.getUpcomingTripForUser(user);
 	}
 
 }

@@ -15,5 +15,7 @@ public interface IBookingDao extends GenericDao<Booking,Integer> {
 	List<Booking> getUpcomingTripForUser( User user );
 
 	Booking getBookingWithInvoices( Integer bookingId );
+	
+	Booking getBookingByReference( final String bookingRef );
 
 }
