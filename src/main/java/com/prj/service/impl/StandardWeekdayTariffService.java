@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
+import org.joda.time.LocalDate;
 
 import com.prj.dao.ITariffDao;
 import com.prj.model.CarModel;
@@ -40,7 +41,7 @@ public class StandardWeekdayTariffService implements ITariffService {
 		Duration duration = new Duration( startDate , endDate );
 
 		if ( startDate.getDayOfMonth() == endDate.getDayOfMonth() ) {
-			if ( !isWeekday( startDate , tariff.getApplicableDays() ) ) {
+			if ( !isWeekday( new LocalDate( startDate ) , tariff.getApplicableDays() ) ) {
 				return null;
 			}
 			totalCost = duration.getStandardHours() * tariff.getRatePerHour();
@@ -56,11 +57,11 @@ public class StandardWeekdayTariffService implements ITariffService {
 
 			int totalHours = remainingHours;
 
-			if ( isWeekday( startDate , days ) ) {
+			if ( isWeekday( new LocalDate( startDate ) , days ) ) {
 				totalHours += startDateHours;
 			}
 
-			if ( isWeekday( endDate , days ) ) {
+			if ( isWeekday( new LocalDate( endDate ) , days ) ) {
 				totalHours += endDateHours;
 			}
 
@@ -83,16 +84,20 @@ public class StandardWeekdayTariffService implements ITariffService {
 
 		int billableDays = 0;
 
-		for ( DateTime date = startDate ; date.getMillisOfDay() > endDate.getMillisOfDay() ; date = date.plusDays( 1 ) ) {
+		LocalDate start = new LocalDate( startDate );
+		LocalDate end = new LocalDate( startDate );
+
+		for ( LocalDate date = start ; date.isBefore( end ) || date.isEqual( end ) ; date = date.plusDays( 1 ) ) {
 
 			if ( isWeekday( date , days ) )
 				billableDays++;
 
 		}
+
 		return billableDays;
 	}
 
-	private boolean isWeekday( DateTime date , List<DaysOfWeek> days ) {
+	private boolean isWeekday( LocalDate date , List<DaysOfWeek> days ) {
 
 		for ( DaysOfWeek day : days ) {
 
