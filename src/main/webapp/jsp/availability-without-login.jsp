@@ -568,7 +568,7 @@ list-style-type: none;
 														<button class="btn btn-default " type="button">
 															<span>Fare: Rs:&nbsp;<label><s:property
 																		value="getPrice()" /></label> &nbsp;|&nbsp;
-															</span> <span> 1 days &nbsp;|&nbsp;</span><span>5 Hours</span>
+															</span> <span> <s:property value="#request.durationDays"/> Days &nbsp;|&nbsp;</span><span><s:property value="#request.durationHours"/>Hours</span>
 														</button>
 													</div>
 													<div class="col-lg-12" style="margin-top: 30px;">

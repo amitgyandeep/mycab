@@ -194,100 +194,57 @@ list-style-type: none;
 <br>
 	<s:actionerror/>
 <div class="row">
-<s:form action="tripDetailAvailability" theme="simple" method="post">
 <div class="col-lg-5"> 
 <div class="row">
  
                                   <div class="form-group col-md-8 col-sm-6 col-xs-12">
-                                  <div class="input-group">
-                                  <input type="text" required="" onkeydown="return false;" class="form-control hasDatepicker" placeholder="Selected Trip Date" id="datepicker1" name="customerRequestModel.startDate" value='<s:property value="#request.startDate"/>'/>
-                                   <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                               <table id="example">
+    <thead>
+      <tr>
+      <th>Hub Name</th>
+      <th>Booking Ref</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Actual End Date</th>
+      <th>Vehicle</th>
+      <th>Booking Status</th>
+      <th>Action</th>
+      
+      
+      </tr>
+    </thead>
+    <tbody>
+    <s:iterator value="#request.bookings" status="count">
+      <tr>
+      <td><s:property value="carHub"/></td>
+      <td><s:property value="bookingRef"/></td>
+      <td><s:date  format="dd/MM/yyyy hh:mm" name="startDateTime" /></td>
+      <td><s:date  format="dd/MM/yyyy hh:mm" name="endDateTime"/></td>
+      <td><s:date  format="dd/MM/yyyy hh:mm" name="actualEndDateTime"/></td>
+      <td><s:property value="carModel"/>,<s:property value="vehicleRegNum"/></td>
+       <td><s:property value="status"/></td>
+       <td><ul>
+        <li>
+            <a href="#">Option &#9662;</a>
+            <ul class="dropdown">
+                <li><a  href="#">Cancel</a></li>
+                <li><a href="#">Close</a></li>
+            </ul>
+        </li>
+    </ul></td>
+    </tr>
+    </s:iterator>
+    </tbody>
+  </table>
                                   </div>
-                                  </div>
-                                 <div class="form-group col-lg-4 col-sm-6 col-xs-12">
-                                 <span></span>
-                                 <s:select class="form-control" style="color:gray;"
-												name="customerRequestModel.startTime"
-												value="%{#request.startTime}"
-												list="#{'12:00 AM':'12:00 AM','1:00 AM':'1:00 AM','2:00 AM':'2:00 AM','3:00 AM':'3:00 AM','4:00 AM':'4:00 AM','5:00 AM':'5:00 AM','6:00 AM':'6:00 AM','7:00 AM':'7:00 AM','8:00 AM':'8:00 AM','9:00 AM':'9:00 AM','10:00 AM':'10:00 AM','11:00 AM':'11:00 AM','12:00 PM':'12:00 PM','1:00 PM':'1:00 PM','2:00 PM':'2:00 PM','3:00 PM':'3:00 PM','4:00 PM':'4:00 PM','5:00 PM':'5:00 PM','6:00 PM':'6:00 PM','7:00 PM':'7:00 PM','8:00 PM':'8:00 PM','9:00 PM':'9:00 PM','10:00 PM':'10:00 PM','11:00 PM':'11:00 PM'}"
-												theme="simple">
-											</s:select>                                 </div>
+                       
                                  </div>
-<div class="row">
-                                  <div class="form-group col-md-8 col-sm-6 col-xs-12">
-                                  <div class="input-group">
-                                  <input type="text" required="" onkeydown="return false;" id="datepicker2" onkeydown="return false;" placeholder="Selected Drop Date " class="form-control hasDatepicker" name="customerRequestModel.endDate" value='<s:property value="#request.endDate"/>'/>
-                                  <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                  </div>
-                                 </div>
-                                 <div class="form-group col-lg-4 col-sm-6 col-xs-12">
-                                 <span></span>
-                                <s:select class="form-control" style="color:gray;"
-												name="customerRequestModel.endTime"
-												value="%{#request.endTime}"
-												list="#{'12:00 AM':'12:00 AM','1:00 AM':'1:00 AM','2:00 AM':'2:00 AM','3:00 AM':'3:00 AM','4:00 AM':'4:00 AM','5:00 AM':'5:00 AM','6:00 AM':'6:00 AM','7:00 AM':'7:00 AM','8:00 AM':'8:00 AM','9:00 AM':'9:00 AM','10:00 AM':'10:00 AM','11:00 AM':'11:00 AM','12:00 PM':'12:00 PM','1:00 PM':'1:00 PM','2:00 PM':'2:00 PM','3:00 PM':'3:00 PM','4:00 PM':'4:00 PM','5:00 PM':'5:00 PM','6:00 PM':'6:00 PM','7:00 PM':'7:00 PM','8:00 PM':'8:00 PM','9:00 PM':'9:00 PM','10:00 PM':'10:00 PM','11:00 PM':'11:00 PM'}"
-												theme="simple">
-											</s:select>                                  </div>
-                                 </div>
-<div class="row">
-                                 <div class="form-group col-md-12 col-sm-6 col-xs-12">
-                                 <div class="input-group">
-                                    <s:textfield  list="carHubs" theme="simple" style="width:100%;" required="" 
-														placeholder="Gurgaon"
-														class="form-control hasDatepicker" name="customerRequestModel.carHub.name" autocomplete="off" value="%{#session.carHub.name}"/>
-													<datalist id="carHubs">
-														<s:iterator value="#session.carHubs">
-															<option value='<s:property value="name"/>'>
-														</s:iterator>
-
-													</datalist>
-                                 <div class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></div>
-                                 </div>
-                                 </div>
-                                 </div>
-
-  
-
-<div class="row">  
-  <span class="col-lg-12">
-    <s:submit theme="simple"/>
-    </span></div></div>
-</s:form>
 
 
   
 
 
 
-<s:if test="#request.availableCars.size()>0">
-  <div class="col-lg-9 overflow">
-    <s:iterator value="#request.availableCars"  status="count">
-   <s:form  id="#count.count" action="estimatedTripCost" theme="simple">
-     <input type="text" hidden="" name="customerRequestModel.carModel.name" value='<s:property value="model.name"/>'/>
-<div class="row">
-<div class="col-lg-12">
-  <div class="col-lg-7"><img style="width:171%;" src="img/BMW-5-series.png" alt="" class="img-responsiv"></div>
-   <div class="col-lg-12 text-success">Available at: <s:property value="hub.name"/><br/>
-														Car: <s:property value="model.name" /> </div>
-<div class="col-lg-12"><button class="btn btn-default " type="button"><span>Fare: Rs: &nbsp;<input type="text" hidden="" name="tripCost" value='<s:property value="getPrice()"  />'/><label><s:property value="getPrice()"  /></label>     &nbsp;|&nbsp;</span> <span> 2 days   &nbsp;|&nbsp;</span><span>5 Hours</span></button></div>
-     
-
-
-<div class="col-lg-12" style="margin-top: 30px;">
-
-  <div class="row">
-    <div class="col-lg-6"> <label for="inputPassword" class="sr-only">Enter Promo Code</label>
-        <input type="text" id="inputPassword" class="form-control" placeholder="Enter Promo Code"></div>
-  <div class="col-lg-3"><button type="submit" class="btn btn-sm btn-denger btn-block">Book</button></div>
-  </div>
-</div>
-  </div>
- 
-  </div>
-  </s:form>
-  </s:iterator>
-</div>
-</s:if>
   
 </div>
 

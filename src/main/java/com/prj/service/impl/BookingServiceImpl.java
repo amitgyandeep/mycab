@@ -104,8 +104,7 @@ public class BookingServiceImpl extends GenericManagerImpl<Booking,Integer> impl
 
 	public List<Booking> getUpcomingTripForUser( User user ) {
 
-		// TODO Auto-generated method stub
-		return null;
+		return bookingDao.getUpcomingTripForUser( user );
 	}
 
 }

@@ -266,10 +266,10 @@ list-style-type: none;
      <input type="text" hidden="" name="customerRequestModel.carModel.name" value='<s:property value="model.name"/>'/>
 <div class="row">
 <div class="col-lg-12">
-  <div class="col-lg-7"><img style="width:171%;" src="img/BMW-5-series.png" alt="" class="img-responsiv"></div>
+  <div class="col-lg-7"><img style="width:171%;" src="img/BMW-5-series.png" alt="" class="img-responsiv"></div>    
    <div class="col-lg-12 text-success">Available at: <s:property value="hub.name"/><br/>
 														Car: <s:property value="model.name" /> </div>
-<div class="col-lg-12"><button class="btn btn-default " type="button"><span>Fare: Rs: &nbsp;<input type="text" hidden="" name="tripCost" value='<s:property value="getPrice()"  />'/><label><s:property value="getPrice()"  /></label>     &nbsp;|&nbsp;</span> <span> 2 days   &nbsp;|&nbsp;</span><span>5 Hours</span></button></div>
+<div class="col-lg-12"><button class="btn btn-default " type="button"><span>Fare: Rs: &nbsp;<input type="text" hidden="" name="tripCost" value='<s:property value="getPrice()"  />'/><label><s:property value="getPrice()"  /></label>&nbsp;|&nbsp;</span> <span> <s:property value="#request.durationDays"/> Days   &nbsp;|&nbsp;</span><span><s:property value="#request.durationHours"/>Hours</span></button></div>
      
 
 

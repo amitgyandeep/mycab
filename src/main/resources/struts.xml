@@ -70,7 +70,7 @@
 		<action name="adminDashboard" class="adminDashboardAction" method="getCustomerList">
 		<interceptor-ref name="checkAdminInterceptorStack"></interceptor-ref>
 			<result name="success">/jsp/adminDashboard.jsp</result>
-			<result name="input">/jsp/customerInfo.jsp</result>
+			<result name="input">/jsp/adminDashboard.jsp</result>
 		</action>
 
 		<action name="userLogin">
@@ -167,8 +167,13 @@
 
 		<action name="approveUser" class="registrationAction" method="approveUser">
 			<interceptor-ref name="checkAdminInterceptorStack"></interceptor-ref>
-			<result name="success" type="redirect">showCustomerList</result>
-			<result name="input">/jsp/customerInfo.jsp</result>
+			<result name="success" type="redirect">adminDashboard</result>
+			<result name="input">/jsp/adminDashboard.jsp</result>
+		</action>
+		<action name="userUpcomingBooking" class="cabBookingAction" method="getUsersUpcomingTrip">
+			 <interceptor-ref name="checkUserInSessionInterceptorStack"></interceptor-ref>
+			<result name="success">/userUpcomingTrip.jsp</result>
+			<result name="input">/jsp/availability.jsp</result>
 		</action>
 
 

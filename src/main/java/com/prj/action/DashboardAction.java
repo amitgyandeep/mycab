@@ -96,6 +96,9 @@ public class DashboardAction extends ActionSupport implements RequestAware, Sess
 			List<Car> cars = carBookingService.getAvailableCarsByModel( customerRequestModel.getCarModel() , customerRequestModel.getCarHub() , pickupDate.toDate() ,
 				dropOffDate.toDate() );
 
+			request.put( "durationDays" , new Duration( pickupDate , dropOffDate ).getStandardDays() );
+			request.put( "durationHours" , new Duration( pickupDate , dropOffDate ).getStandardHours() % 24 );
+
 			request.put( "availableCars" , cars );
 			return SUCCESS;
 		} else {

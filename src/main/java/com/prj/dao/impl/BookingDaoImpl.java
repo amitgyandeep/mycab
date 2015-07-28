@@ -1,6 +1,7 @@
 package com.prj.dao.impl;
 
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import org.appfuse.dao.hibernate.GenericDaoHibernate;
@@ -13,6 +14,7 @@ import org.springframework.orm.hibernate3.HibernateCallback;
 import com.prj.dao.IBookingDao;
 import com.prj.model.Booking;
 import com.prj.model.CarHub;
+import com.prj.model.User;
 
 public class BookingDaoImpl extends GenericDaoHibernate<Booking,Integer> implements IBookingDao {
 
@@ -30,6 +32,21 @@ public class BookingDaoImpl extends GenericDaoHibernate<Booking,Integer> impleme
 
 				Criteria criteria = getSession().createCriteria( Booking.class );
 				criteria.add( Restrictions.eq( "carHub" , carHub.getName() ) );
+				return criteria.list();
+			}
+		} );
+
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Booking> getUpcomingTripForUser( User user ) {
+
+		return ( List<Booking> ) getHibernateTemplate().execute( new HibernateCallback() {
+
+			public Object doInHibernate( final Session session ) throws HibernateException, SQLException {
+
+				Criteria criteria = getSession().createCriteria( Booking.class );
+				criteria.add( Restrictions.ge( "startDateTime" , new Date() ) );
 				return criteria.list();
 			}
 		} );
