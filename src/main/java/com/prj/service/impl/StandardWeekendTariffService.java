@@ -85,7 +85,7 @@ public class StandardWeekendTariffService implements ITariffService {
 		int billableDays = 0;
 
 		LocalDate start = new LocalDate( startDate );
-		LocalDate end = new LocalDate( startDate );
+		LocalDate end = new LocalDate( endDate );
 
 		for ( LocalDate date = start ; date.isBefore( end ) || date.isEqual( end ) ; date = date.plusDays( 1 ) ) {
 
