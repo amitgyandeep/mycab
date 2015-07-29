@@ -2,11 +2,14 @@ package com.prj.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Parameter;
@@ -51,6 +54,10 @@ public class TripInvoice extends CabsBaseModel implements Serializable {
 
 	@Type(type = "invoiceType")
 	private InvoiceType type;
+
+	@OneToMany
+	@JoinTable(name = "car_invoice_penalty", joinColumns = @JoinColumn(name = "invoice_id"), inverseJoinColumns = @JoinColumn(name = "penalty_id"))
+	public List<Penalty> penalities;
 
 	public Double getSecurityDeposit() {
 

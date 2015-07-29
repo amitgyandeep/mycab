@@ -14,6 +14,8 @@ import org.springframework.orm.hibernate3.HibernateCallback;
 import com.prj.dao.IBookingDao;
 import com.prj.model.Booking;
 import com.prj.model.CarHub;
+import com.prj.model.InvoiceType;
+import com.prj.model.TripInvoice;
 import com.prj.model.User;
 
 public class BookingDaoImpl extends GenericDaoHibernate<Booking,Integer> implements IBookingDao {
@@ -53,15 +55,17 @@ public class BookingDaoImpl extends GenericDaoHibernate<Booking,Integer> impleme
 
 	}
 
-	public Booking getBookingWithInvoices( final Integer bookingId ) {
+	@SuppressWarnings("unchecked")
+	public TripInvoice getEstimatedInvoiceByBooking( final Integer bookingId ) {
 
-		return ( Booking ) getHibernateTemplate().execute( new HibernateCallback() {
+		return ( TripInvoice ) getHibernateTemplate().execute( new HibernateCallback() {
 
 			public Object doInHibernate( final Session session ) throws HibernateException, SQLException {
 
-				Criteria criteria = getSession().createCriteria( Booking.class );
-				criteria.add( Restrictions.eq( "id" , bookingId ) );
-				return criteria.list();
+				Criteria criteria = getSession().createCriteria( TripInvoice.class );
+				criteria.add( Restrictions.eq( "booking.id" , bookingId ) );
+				criteria.add( Restrictions.eq( "type" , InvoiceType.ESTIMATE ) );
+				return criteria.uniqueResult();
 			}
 		} );
 

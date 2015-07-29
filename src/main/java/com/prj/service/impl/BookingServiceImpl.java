@@ -72,9 +72,9 @@ public class BookingServiceImpl extends GenericManagerImpl<Booking,Integer> impl
 		return booking;
 	}
 
-	public Booking getBookingWithInvoices( Integer bookingId ) {
+	public TripInvoice getEstimatedInvoiceByBooking( Integer bookingId ) {
 
-		return bookingDao.getBookingWithInvoices( bookingId );
+		return bookingDao.getEstimatedInvoiceByBooking( bookingId );
 	}
 
 	public static String getInvoiceNO() {

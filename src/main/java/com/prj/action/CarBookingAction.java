@@ -15,6 +15,7 @@ import com.prj.model.Car;
 import com.prj.model.CarHub;
 import com.prj.model.CarModel;
 import com.prj.model.CustomerRequestModel;
+import com.prj.model.TripClosingModel;
 import com.prj.model.TripInvoice;
 import com.prj.model.User;
 import com.prj.service.IBookingService;
@@ -31,7 +32,9 @@ public class CarBookingAction extends ActionSupport implements SessionAware, Req
 
 	private IBookingService bookingService;
 
-	CustomerRequestModel customerRequestModel;
+	private CustomerRequestModel customerRequestModel;
+
+	private TripClosingModel tripClosingModel;
 
 	private DateTime dropOffDate;
 
@@ -95,10 +98,26 @@ public class CarBookingAction extends ActionSupport implements SessionAware, Req
 		return SUCCESS;
 	}
 
+	/**
+	 * Trip Closing is in process 
+	 * @return
+	 */
 	public String tripClosing() {
 
-		Booking booking = bookingService.getBookingWithInvoices( Integer.parseInt( bookingId ) );
-		request.put( "booking" , booking );
+		TripInvoice estimatedInvoice = bookingService.getEstimatedInvoiceByBooking( Integer.parseInt( bookingId ) );
+		request.put( "estimatedInvoice" , estimatedInvoice );
+		return SUCCESS;
+
+	}
+
+	/**
+	 * Finaly after assesment trip closing 
+	 * @return
+	 */
+	public String closeBooking() {
+
+		TripInvoice estimatedInvoice = bookingService.getEstimatedInvoiceByBooking( Integer.parseInt( bookingId ) );
+		request.put( "estimatedInvoice" , estimatedInvoice );
 		return SUCCESS;
 
 	}
@@ -171,6 +190,16 @@ public class CarBookingAction extends ActionSupport implements SessionAware, Req
 	public void setBookingId( String bookingId ) {
 
 		this.bookingId = bookingId;
+	}
+
+	public TripClosingModel getTripClosingModel() {
+
+		return tripClosingModel;
+	}
+
+	public void setTripClosingModel( TripClosingModel tripClosingModel ) {
+
+		this.tripClosingModel = tripClosingModel;
 	}
 
 }

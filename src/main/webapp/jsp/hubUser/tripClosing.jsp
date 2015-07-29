@@ -72,6 +72,28 @@
         display: block;
     }
 </style>
+<script type="text/javascript">
+var elementId2;
+function addPenality(elementId){
+	var total=parseFloat(document.getElementById("sumTotalId").innerHTML);
+	var checkBoxElement=document.getElementById(elementId);
+	if(checkBoxElement.checked){
+		
+		var valueEx=parseFloat(checkBoxElement.value); 
+		total=total+valueEx;
+		
+		total=total.toFixed(2);
+		document.getElementById("sumTotalId").innerHTML=total;
+	}else{
+		total=total-parseFloat(checkBoxElement.value);
+		total=total.toFixed(2);
+		document.getElementById("sumTotalId").innerHTML=total;
+		
+	}
+	
+}
+
+</script>
 </head>
 <body>
 
@@ -80,7 +102,7 @@
 <div id="menu" >
     <ul >
         <li><a href="hubAccess">Home</a></li>
-        <li><a href="#">Events</a></li>
+      <!--   <li><a href="#">Events</a></li> -->
         
         <li><a href="logoutAction">Logout</a></li>
     </ul>
@@ -89,36 +111,67 @@
 <div style="width:80%;  margin-left: 10%;">
 <span style="width: 50%; float: left;">
   <fieldset >
+  <legend>Estimated Invoice</legend>
  <table>
 
-      <tr><td>Booking Ref </td><td><s:property value="#request.booking.bookingRef"/></td></tr>
-      <tr><td>Start Date</td><td><s:date  format="dd/MM/yyyy hh:mm" name="#request.booking.startDateTime" /></td></tr>
-      <tr><td>End Date</td><td><s:date  format="dd/MM/yyyy hh:mm" name="#request.booking.endDateTime"/></td></tr>
-      <tr><td>Actual End Date</td><s:date  format="dd/MM/yyyy hh:mm" name="#request.booking.actualEndDateTime"/></td></tr>
-      <tr><td>Vehicle</td><td><s:property value="#request.booking.carModel"/>,<s:property value="#request.booking.vehicleRegNum"/></td></tr>
+      <tr><td>Booking Ref. </td><td><s:property value="#request.estimatedInvoice.booking.bookingRef"/></td></tr>
+      <tr><td>Start Date</td><td><s:date  format="dd/MM/yyyy hh:mm a" name="#request.estimatedInvoice.booking.startDateTime" /></td></tr>
+      <tr><td>End Date</td><td><s:date  format="dd/MM/yyyy hh:mm a" name="#request.estimatedInvoice.booking.endDateTime"/></td></tr>
+      <tr><td>Actual End Date</td><td><s:date  format="dd/MM/yyyy hh:mm a" name="#request.estimatedInvoice.booking.actualDateTime"/></td></tr>
+      <tr><td>Vehicle</td><td><s:property value="#request.estimatedInvoice.booking.carModel"/>,<s:property value="#request.estimatedInvoice.booking.vehicleRegNum"/></td></tr>
+      <tr><td>Security Deposit</td><td><s:property value="#request.estimatedInvoice.securityDeposit"/></td>
+      <tr><td>Amount</td><td><s:property value="#request.estimatedInvoice.total"/></td></tr>
 
     </table>
       
   </fieldset>
-
+     <div>
+    <B>Total :</B> <span id="sumTotalId"><s:property value="#request.estimatedInvoice.total"/></span>
+  </div>
 </span>
 <span style="width: 50%;float: right;">
     <fieldset>
-              
-                        <input type="checkbox" name="overSpeed" value="overSpeed" />overSpeed <br />
-                        <input type="checkbox" name="filth" value="filth" />Filth/vomit<br />
-                        <input type="checkbox" name="keyLost" value="keyLost" />key lost<br />
-                        <input type="checkbox" name="delayReturn" value="delayReturn" />delay return<br />
-                        <input type="checkbox" name="delayReturnEx" value="delayReturnEx" />delay return(Ext.)<br />
-                        <input type="checkbox" name="refuelCharge" value="refuelCharge" />refuel charge<br />
-                        <input type="checkbox" name="carDamage" value="carDamage" />car damage<br />
-                        <input type="radio" name="damage" value="major">Major
-						<input type="radio" name="damage" value="minor">minor</br>
-                        <input type="checkbox" name="towing" value="towing" />Towing<br />
-                        <input type="checkbox" name="reschedule" value="reschedule" />Reschedule<br />
-                        <input type="checkbox" name="documentLost" value="documentLost" />document Lost<br />
-                        <input type="checkbox" name="others" value="others" />others<br />
-                     
+                <legend >Penalities</legend>
+               
+                  <fieldset>
+                <legend >System</legend>
+                 <table>
+                <tr><td>OverSpeed</td><td><s:if test="#request.tripClosingModel.overSpeedCount!=null ">
+									<input type="text" readonly="readonly" name="tripClosingModel.overSpeed" value='<s:property value="#request.overSpeedCount" />'/>
+								</s:if> <s:else>
+							N/A</s:else></td></tr>
+                 <tr><td>Reschedule</td><td><s:if test="#request.tripClosingModel.reschedule!=null ">
+									<input type="text" readonly="readonly" name="tripClosingModel.reschedule" value='<s:property value="#request.reschedule" />'/>
+								</s:if> <s:else>
+							N/A</s:else></td></tr>
+                  
+                  <tr><td>Delay return</td><td><s:if test="#request.tripClosingModel.delay!=null ">
+									<input type="text" readonly="readonly" name="tripClosingModel.delay" value='<s:property value="#request.delay" />'/>
+								</s:if> <s:else>
+							N/A</s:else></td></tr>
+                        <tr><td> Delay return(Ext.)</td><td><s:if test="#request.tripClosingModel.delayExt!=null ">
+									<input type="text" readonly="readonly" name="tripClosingModel.delayExt" value='<s:property value="#request.delayExt" />'/>
+								</s:if> <s:else>
+							N/A</s:else></td></tr>
+                           
+                         </table>
+                        </fieldset><br/>
+                             <fieldset>
+                <legend >If Applicable </legend>
+                         <table>
+                         <tr><td>Refuel charge</td><td><input type="text" placeholder="Default 500" name="tripClosingModel.refuleCharge"/></td></tr>
+                         <tr><td>Towing</td><td><input type="text" placeholder="Default 1000" name="tripClosingModel.towing"/></td></tr>
+                         <tr><td>Others</td><td><input type="text"  name="other"/></td></tr>
+                         
+                         <tr><td>Major Damage</td><td><input type="text" name="tripClosingModel.majorDamage"/></td></tr>
+						 <tr><td>Minor Damage</td><td><input type="text" name="tripClosingModel.minorDamage"/></td></tr>
+                         <tr><td><input type="checkbox" name="tripClosingModel.filthVomit" value="500" id="vomitId" onclick="javascript:addPenality(this.id);"/>Filth/vomit</td><td>500</td></tr>
+                         <tr><td><input type="checkbox" name="tripClosingModel.keyLost" value="1000" id="keyLostId" onclick="javascript:addPenality(this.id);"/>Key lost</td><td>1000</td></tr>
+                         <tr><td><input type="checkbox" name="tripClosingModel.documentLost" value="4000"  id="docLostId" onclick="javascript:addPenality(this.id);" />Document Lost</td><td>4000</td></tr>
+                        
+                         
+                     </table>
+                      </fieldset>
         </fieldset>
         <div id="menu" >
     <ul ><li><a href="#">Close Trip</a></li></ul></div>

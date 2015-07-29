@@ -29,6 +29,6 @@ public interface IBookingService extends GenericManager<Booking,Integer> {
 
 	public List<Booking> getUpcomingTripForUser( User user );
 
-	public Booking getBookingWithInvoices( Integer parseInt );
+	public TripInvoice getEstimatedInvoiceByBooking( Integer parseInt );
 
 }
