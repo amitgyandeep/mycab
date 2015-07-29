@@ -7,6 +7,7 @@ import org.appfuse.service.impl.GenericManagerImpl;
 import com.prj.dao.ICustomerDao;
 import com.prj.model.Customer;
 import com.prj.model.Document;
+import com.prj.model.StatusEnum;
 import com.prj.service.ICustomerService;
 import com.prj.service.IDocumentService;
 
@@ -22,15 +23,16 @@ public class CustomerServiceImpl extends GenericManagerImpl<Customer,Integer> im
 		this.customerDao = customerDao;
 	}
 
-	public List<Customer> getAllCustomers() {
+	public List<Customer> getAllCustomers( StatusEnum status ) {
 
-		List<Customer> customerList = getAll();
-		for ( Customer customer : customerList ) {
-			List<Document> docs = documentService.getDocumentsByCustomer( customer );
-			if ( docs != null )
-				customer.setDocs( docs );
+		List<Customer> customerList = customerDao.getAllCustomers( status );
+		if ( customerList != null && customerList.size() > 0 ) {
+			for ( Customer customer : customerList ) {
+				List<Document> docs = documentService.getDocumentsByCustomer( customer );
+				if ( docs != null )
+					customer.setDocs( docs );
+			}
 		}
-
 		return customerList;
 	}
 

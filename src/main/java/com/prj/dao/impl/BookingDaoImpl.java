@@ -33,6 +33,7 @@ public class BookingDaoImpl extends GenericDaoHibernate<Booking,Integer> impleme
 
 				Criteria criteria = getSession().createCriteria( Booking.class );
 				criteria.add( Restrictions.eq( "carHub" , carHub.getName() ) );
+				criteria.add( Restrictions.eq( "status" , BookingStatus.INPROGRESS ) );
 				return criteria.list();
 			}
 		} );

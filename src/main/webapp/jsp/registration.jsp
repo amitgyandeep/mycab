@@ -249,10 +249,24 @@ span a:hover {
         <input type="text"  class="form-control" placeholder="DL Issuing State" required="" autofocus="" name="customer.drivingLicenceLocation"  value='<s:property value="#request.customer.drivingLicenceLocation"/>' />
   <br>
   <label for="inputEmail" class="sr-only">Preferred Car</label>
-        <input type="text"  class="form-control" placeholder="Preferred Car" required="" autofocus="" name="customer.preferedCar"  value='<s:property value="#request.customer.preferedCar"/>' />
+       <%--  <input type="text"  class="form-control" placeholder="Preferred Car" required="" autofocus="" name="customer.preferedCar"  value='<s:property value="#request.customer.preferedCar"/>' /> --%>
+<input list="cars1"  placeholder="Preferred Car" class="form-control hasDatepicker" name="customer.preferedCar" autocomplete="off" required="" autofocus="" value='<s:property value="#request.customer.preferedCar"/>'>
+													<datalist id="cars1">
+														<s:iterator value="#session.cars">
+															<option value='<s:property value="model.name"/>'>
+														</s:iterator>
+
+													</datalist>
 <br>
   <label for="inputEmail" class="sr-only">Preferred Hub</label>
-        <input type="text"  class="form-control" placeholder="Preferred Hub" required="" autofocus="" name="customer.pickupLocation" value='<s:property value="#request.customer.pickupLocation"/>' />
+       <%--  <input type="text"  class="form-control" placeholder="Preferred Hub" required="" autofocus="" name="customer.pickupLocation" value='<s:property value="#request.customer.pickupLocation"/>' /> --%>
+ <input list="carHub1" name="customer.pickupLocation" placeholder="Preferred Hub" class="form-control hasDatepicker" autocomplete="off" value='<s:property value="#request.customer.pickupLocation"/>' required="">
+													<datalist id="carHub1">
+														<s:iterator value="#session.carHubs">
+															<option value='<s:property value="name"/>'>
+														</s:iterator>
+
+													</datalist>
   <br>
        
 </div>

@@ -204,7 +204,7 @@ public class RegistrationAction extends ActionSupport implements RequestAware {
 				ApplicationConstants.VEHICLE_ID );
 
 			LOGGER.info( "email sent for approved customer " );
-
+			addActionMessage( "Customer Appoved successfully" );
 			request.put( "newUser" , user );
 			return SUCCESS;
 

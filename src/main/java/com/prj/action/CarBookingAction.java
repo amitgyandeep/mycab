@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.prj.model.Booking;
+import com.prj.model.BookingStatus;
 import com.prj.model.Car;
 import com.prj.model.CarHub;
 import com.prj.model.CarModel;
@@ -123,17 +124,27 @@ public class CarBookingAction extends ActionSupport implements SessionAware, Req
 	public String closeBooking() {
 
 		Double sumtotal = 0.0;
+
 		TripInvoice estimatedInvoice = bookingService.getEstimatedInvoiceByBooking( bookingId , InvoiceType.ESTIMATE );
+
+		Booking booking = bookingService.getBookingByReference( bookingId );
+		booking.setStatus( BookingStatus.COMPLETED );
+		bookingService.save( booking );
+
 		List<Penalty> penalties = bookingService.getPenalties( tripClosingModel );
 
 		for ( Penalty penalty : penalties ) {
 			sumtotal += penalty.getCost();
 		}
+
 		estimatedInvoice.setId( null );
 		estimatedInvoice.setType( InvoiceType.INVOICE );
 		estimatedInvoice = invoiceService.save( estimatedInvoice );
 		estimatedInvoice.setPenalties( penalties );
+
 		invoiceService.save( estimatedInvoice );
+
+		addActionMessage( "Trip Closed for  Boking ID :" + bookingId );
 		return SUCCESS;
 
 	}

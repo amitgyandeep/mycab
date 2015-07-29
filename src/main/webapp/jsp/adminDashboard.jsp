@@ -64,125 +64,13 @@
 
 </head>
 
-<body data-target=".navbar-custom" data-spy="scroll" id="page-top">
-<div class="container">
-<div class="row">
-<div class="col-lg-9"></div>
-<div class="col-lg-3"><p style="float:right;"><img style="float:left;" src="img/live-support.png"><a class="top-link" href="logoutAction">SIGN OUT</a><a class="top-link" href="#">FAQs</a><a class="top-link" href="#">Link</a></p></div>
+<body>
+<div class="col-md-12 col-xs-pull4" style="width:100%;">
+ <!--  <h3>OSD CUSTOMERS</h3> 
+  <br> -->
+  <s:actionmessage/>
 
-</div>
-
-</div>
-	
-	<div style="height: 92px;" class="sticky-wrapper" id="navigation-sticky-wrapper"><div id="navigation-sticky-wrapper" class="sticky-wrapper is-sticky" style="height: 108px;"><div id="navigation-sticky-wrapper" class="sticky-wrapper" style="height: 108px; position: relative; top: -20px;"><div style="height: 108px;" class="sticky-wrapper is-sticky" id="navigation-sticky-wrapper"><div style="height: 108px;" class="sticky-wrapper is-sticky" id="navigation-sticky-wrapper"><div style="height: 107px;" class="sticky-wrapper" id="navigation-sticky-wrapper"><div style="height: 107px;" class="sticky-wrapper is-sticky" id="navigation-sticky-wrapper"><div style="height: 107px;" class="sticky-wrapper is-sticky" id="navigation-sticky-wrapper"><div style="height: 107px;" class="sticky-wrapper is-sticky" id="navigation-sticky-wrapper"><div style="height: 107px;" class="sticky-wrapper is-sticky" id="navigation-sticky-wrapper"><div style="height: 107px;" class="sticky-wrapper is-sticky" id="navigation-sticky-wrapper"><div id="navigation-sticky-wrapper" class="sticky-wrapper" style="height: 107px;"><div style="height: 107px;" class="sticky-wrapper" id="navigation-sticky-wrapper"><div style="height: 107px;" class="sticky-wrapper" id="navigation-sticky-wrapper"><div id="navigation-sticky-wrapper" class="sticky-wrapper is-sticky" style="height: 112px;"><div style="height: 112px;" class="sticky-wrapper is-sticky" id="navigation-sticky-wrapper"><div id="navigation-sticky-wrapper" class="sticky-wrapper is-sticky" style="height: 112px;"><div style="position: fixed; top: 0px;" id="navigation">
-        
-        <nav class="navbar navbar-custom" role="navigation">
-                              <div class="container">
-                                    <div class="row">
-                                          <div class="col-md-4">
-                                                   <div class="site-logo">
-                                                            <a href="dashboard" class="brand"><img src="img/logo.png"></a>
-                                                    </div>
-                                          </div>
-                                          
-
-                                          <div class="col-md-8">
-                         
-                                                      <!-- Brand and toggle get grouped for better mobile display -->
-                                          <div class="navbar-header">
-                                                <button data-target="#menu" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
-                                                <i class="fa fa-bars"></i>
-                                                </button>
-                                          </div>
-                                                      <!-- Collect the nav links, forms, and other content for toggling -->
-                                                     <div style="height: 1px;" class="navbar-collapse collapse" id="menu">
-                                                            <ul class="nav navbar-nav navbar-right">
-                                                                  <li class=""><a href="dashboard">Home</a></li>
-                                                                  <li class="active"><a href="osd">OSD</a></li>
-																   <li class=""><a href="tripMachines">Trip Machines</a></li>
-                                                                  <li class=""><a href="tariffs">Tariffs</a></li>	
-                                                                  <li><a href="#works">Blog</a></li>				                                                                  
-                                                                  
-                                                                  <li class=""><a href="#contact">Contact</a></li>
-                                                            </ul>
-                                                      </div>
-                                                      <!-- /.Navbar-collapse -->
-                             
-                                          </div>
-                                    </div>
-                              </div>
-                              <!-- /.container -->
-                        </nav>
-    </div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
-
-	<!-- /Section: intro -->
-	
-	
-    <!-- Navigation -->
-     
-    <!-- /Navigation -->  
-
-	<!-- Section: about -->
-    <section class="home-section color-dark bg-white">
-  <div class="container">
-<div class="row">
-      
-     <div class="col-md-4 pull-right text-right">
-       Home &gt;
-      </div>
-      
-        </div>
-<div class="row">
-      
-     <div class="col-sm-3 pull-right text-right">
-<img src="img/share-link.png">
-  </div>
-      
-        </div>
-
-  </div>
-
-
-
-<section class="home-section color-dark bg-white">
-
-  
-  
-      <div class="container">
-
-		
-       <div class="row ">
-		
-	<!--	<div class="col-md-4">
-        <div class="row left-aside-osd">
-        <div class="col-lg-12">    
-        <h4>SIGN UP</h4>
-        <p style="color:#000;">exclusive access for offer and promotions</p>
-<form novalidate="novalidate" id="newsletter-form" class="content-form clearfix" action="#" method="post">
-                        <input type="text" value="Enter your Email Address">
-                        <input type="submit" value="Go" style="background:#000000;">
-                        </form>
-                        </div>
-                        </div>
-                        <div class="row left-aside-osd">
-                        <div class="col-lg-12">
-  <h4>QUICK CONTACT <img src="img/shite-supports.png"></h4>
-            </div>
-
-
-            </div>
-<div class="row" style="border-top:10px solid #fff;">
-<div class="col-lg-12">
-  <h4>DOWNLOAD APP</h4>
-    <a href="#"><img src="img/google-play.png"></a>
-            </div>
-</div>
-		</div>-->
-<div class="col-md-12 col-xs-pull4">
-  <h3>OSD CUSTOMERS</h3> 
-  <br>
-  
-  <table id="example" class="table table-striped table-bordered table-responsive" cellspacing="0" >
+  <table id="example" class="table table-striped table-bordered table-responsive">
         <thead>
 			<tr>
 				<th>Sl.No</th>
@@ -201,6 +89,7 @@
 			</tr>
 		</thead>
 		<tbody>
+		<s:if test="#request.customerList !=null && #request.customerList.size()>0">
 				<s:iterator value="#request.customerList" var="car" status="count">
 				<tr><td style="padding: 0 13px;"><s:property value="#count.count" /></td>
 				<td style="padding: 0 13px;"><s:property value="customerName" /></td>
@@ -215,7 +104,7 @@
 				<td style="padding: 0 13px;"><s:property value="preferedCar" /></td>
 				<td style="padding: 0px 6px;">
 				<s:iterator value="docs" status="count" var="document">
-				<a  href='/images/<s:property value="%{#document.path}"/>'><s:property value="%{#document.fileType}"/></a>
+				<a  href='/images/<s:property value="%{#document.path}"/>'><s:property value="%{#document.fileType}"/></a></br>
 				</s:iterator>
 				</td>
 				<td style="padding: 0 13px;"><!-- <a href="#"><input type="button" value="Approve"/></a>  -->
@@ -224,22 +113,22 @@
             <a href="#">Option &#9662;</a>
             <ul class="dropdown">
                  <li><a href='approveUser?inputText=<s:property value="id" />' >Approve</a></li>
-                <li><a  href='holdUser?inputText=<s:property value="id" />'  >Hold</a></li>
-                <li><a href='rejectUser?inputText=<s:property value="id" />' >Reject</a></li>
+                <li><a  href="#">Hold</a></li>
+                <li><a href="#" >Reject</a></li>
             </ul>
         </li>
     </ul>
 			</td>
 			</s:iterator>
+			</s:if>
 		</tbody>
     </table>
   
   
 </div>
 
-</div>
-</div>
-	<section style="baclground:#000;" class="black-section color-dark bg-black">
+
+	<%-- <section style="baclground:#000;" class="black-section color-dark bg-black">
           <div class="container">
           <div class="row">
           <div class="col-lg-4">
@@ -269,21 +158,21 @@
             <!-- /Section: social-icon -->		  
             </div>	
             </div>
-</div></section>
+</div></section> --%>
 	<!-- /Section: about -->
 	
 	
 	<!-- Section: services -->
-    
+<%--     
 <section class="home-section color-dark bg-white">
       <div class="container">
       <div class="row">
       <div class="col-lg-8 text-center"><a href="#">ADDRESS:</a> Orange Self Drive C-5, Shanti Kunj, Church Road, Opp. D-3, Vasant Kunj, New Delhi - 110 070, INDIA </div>
       <div class="col-lg-4 border"><a href="">Help Line:</a> +91 9871268833<br><a href="#">EMAIL:</a> info@orangeselfdrive.com</div>
       <div></div>
-</div></div></section>  
+</div></div></section>  --%> 
 <!-- /Section: services -->
-<footer>
+<!-- <footer>
 		<div class="container">
 			<div class="row">
 				<div class="col-md-7 col-md-offset-3">
@@ -296,7 +185,7 @@
 				</div>
 			</div>	
 		</div>
-	</footer>
+	</footer> -->
 
     <!-- Core JavaScript Files -->
 

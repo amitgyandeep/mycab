@@ -121,7 +121,6 @@ function addPenality(elementId){
       <tr><td>Vehicle</td><td><s:property value="#request.estimatedInvoice.booking.carModel"/>,<s:property value="#request.estimatedInvoice.booking.vehicleRegNum"/></td></tr>
       <tr><td>Security Deposit</td><td><s:property value="#request.estimatedInvoice.securityDeposit"/></td>
       <tr><td>Amount</td><td><s:property value="#request.estimatedInvoice.total"/></td></tr>
-
     </table>
       
   </fieldset>

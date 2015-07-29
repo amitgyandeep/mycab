@@ -175,7 +175,7 @@ span a:hover {
 <div style="background: rgb(204, 204, 204) none repeat scroll 0% 0%; padding: 8px;margin-left:15px;" class="col-lg-6">Are you sure you want to cancel the trip?</div>
 <div class="col-lg-2"></div>
 <div class="col-lg-2"></div>
-<div></div></div>
+<div></div></div> 
 <div style="margin-top:10px;" class="row">
   <div class="col-lg-2"><a href="cancelTrip.action?bookingId=<s:property value='#request.booking.bookingRef'/>"><button class="btn btn-lg btn-denger btn-block" type="submit" onclick="javascript:cancelTrip.action?bookingId=<s:property value='#request.booking.bookingRef'/>">YES</button></a></div>
     <div class="col-lg-2"><button class="btn btn-lg btn-su btn-block" type="submit">NO</button></div>

@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import com.opensymphony.xwork2.ActionSupport;
 import com.prj.model.Booking;
 import com.prj.model.Customer;
+import com.prj.model.StatusEnum;
 import com.prj.service.IBookingService;
 import com.prj.service.ICustomerService;
 
@@ -37,7 +38,7 @@ public class AdminDashboardAction extends ActionSupport implements RequestAware,
 
 	public String getCustomerList() {
 
-		List<Customer> customerList = customerService.getAllCustomers();
+		List<Customer> customerList = customerService.getAllCustomers( StatusEnum.NEW );
 		request.put( "customerList" , customerList );
 
 		return SUCCESS;

@@ -180,7 +180,32 @@ span a:hover {
 <div class="col-lg-9"> 
 
 <div class="row">  
-  <span class="col-lg-9"><strong>Booking No:</strong> <s:property value="#request.booking.bookingRef"/></span></div>
+<%--   <span class="col-lg-9"><strong>Booking No:</strong> <s:property value="#request.booking.bookingRef"/> --%>
+  
+  </span>
+  <span style="width: 50%; float: left;">
+  <fieldset >
+  <legend>Booking Information</legend>
+ <table>
+
+      <tr><td>Booking Ref. </td><td><s:property value="#booking.bookingRef"/></td></tr>
+      <tr><td>Start Date</td><td><s:date  format="dd/MM/yyyy hh:mm a" name="#request.booking.startDateTime" /></td></tr>
+      <tr><td>End Date</td><td><s:date  format="dd/MM/yyyy hh:mm a" name="#request.booking.endDateTime"/></td></tr>
+      <tr><td>Actual End Date</td><td><s:date  format="dd/MM/yyyy hh:mm a" name="#request.booking.actualDateTime"/></td></tr>
+      <tr><td>Vehicle</td><td><s:property value="#request.estimatedInvoice.booking.carModel"/></td></tr>
+      <tr><td>Security Deposit</td><td><s:property value="#request.securityDeposit"/></td>
+     
+
+    </table>
+      
+  </fieldset>
+     <div>
+    <B>Total :</B> <span id="sumTotalId"><s:property value="#request.estimatedInvoice.total"/></span>
+  </div>
+</span>
+  
+  
+  </div>
 </div>
 
   

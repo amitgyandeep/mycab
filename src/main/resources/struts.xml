@@ -44,7 +44,7 @@
 			<result name="success">/jsp/availability.jsp</result>
 		</action>
 		<action name="hubAccess" class="hubDashboardAction">
-		<interceptor-ref name="checkUserInSessionInterceptorStack"></interceptor-ref>
+		<!-- <interceptor-ref name="checkUserInSessionInterceptorStack"></interceptor-ref> -->
 			<result name="success">/jsp/hubUser/hubDashboard.jsp</result>
 		</action>
 
@@ -68,7 +68,7 @@
 		</action>
 
 		<action name="adminDashboard" class="adminDashboardAction" method="getCustomerList">
-		<interceptor-ref name="checkAdminInterceptorStack"></interceptor-ref>
+		<!-- <interceptor-ref name="checkAdminInterceptorStack"></interceptor-ref> -->
 			<result name="success">/jsp/adminDashboard.jsp</result>
 			<result name="input">/jsp/adminDashboard.jsp</result>
 		</action>
@@ -197,7 +197,7 @@
 	<result name="input">/jsp/hubUser/hubDashboard.jsp</result>
 </action>
 <action name="CloseTrip" class="carBookingAction" method="closeBooking">
-	<result name="success">/jsp/hubUser/tripClosing.jsp</result>
+	<result name="success" type="redirect">hubAccess</result>
 	<result name="input">/jsp/hubUser/tripClosing.jsp</result>
 </action>
 
