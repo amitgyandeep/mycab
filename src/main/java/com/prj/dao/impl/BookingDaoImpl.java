@@ -25,7 +25,7 @@ public class BookingDaoImpl extends GenericDaoHibernate<Booking,Integer> impleme
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Booking> getAllBookingByHub( final CarHub carHub ) {
+	public List<Booking> getAllBookingByHub( final CarHub carHub , final BookingStatus status ) {
 
 		return ( List<Booking> ) getHibernateTemplate().execute( new HibernateCallback() {
 
@@ -33,7 +33,7 @@ public class BookingDaoImpl extends GenericDaoHibernate<Booking,Integer> impleme
 
 				Criteria criteria = getSession().createCriteria( Booking.class );
 				criteria.add( Restrictions.eq( "carHub" , carHub.getName() ) );
-				criteria.add( Restrictions.eq( "status" , BookingStatus.INPROGRESS ) );
+				criteria.add( Restrictions.eq( "status" , status ) );
 				return criteria.list();
 			}
 		} );

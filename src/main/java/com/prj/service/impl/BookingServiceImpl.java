@@ -149,9 +149,9 @@ public class BookingServiceImpl extends GenericManagerImpl<Booking,Integer> impl
 		this.invoiceService = invoiceService;
 	}
 
-	public List<Booking> getAllBookingByHub( CarHub carHub ) {
+	public List<Booking> getAllBookingByHub( CarHub carHub , BookingStatus bookingStatus ) {
 
-		return bookingDao.getAllBookingByHub( carHub );
+		return bookingDao.getAllBookingByHub( carHub , bookingStatus );
 	}
 
 	public List<Booking> getUpcomingTripForUser( User user ) {

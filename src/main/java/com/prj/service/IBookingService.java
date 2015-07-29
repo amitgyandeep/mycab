@@ -6,6 +6,7 @@ import org.appfuse.service.GenericManager;
 import org.joda.time.DateTime;
 
 import com.prj.model.Booking;
+import com.prj.model.BookingStatus;
 import com.prj.model.Car;
 import com.prj.model.CarHub;
 import com.prj.model.InvoiceType;
@@ -28,7 +29,7 @@ public interface IBookingService extends GenericManager<Booking,Integer> {
 
 	public Booking createBookingAndFirstInvoice( Car car , User user , DateTime pickupDate , DateTime dropOffDate , TripInvoice invoice , CarHub carHub );
 
-	public List<Booking> getAllBookingByHub( CarHub carHub );
+	public List<Booking> getAllBookingByHub( CarHub carHub , BookingStatus bookingStatus );
 
 	public List<Booking> getUpcomingTripForUser( User user );
 

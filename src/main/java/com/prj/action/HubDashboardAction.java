@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.prj.model.Booking;
+import com.prj.model.BookingStatus;
 import com.prj.model.CarHub;
 import com.prj.model.User;
 import com.prj.service.IBookingService;
@@ -30,7 +31,7 @@ public class HubDashboardAction extends ActionSupport implements RequestAware, S
 		CarHub carHub = new CarHub();
 		User user = ( User ) session.get( "loggedUser" );
 		carHub.setName( user.getHubName() );
-		List<Booking> bookings = bookingService.getAllBookingByHub( carHub );
+		List<Booking> bookings = bookingService.getAllBookingByHub( carHub , BookingStatus.INPROGRESS );
 		request.put( "bookings" , bookings );
 		return SUCCESS;
 
