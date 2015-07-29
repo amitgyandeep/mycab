@@ -169,7 +169,7 @@ list-style-type: none;
 <h6 class="col-lg-12">Edit Information</h6>
 <span class="col-lg-12"><a href="#">Upcoming Events</a><a></a></span>
 <span class="col-lg-12"><a href="#">Useful Info / Links</a></span>
-<span class="col-lg-12"><a href="#">Upcoming Trips</a></span>
+<span class="col-lg-12"><a href="userUpcomingBooking">Upcoming Trips</a></span>
 <span class="col-lg-12"><a href="tripDetailAvailability">New Trip</a></span>
 <span class="col-lg-12"><a href="showChangePassword">Change password</a></span>
 
@@ -203,9 +203,9 @@ list-style-type: none;
       <th>End Date</th>
      
       <th>Vehicle</th>
-     <th>Hub</th>
-     <th>Amount</th>
      
+     <th>Amount</th>
+     <th>Action</th>
       
       
       </tr>
@@ -215,13 +215,14 @@ list-style-type: none;
       <tr>
      
       <td><s:property value="bookingRef"/></td>
-      <td><s:date  format="dd/MM/yyyy hh:mm" name="startDateTime" /></td>
-      <td><s:date  format="dd/MM/yyyy hh:mm" name="endDateTime"/></td>
-     <td><s:property value="carModel"/>,<s:property value="vehicleRegNum"/></td>
-       <td><s:property value="carHub"/></td>
-       <s:iterator>
-     <td></td>
-      </s:iterator>
+      <td><s:date  format="dd/MM/yyyy hh:mm a" name="startDateTime" /></td>
+      <td><s:date  format="dd/MM/yyyy hh:mm a" name="endDateTime"/></td>
+     <td><s:property value="carModel"/></td>
+     
+     <td><s:property value="getEstimate().total"/></td>
+     <td><a href="cancelBooking?bookingId=<s:property value='bookingRef'/>">Change</a>&nbsp;&nbsp;<a href="confirmCancellation?bookingId=<s:property value='bookingRef'/>">Cancel</a>  </td>
+       
+      
       
     </tr>
     </s:iterator>

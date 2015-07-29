@@ -55,6 +55,7 @@
 		<bean name="carBookingAction" class="com.prj.action.CarBookingAction" scope="prototype">
 		<property name="carBookingService" ref="carBookingService" />
 		<property name="bookingService" ref="bookingService" />
+		<property name="invoiceService" ref="invoiceService"/>
 	</bean>
 		<bean name="hubDashboardAction" class="com.prj.action.HubDashboardAction" scope="prototype">
 		<property name="bookingService" ref="bookingService" />

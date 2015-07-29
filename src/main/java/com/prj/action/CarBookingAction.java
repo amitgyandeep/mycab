@@ -15,10 +15,13 @@ import com.prj.model.Car;
 import com.prj.model.CarHub;
 import com.prj.model.CarModel;
 import com.prj.model.CustomerRequestModel;
+import com.prj.model.InvoiceType;
+import com.prj.model.Penalty;
 import com.prj.model.TripClosingModel;
 import com.prj.model.TripInvoice;
 import com.prj.model.User;
 import com.prj.service.IBookingService;
+import com.prj.service.IInvoiceService;
 import com.prj.service.impl.CarBookingService;
 
 @SuppressWarnings("serial")
@@ -43,6 +46,8 @@ public class CarBookingAction extends ActionSupport implements SessionAware, Req
 	private String tripCost;
 
 	private String bookingId;
+
+	private IInvoiceService invoiceService;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger( CarBookingAction.class );
 
@@ -104,7 +109,8 @@ public class CarBookingAction extends ActionSupport implements SessionAware, Req
 	 */
 	public String tripClosing() {
 
-		TripInvoice estimatedInvoice = bookingService.getEstimatedInvoiceByBooking( Integer.parseInt( bookingId ) );
+		TripInvoice estimatedInvoice = bookingService.getEstimatedInvoiceByBooking( bookingId , InvoiceType.ESTIMATE );
+
 		request.put( "estimatedInvoice" , estimatedInvoice );
 		return SUCCESS;
 
@@ -116,8 +122,35 @@ public class CarBookingAction extends ActionSupport implements SessionAware, Req
 	 */
 	public String closeBooking() {
 
-		TripInvoice estimatedInvoice = bookingService.getEstimatedInvoiceByBooking( Integer.parseInt( bookingId ) );
-		request.put( "estimatedInvoice" , estimatedInvoice );
+		Double sumtotal = 0.0;
+		TripInvoice estimatedInvoice = bookingService.getEstimatedInvoiceByBooking( bookingId , InvoiceType.ESTIMATE );
+		List<Penalty> penalties = bookingService.getPenalties( tripClosingModel );
+
+		for ( Penalty penalty : penalties ) {
+			sumtotal += penalty.getCost();
+		}
+		estimatedInvoice.setId( null );
+		estimatedInvoice.setType( InvoiceType.INVOICE );
+		estimatedInvoice = invoiceService.save( estimatedInvoice );
+		estimatedInvoice.setPenalties( penalties );
+		invoiceService.save( estimatedInvoice );
+		return SUCCESS;
+
+	}
+
+	public String confirmCancellation() {
+
+		request.put( "booking" , bookingService.getBookingByReference( bookingId ) );
+		request.put( "cancelAmount" , bookingService.getCancellationAmount( bookingId ) );
+
+		return SUCCESS;
+
+	}
+
+	public String cancelBooking() {
+
+		bookingService.cancelBooking( bookingId );
+
 		return SUCCESS;
 
 	}
@@ -200,6 +233,16 @@ public class CarBookingAction extends ActionSupport implements SessionAware, Req
 	public void setTripClosingModel( TripClosingModel tripClosingModel ) {
 
 		this.tripClosingModel = tripClosingModel;
+	}
+
+	public IInvoiceService getInvoiceService() {
+
+		return invoiceService;
+	}
+
+	public void setInvoiceService( IInvoiceService invoiceService ) {
+
+		this.invoiceService = invoiceService;
 	}
 
 }

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -55,9 +56,9 @@ public class TripInvoice extends CabsBaseModel implements Serializable {
 	@Type(type = "invoiceType")
 	private InvoiceType type;
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "car_invoice_penalty", joinColumns = @JoinColumn(name = "invoice_id"), inverseJoinColumns = @JoinColumn(name = "penalty_id"))
-	public List<Penalty> penalities;
+	public List<Penalty> penalties;
 
 	public Double getSecurityDeposit() {
 
@@ -167,6 +168,16 @@ public class TripInvoice extends CabsBaseModel implements Serializable {
 	public void setBooking( Booking booking ) {
 
 		this.booking = booking;
+	}
+
+	public List<Penalty> getPenalties() {
+
+		return penalties;
+	}
+
+	public void setPenalties( List<Penalty> penalties ) {
+
+		this.penalties = penalties;
 	}
 
 }

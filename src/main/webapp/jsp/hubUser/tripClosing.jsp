@@ -130,6 +130,8 @@ function addPenality(elementId){
   </div>
 </span>
 <span style="width: 50%;float: right;">
+<s:form action="CloseTrip" theme="simple">
+<s:hidden name="bookingId" value="%{#request.estimatedInvoice.booking.bookingRef}"/>
     <fieldset>
                 <legend >Penalities</legend>
                
@@ -159,8 +161,8 @@ function addPenality(elementId){
                              <fieldset>
                 <legend >If Applicable </legend>
                          <table>
-                         <tr><td>Refuel charge</td><td><input type="text" placeholder="Default 500" name="tripClosingModel.refuleCharge"/></td></tr>
-                         <tr><td>Towing</td><td><input type="text" placeholder="Default 1000" name="tripClosingModel.towing"/></td></tr>
+                         <tr><td>Refuel charge</td><td><input type="text" placeholder="500" name="tripClosingModel.refuelCharge"/></td></tr>
+                         <tr><td>Towing</td><td><input type="text" placeholder="1000" name="tripClosingModel.towing"/></td></tr>
                          <tr><td>Others</td><td><input type="text"  name="other"/></td></tr>
                          
                          <tr><td>Major Damage</td><td><input type="text" name="tripClosingModel.majorDamage"/></td></tr>
@@ -174,8 +176,10 @@ function addPenality(elementId){
                       </fieldset>
         </fieldset>
         <div id="menu" >
-    <ul ><li><a href="#">Close Trip</a></li></ul></div>
+    <ul ><li><a href="#" onclick="document.forms[0].submit();return false;">Close Trip</a></li></ul></div>
+    </s:form>
 </span>
+
 </div>
 </body>
 </html>

@@ -205,9 +205,47 @@ span a:hover {
 <div class="col-lg-3">
 <div class="row">
 <div class="col-lg-12">
-<s:form  action="tripBooking" theme="simple">
+<form  action="jsp/posttozaakpay.jsp" theme="simple">
+
+<input type="hidden" name="merchantIdentifier" value="c6263df20ab34292b576fc06aedda8d5" />
+	<input type="hidden" id="orderId" name="orderId" />
+
+
+<!-- Not a mandatory parameter ! <input type="hidden" name="returnUrl" value="" /> -->
+<input type="hidden" name="buyerEmail" value="achuth.raj@gmail.com"  />
+	<input type="hidden" name="buyerFirstName" value="Tejomaya" />
+	<input type="hidden" name="buyerLastName" value="Urs" />
+	<input type="hidden" name="buyerAddress" value="124" />
+	<input type="hidden" name="buyerCity" value="Bangalore" />
+<input type="hidden" name="buyerState" value="Karnataka" />
+<input type="hidden" name="buyerCountry" value="Indian" /> 
+	<input type="hidden" name="buyerPincode" value="560003" />
+	<input type="hidden" name="buyerPhoneNumber" value="9945211059" />
+<input type="hidden" name="txnType" value="1" />
+<input type="hidden" name="zpPayOption" value="1" />
+	
+	<input type="hidden" name="mode" value="1" />
+	<input type="hidden" name="currency" value="INR" />
+
+<input type="hidden" name="amount" value='<s:property value="(#session.tripInvoice.total*100).intValue()"/>' />
+<input type="hidden" name="merchantIpAddress" value="127.0.0.1" />
+<input type="hidden" name="purpose" value="1" />
+
+
+<input type="hidden" name="productDescription" value="Zaakpay subscription fee" />
+	<input type="hidden" name="txnDate" id="txnDate" />
+
+	
+	<script>
+	document.getElementById("orderId").value= "OSDTXN" + String(new Date().getTime());
+	var today = new Date();
+	var dateString = String(today.getFullYear()).concat("-").concat(String(today.getMonth()+1)).concat("-").concat(String(today.getDate()));
+	document.getElementById("txnDate").value= dateString;
+	</script>
+
+
 <button class="btn btn-warning" type="submit">Pay Now</button>
-</s:form>
+</form>
 </div>
 </div>
 <div class="row">

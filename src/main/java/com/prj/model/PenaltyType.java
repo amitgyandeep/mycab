@@ -9,7 +9,7 @@ public class PenaltyType extends CabsBaseModel {
 
 	private String name;
 
-	private double cost;
+	private Double cost;
 
 	public String getName() {
 
@@ -21,12 +21,12 @@ public class PenaltyType extends CabsBaseModel {
 		this.name = name;
 	}
 
-	public double getCost() {
+	public Double getCost() {
 
 		return cost;
 	}
 
-	public void setCost( double cost ) {
+	public void setCost( Double cost ) {
 
 		this.cost = cost;
 	}

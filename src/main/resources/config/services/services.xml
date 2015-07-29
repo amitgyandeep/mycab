@@ -26,6 +26,7 @@
 		<constructor-arg ref="carDAO" />
 		<property name="pricingService" ref="pricingService"/>
 		<property name="securityDepositService" ref="securityDepositService"/>
+		
 
 		
 	</bean>
@@ -66,8 +67,15 @@
 <bean name="bookingService" class="com.prj.service.impl.BookingServiceImpl" scope="prototype">
 <constructor-arg ref="bookingDao" />
 <property name="invoiceService" ref="invoiceService"/>
+<property name="bookingServiceHelper" ref="bookingServiceHelper"/>
 	</bean>
 <bean name="invoiceService" class="com.prj.service.impl.InvoiceServiceImpl" scope="prototype">
 <constructor-arg ref="invoiceDao" />
+	</bean>
+<bean name="penaltyTypeService" class="com.prj.service.impl.PenaltyTypeServiceImpl" scope="prototype">
+<constructor-arg ref="penaltyTypeDao" />
+	</bean>
+<bean name="bookingServiceHelper" class="com.prj.service.impl.BookingServiceHelper" scope="prototype">
+<property name="penaltyTypeService" ref="penaltyTypeService"/>
 	</bean>
 </beans> 

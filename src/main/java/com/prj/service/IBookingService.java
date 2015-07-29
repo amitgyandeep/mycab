@@ -8,6 +8,9 @@ import org.joda.time.DateTime;
 import com.prj.model.Booking;
 import com.prj.model.Car;
 import com.prj.model.CarHub;
+import com.prj.model.InvoiceType;
+import com.prj.model.Penalty;
+import com.prj.model.TripClosingModel;
 import com.prj.model.TripInvoice;
 import com.prj.model.User;
 
@@ -29,6 +32,16 @@ public interface IBookingService extends GenericManager<Booking,Integer> {
 
 	public List<Booking> getUpcomingTripForUser( User user );
 
-	public TripInvoice getEstimatedInvoiceByBooking( Integer parseInt );
+	public Booking getBookingWithInvoices( Integer parseInt );
+
+	public void cancelBooking( String bookingRef );
+
+	public double getCancellationAmount( String bookingRef );
+
+	public Booking getBookingByReference( String bookingRef );
+
+	public TripInvoice getEstimatedInvoiceByBooking( String bookingRef , InvoiceType invoiceType );
+
+	public List<Penalty> getPenalties( TripClosingModel tripClosingModel );
 
 }

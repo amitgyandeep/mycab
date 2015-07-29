@@ -159,10 +159,26 @@
 			<result name="success">/jsp/trip-invoice.jsp</result>
 			<result name="input">/jsp/availability.jsp</result>
 		</action>
+		
+		<action name="confirmCancellation" class="carBookingAction" method="confirmCancellation">
+			 <interceptor-ref name="checkUserInSessionInterceptorStack"></interceptor-ref>
+			<result name="success">/jsp/trip-invoice-cancel.jsp</result>
+		</action>
+		
+		<action name="cancelBooking" class="carBookingAction" method="cancelBooking">
+			 <interceptor-ref name="checkUserInSessionInterceptorStack"></interceptor-ref>
+			<result name="success">/jsp/trip-invoice.jsp</result>
+		</action>
+		
 		<action name="tripBooking" class="carBookingAction" method="tripBooking">
 			 <interceptor-ref name="checkUserInSessionInterceptorStack"></interceptor-ref>
 			<result name="success">/jsp/trip-booking_success.jsp</result>
 			<result name="input">/jsp/trip-invoice.jsp</result>
+		</action>
+		
+		<action name="payBooking">
+			 <interceptor-ref name="checkUserInSessionInterceptorStack"></interceptor-ref>
+			<result name="success">/jsp/posttozaakpay.jsp</result>
 		</action>
 
 		<action name="approveUser" class="registrationAction" method="approveUser">
@@ -175,9 +191,14 @@
 			<result name="success">/jsp/userUpcomingTrip.jsp</result>
 			<result name="input">/jsp/availability.jsp</result>
 		</action>
+
 <action name="tripClosing" class="carBookingAction" method="tripClosing">
 	<result name="success">/jsp/hubUser/tripClosing.jsp</result>
 	<result name="input">/jsp/hubUser/hubDashboard.jsp</result>
+</action>
+<action name="CloseTrip" class="carBookingAction" method="closeBooking">
+	<result name="success">/jsp/hubUser/tripClosing.jsp</result>
+	<result name="input">/jsp/hubUser/tripClosing.jsp</result>
 </action>
 
 	</package>

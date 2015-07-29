@@ -17,8 +17,10 @@ import org.hibernate.annotations.TypeDef;
 
 @Entity
 @Table(name = "car_booking")
-@TypeDef(name = "bookingStatusEnum", typeClass = GenericEnumUserType.class, parameters = { @Parameter(name = "enumClassName", value = "com.prj.model.BookingStatus") ,
-	@Parameter(name = "identifierMethod", value = "toInt") , @Parameter(name = "valueOfMethod", value = "fromInt") })
+@TypeDef(name = "bookingStatusEnum", typeClass = GenericEnumUserType.class, parameters = {
+		@Parameter(name = "enumClassName", value = "com.prj.model.BookingStatus"),
+		@Parameter(name = "identifierMethod", value = "toInt"),
+		@Parameter(name = "valueOfMethod", value = "fromInt") })
 public class Booking extends CabsBaseModel {
 
 	@Column(name = "booking_ref")
@@ -58,7 +60,7 @@ public class Booking extends CabsBaseModel {
 		return bookingRef;
 	}
 
-	public void setBookingRef( String bookingRef ) {
+	public void setBookingRef(String bookingRef) {
 
 		this.bookingRef = bookingRef;
 	}
@@ -68,7 +70,7 @@ public class Booking extends CabsBaseModel {
 		return user;
 	}
 
-	public void setUser( User user ) {
+	public void setUser(User user) {
 
 		this.user = user;
 	}
@@ -78,7 +80,7 @@ public class Booking extends CabsBaseModel {
 		return vehicleRegNum;
 	}
 
-	public void setVehicleRegNum( String vehicleRegNum ) {
+	public void setVehicleRegNum(String vehicleRegNum) {
 
 		this.vehicleRegNum = vehicleRegNum;
 	}
@@ -88,7 +90,7 @@ public class Booking extends CabsBaseModel {
 		return startDateTime;
 	}
 
-	public void setStartDateTime( Date startDateTime ) {
+	public void setStartDateTime(Date startDateTime) {
 
 		this.startDateTime = startDateTime;
 	}
@@ -98,7 +100,7 @@ public class Booking extends CabsBaseModel {
 		return endDateTime;
 	}
 
-	public void setEndDateTime( Date endDateTime ) {
+	public void setEndDateTime(Date endDateTime) {
 
 		this.endDateTime = endDateTime;
 	}
@@ -108,7 +110,7 @@ public class Booking extends CabsBaseModel {
 		return actualEndDateTime;
 	}
 
-	public void setActualEndDateTime( Date actualEndDateTime ) {
+	public void setActualEndDateTime(Date actualEndDateTime) {
 
 		this.actualEndDateTime = actualEndDateTime;
 	}
@@ -118,7 +120,7 @@ public class Booking extends CabsBaseModel {
 		return status;
 	}
 
-	public void setStatus( BookingStatus status ) {
+	public void setStatus(BookingStatus status) {
 
 		this.status = status;
 	}
@@ -128,7 +130,7 @@ public class Booking extends CabsBaseModel {
 		return invoices;
 	}
 
-	public void setInvoices( List<TripInvoice> invoices ) {
+	public void setInvoices(List<TripInvoice> invoices) {
 
 		this.invoices = invoices;
 	}
@@ -138,7 +140,7 @@ public class Booking extends CabsBaseModel {
 		return carModel;
 	}
 
-	public void setCarModel( String carModel ) {
+	public void setCarModel(String carModel) {
 
 		this.carModel = carModel;
 	}
@@ -148,9 +150,33 @@ public class Booking extends CabsBaseModel {
 		return carHub;
 	}
 
-	public void setCarHub( String carHub ) {
+	public void setCarHub(String carHub) {
 
 		this.carHub = carHub;
+	}
+
+	public TripInvoice getEstimate() {
+
+		for (TripInvoice tripInvoice : invoices) {
+			if (InvoiceType.ESTIMATE == tripInvoice.getType())
+				return tripInvoice;
+
+		}
+
+		return null;
+
+	}
+
+	public TripInvoice getInvoice() {
+
+		for (TripInvoice tripInvoice : invoices) {
+			if (InvoiceType.INVOICE == tripInvoice.getType())
+				return tripInvoice;
+
+		}
+
+		return null;
+
 	}
 
 }

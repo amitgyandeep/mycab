@@ -107,16 +107,16 @@
       <tr>
       <td><s:property value="carHub"/></td>
       <td><s:property value="bookingRef"/></td>
-      <td><s:date  format="dd/MM/yyyy hh:mm" name="startDateTime" /></td>
-      <td><s:date  format="dd/MM/yyyy hh:mm" name="endDateTime"/></td>
-      <td><s:date  format="dd/MM/yyyy hh:mm" name="actualEndDateTime"/></td>
+      <td><s:date  format="dd/MM/yyyy hh:mm a" name="startDateTime" /></td>
+      <td><s:date  format="dd/MM/yyyy hh:mm a" name="endDateTime"/></td>
+      <td><s:date  format="dd/MM/yyyy hh:mm a" name="actualEndDateTime"/></td>
       <td><s:property value="carModel"/>,<s:property value="vehicleRegNum"/></td>
        <td><s:property value="status"/></td>
        <td><ul>
         <li>
             <a href="#">Option &#9662;</a>
             <ul class="dropdown">
-             <li><a href='tripClosing?bookingId=<s:property value="id"/>'>Close</a></li>
+             <li><a href='tripClosing?bookingId=<s:property value="bookingRef"/>'>Close</a></li>
                 <li><a  href="#">Cancel</a></li>
             </ul>
         </li>

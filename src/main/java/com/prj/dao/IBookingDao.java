@@ -6,7 +6,6 @@ import org.appfuse.dao.GenericDao;
 
 import com.prj.model.Booking;
 import com.prj.model.CarHub;
-import com.prj.model.TripInvoice;
 import com.prj.model.User;
 
 public interface IBookingDao extends GenericDao<Booking,Integer> {
@@ -15,6 +14,8 @@ public interface IBookingDao extends GenericDao<Booking,Integer> {
 
 	List<Booking> getUpcomingTripForUser( User user );
 
-	TripInvoice getEstimatedInvoiceByBooking( Integer bookingId );
+	Booking getBookingWithInvoices( Integer bookingId );
+
+	Booking getBookingByReference( final String bookingRef );
 
 }

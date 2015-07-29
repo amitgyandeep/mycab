@@ -31,4 +31,7 @@
 	<bean id="invoiceDao" class="com.prj.dao.impl.InvoiceDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	<bean id="penaltyTypeDao" class="com.prj.dao.impl.PenaltyTypeDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 </beans>
