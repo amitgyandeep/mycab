@@ -185,6 +185,12 @@ span a:hover {
 <span class="col-lg-9">Adnl security deposit (Upgrade) </span><span class="col-lg-3">Rs. . . . . . .  .</span></div>
 <div class="row">  
 <span class="col-lg-9"><strong>Trip Cost:</strong></span><span class="col-lg-3">Rs. <s:property value="#session.tripInvoice.tripCost"/></span></div>
+<s:if test="#session.previousInvoice!=null">
+<div class="row">  
+<span class="col-lg-9">Reschedule Charges:</span><span class="col-lg-3">Rs. <s:property value="#session.tripInvoice.rescheduleCharges"/></span></div>
+<div class="row">  
+<span class="col-lg-9">Already Paid:</span><span class="col-lg-3">Rs. <s:property value="#session.tripInvoice.previousPaidCharges"/></span></div>
+</s:if>
   <div class="row">  
   <span class="col-lg-9">(See Calculation/Auto Calculated)</span><span class="col-lg-3"></span></div>
   <div class="row">  

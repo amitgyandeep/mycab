@@ -112,7 +112,7 @@ span a:hover {
     <div style="color: rgb(243, 111, 33);" class="col-lg-2">Welcome back User</div>
 <div class="col-lg-1"></div>
 
-    <div style="color:#F36F21;" class="col-lg-5 text-right">Messages:4 | My Wallet: Rs. xxxxx</div>
+   
   
   </div>
 <div class="row">
@@ -175,10 +175,10 @@ span a:hover {
 <div style="background: rgb(204, 204, 204) none repeat scroll 0% 0%; padding: 8px;margin-left:15px;" class="col-lg-6">Are you sure you want to cancel the trip?</div>
 <div class="col-lg-2"></div>
 <div class="col-lg-2"></div>
-<div></div></div> 
+<div></div></div>
 <div style="margin-top:10px;" class="row">
-  <div class="col-lg-2"><a href="cancelTrip.action?bookingId=<s:property value='#request.booking.bookingRef'/>"><button class="btn btn-lg btn-denger btn-block" type="submit" onclick="javascript:cancelTrip.action?bookingId=<s:property value='#request.booking.bookingRef'/>">YES</button></a></div>
-    <div class="col-lg-2"><button class="btn btn-lg btn-su btn-block" type="submit">NO</button></div>
+  <div class="col-lg-2"><a href="cancelBooking.action?bookingId=<s:property value='#request.booking.bookingRef'/>"><button class="btn btn-lg btn-denger btn-block" type="submit" onclick="javascript:cancelTrip.action?bookingId=<s:property value='#request.booking.bookingRef'/>">YES</button></a></div>
+    <div class="col-lg-2"><a href="userUpcomingBooking"/><button class="btn btn-lg btn-su btn-block" type="submit">NO</button></a></div>
     
     <p><p><p><p><p><p></div><br><br>
    <div class="row">
@@ -186,7 +186,7 @@ span a:hover {
 <div class="col-lg-4"><s:property value="#request.booking.bookingRef"/></div>
 </div>
 <div class="row">
-<div class="col-lg-4">Trip COst</div>
+<div class="col-lg-4">Trip Cost</div>
 <div class="col-lg-8">Rs. <s:property value="#request.booking.getEstimate().total"/></div>
 </div>
 <div class="row">

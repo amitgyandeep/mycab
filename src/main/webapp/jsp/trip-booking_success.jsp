@@ -173,40 +173,43 @@ span a:hover {
             </div>
 </div>
 		</div>
-<div class="col-md-7" style="margin-left: 5%;">
+<div class="col-md-7">
   <h3>Booking Information</h3>
 <br>
 <div class="row">
 <div class="col-lg-9"> 
 
 <div class="row">  
-<%--   <span class="col-lg-9"><strong>Booking No:</strong> <s:property value="#request.booking.bookingRef"/> --%>
-  
-  </span>
-  <span style="width: 50%; float: left;">
-  <fieldset >
-  
- <table>
-
-      <tr><td>Booking Ref. </td><td><s:property value="#booking.bookingRef"/></td></tr>
-      <tr><td>Start Date</td><td><s:date  format="dd/MM/yyyy hh:mm a" name="#request.booking.startDateTime" /></td></tr>
-      <tr><td>End Date</td><td><s:date  format="dd/MM/yyyy hh:mm a" name="#request.booking.endDateTime"/></td></tr>
-      <tr><td>Actual End Date</td><td><s:date  format="dd/MM/yyyy hh:mm a" name="#request.booking.actualDateTime"/></td></tr>
-      <tr><td>Vehicle</td><td><s:property value="#request.estimatedInvoice.booking.carModel"/></td></tr>
-      <tr><td>Security Deposit</td><td><s:property value="#request.securityDeposit"/></td>
-    </table>
-      
-  </fieldset>
-     <div>
-    <B>Total :</B> <span id="sumTotalId"><s:property value="#request.estimatedInvoice.total"/></span>
-  </div>
-</span>
-  
-  
-  </div>
+  <span class="col-lg-9"><strong>Booking No:</strong> <s:property value="#request.booking.bookingRef"/></span></div>
 </div>
+<br><br>
+<br><br>
+<div class="row">  
+  <span class="col-lg-9"><strong>Security Deposit:</strong></span> <span class="col-lg-3">Rs. <s:property value="#session.tripInvoice.securityDeposit"/></span></div>
+<div class="row">  
+<span class="col-lg-9">Adnl security deposit (Upgrade) </span><span class="col-lg-3">Rs. . . . . . .  .</span></div>
+<div class="row">  
+<span class="col-lg-9"><strong>Trip Cost:</strong></span><span class="col-lg-3">Rs. <s:property value="#session.tripInvoice.tripCost"/></span></div>
+<s:if test="#session.previousInvoice!=null">
+<div class="row">  
+<span class="col-lg-9">Reschedule Charges:</span><span class="col-lg-3">Rs. <s:property value="#session.tripInvoice.rescheduleCharges"/></span></div>
+<div class="row">  
+<span class="col-lg-9">Already Paid:</span><span class="col-lg-3">Rs. <s:property value="#session.tripInvoice.previousPaidCharges"/></span></div>
+</s:if>
+  <div class="row">  
+  <span class="col-lg-9">(See Calculation/Auto Calculated)</span><span class="col-lg-3"></span></div>
+  <div class="row">  
+  <span class="col-lg-9">Adjusted from Wallet:</span><span class="col-lg-3">Rs. <s:property value="#session.tripInvoice.adjustedFromWallet"/></span></div>
+  <div class="row">  
+  <span class="col-lg-9">Less Discount:	</span><span class="col-lg-3">Rs. <s:property value="#session.tripInvoice.discount"/></span></div>
+  <div class="row">  
+  <span class="col-lg-9"><strong>Service Tax: </strong></span><span class="col-lg-3">Rs. <s:property value="#session.tripInvoice.serviceTax"/></span></div>
+    <div class="row">  
+  <span class="col-lg-9"><strong>Total:</strong></span><span class="col-lg-3"><b>Rs. <s:property value="#session.tripInvoice.total"/></b></span></div>
+  <div class="row">  
+  <span class="col-lg-6">T&amp;C Selection:</span><span class="col-lg-6"></span></div>
 
-  
+</div>
 
 
 
