@@ -25,7 +25,9 @@ public interface IBookingService extends GenericManager<Booking,Integer> {
 	 * @param dropOffDate
 	 * @return TripInvoice
 	 */
-	public TripInvoice createInvoiceForPreview( List<Car> cars , User user , DateTime pickupDate , DateTime dropOffDate );
+	public TripInvoice createInvoiceForPreview(List<Car> cars, User user,
+			DateTime pickupDate, DateTime dropOffDate, boolean isReschedule,
+			TripInvoice previousEstimate);
 
 	public Booking createBookingAndFirstInvoice( Car car , User user , DateTime pickupDate , DateTime dropOffDate , TripInvoice invoice , CarHub carHub );
 

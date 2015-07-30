@@ -2,7 +2,7 @@ package com.prj.model;
 
 public enum BookingStatus {
 
-	UPCOMING(0), INPROGRESS(1), OPEN(2), COMPLETED(3),CANCELLED(4);
+	UPCOMING(0), INPROGRESS(1), OPEN(2), COMPLETED(3),CANCELLED(4),RESCHEDULED(5);
 
 	private int databaseValue;
 

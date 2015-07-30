@@ -77,7 +77,10 @@ public class CarBookingAction extends ActionSupport implements SessionAware, Req
 
 			List<Car> cars = carBookingService.getAvailableCarsByModel( carModel , carHub , pickupDate.toDate() , dropOffDate.toDate() );
 			session.put( "car" , cars.get( 0 ) );
-			TripInvoice invoice = bookingService.createInvoiceForPreview( cars , user , pickupDate , dropOffDate );
+			
+			TripInvoice prvInvoice=(TripInvoice)session.get("previousInvoice");
+			
+			TripInvoice invoice = bookingService.createInvoiceForPreview( cars , user , pickupDate , dropOffDate, prvInvoice!=null,prvInvoice );
 
 			session.put( "tripInvoice" , invoice );
 
@@ -97,9 +100,11 @@ public class CarBookingAction extends ActionSupport implements SessionAware, Req
 		CarHub carHub = ( CarHub ) session.get( "carHub" );
 		TripInvoice invoice = ( TripInvoice ) session.get( "tripInvoice" );
 		Booking booking = bookingService.createBookingAndFirstInvoice( ( Car ) session.get( "car" ) , user , pickupDate , dropOffDate , invoice , carHub );
+		session.remove("previousInvoice");
 		request.put( "booking" , booking );
 		return SUCCESS;
 	}
+
 
 	public String getUsersUpcomingTrip() {
 
@@ -200,6 +205,17 @@ public class CarBookingAction extends ActionSupport implements SessionAware, Req
 
 		bookingService.cancelBooking( bookingId );
 
+		return SUCCESS;
+
+	}
+	
+public String reschedule() {
+		
+		
+		TripInvoice invoice=invoiceService.getInvoiceByBooking(bookingId, InvoiceType.ESTIMATE);
+
+		session.put("previousInvoice", invoice);
+		
 		return SUCCESS;
 
 	}
