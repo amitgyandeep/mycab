@@ -1,11 +1,12 @@
 package com.prj.model;
 
-import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @SuppressWarnings("serial")
-public class CarSegment implements Serializable {
-
-	private int id;
+@Entity
+@Table(name = "car_segment")
+public class CarSegment extends BaseEntity {
 
 	private String name;
 
@@ -16,16 +17,6 @@ public class CarSegment implements Serializable {
 
 	public CarSegment() {
 
-	}
-
-	public int getId() {
-
-		return id;
-	}
-
-	public void setId( int id ) {
-
-		this.id = id;
 	}
 
 	public String getName() {

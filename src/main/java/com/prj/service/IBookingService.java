@@ -45,4 +45,6 @@ public interface IBookingService extends GenericManager<Booking,Integer> {
 
 	public List<Penalty> getPenalties( TripClosingModel tripClosingModel );
 
+	public List<Booking> getUppcomingTrip( BookingStatus upcoming );
+
 }

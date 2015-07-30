@@ -26,4 +26,5 @@ public interface ICarBookingService extends GenericManager<Car,Integer> {
 	 */
 	List<Car> getAvailableCarsByModel( CarModel model , CarHub hub , Date startDate , Date endDate );
 
+	public Car getCarByRegNo( String regNo );
 }

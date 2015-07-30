@@ -1,9 +1,16 @@
 package com.prj.model;
 
-import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @SuppressWarnings("serial")
-public class CarModel implements Serializable {
+@Entity
+@Table(name = "tbl_car_model")
+public class CarModel extends BaseEntity {
 
 	public CarModel( String name ) {
 
@@ -15,19 +22,10 @@ public class CarModel implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	private int id;
+	@OneToMany(mappedBy = "model", fetch = FetchType.LAZY)
+	private List<Tariff> tariffs;
 
 	private String name;
-
-	public int getId() {
-
-		return id;
-	}
-
-	public void setId( int id ) {
-
-		this.id = id;
-	}
 
 	public String getName() {
 

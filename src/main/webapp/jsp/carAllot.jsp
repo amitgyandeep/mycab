@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
- <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+ <link rel="stylesheet" type="text/css" href="css/css2/jquery.dataTables.css">
 
 <style type="text/css">
 #menu li
@@ -74,7 +74,8 @@
 </style>
 </head>
 <body>
-
+<s:actionmessage/>
+<!-- 
 
 
 <div id="menu" >
@@ -84,7 +85,7 @@
         <li><a href="#">Close Trip</a></li>
         <li><a href="#">XXXX</a></li>
     </ul>
-</div>
+</div> -->
 <br/><br/>
 <div style="width:80%; text-align: center; margin-left: 10%;">
 <table id="example">
@@ -94,9 +95,9 @@
       <th>Booking Ref</th>
       <th>Start Date</th>
       <th>End Date</th>
-      <th>Actual End Date</th>
+  
       <th>Vehicle</th>
-
+<th>Reg. No.</th>
       <th>Booking Status</th>
       <th>Action</th>
       
@@ -104,22 +105,21 @@
       </tr>
     </thead>
     <tbody>
-    <s:iterator value="#request.bookings" status="count">
+    <s:iterator value="#request.userBooking" status="count">
       <tr>
       <td><s:property value="carHub"/></td>
       <td><s:property value="bookingRef"/></td>
-      <td><s:date  format="dd/MM/yyyy hh:mm" name="startDateTime" /></td>
-      <td><s:date  format="dd/MM/yyyy hh:mm" name="endDateTime"/></td>
-      <td><s:date  format="dd/MM/yyyy hh:mm" name="actualEndDateTime"/></td>
-      <td><s:property value="carModel"/>,<s:property value="vehicleRegNum"/></td>
+      <td><s:date  format="dd/MM/yyyy hh:mm a" name="startDateTime" /></td>
+      <td><s:date  format="dd/MM/yyyy hh:mm a" name="endDateTime"/></td>
+
+      <td><s:property value="carModel"/></td>
+      <td><s:property value="vehicleRegNum"/></td>
        <td><s:property value="status"/></td>
        <td><ul>
         <li>
             <a href="#">Option &#9662;</a>
             <ul class="dropdown">
-                 <li><a href='asignCarToBooking?bookingId=<s:property value="id"/>' >Asign Car</a></li>
-                <li><a  href="#"  >Cancel</a></li>
-                <li><a href="#" >Close</a></li>
+                 <li><a href='getPreferdCar?modelName=<s:property value="carModel"/>&bookingId=<s:property value="bookingRef"/>' >Asign Car</a></li>
             </ul>
         </li>
     </ul></td>
@@ -127,8 +127,8 @@
     </s:iterator>
     </tbody>
   </table>
-  <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
-  <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" charset="utf8" src="js/jquery-1.8.2.min.js"></script>
+  <script type="text/javascript" charset="utf8" src="js/jsfile/jquery.dataTables.min.js"></script>
   <script>
   $(function(){
     $("#example").dataTable();

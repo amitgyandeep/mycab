@@ -41,13 +41,17 @@ public class BookingDaoImpl extends GenericDaoHibernate<Booking,Integer> impleme
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Booking> getUpcomingTripForUser( User user ) {
+	public List<Booking> getUpcomingTripForUser( final User user ) {
 
 		return ( List<Booking> ) getHibernateTemplate().execute( new HibernateCallback() {
 
 			public Object doInHibernate( final Session session ) throws HibernateException, SQLException {
 
 				Criteria criteria = getSession().createCriteria( Booking.class );
+				if ( user != null ) {
+					criteria.createAlias( "user" , "user" );
+					criteria.add( Restrictions.ge( "user.id" , user.getId() ) );
+				}
 				criteria.add( Restrictions.ge( "startDateTime" , new Date() ) );
 				criteria.add( Restrictions.eq( "status" , BookingStatus.UPCOMING ) );
 				return criteria.list();
@@ -75,5 +79,21 @@ public class BookingDaoImpl extends GenericDaoHibernate<Booking,Integer> impleme
 
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Booking> getUppcomingTrip( BookingStatus status ) {
+
+		return ( List<Booking> ) getHibernateTemplate().execute( new HibernateCallback() {
+
+			public Object doInHibernate( final Session session ) throws HibernateException, SQLException {
+
+				Criteria criteria = getSession().createCriteria( Booking.class );
+				criteria.add( Restrictions.eq( "status" , BookingStatus.UPCOMING ) );
+				criteria.add( Restrictions.eq( "vehicleRegNum" , null ) );
+				return criteria.list();
+			}
+		} );
+
 	}
 }

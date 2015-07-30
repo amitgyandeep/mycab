@@ -200,6 +200,18 @@
 	<result name="success" type="redirect">hubAccess</result>
 	<result name="input">/jsp/hubUser/tripClosing.jsp</result>
 </action>
+<action name="carAllot" class="carBookingAction" method="carAllotment">
+	<result name="success">/jsp/carAllot.jsp</result>
+	<result name="input">/jsp/carAllot.jsp</result>
+</action>
+<action name="getPreferdCar" class="carBookingAction" method="getPreferedCar">
+	<result name="success">/jsp/availableCarList.jsp</result>
+	<result name="input">/jsp/carAllot.jsp</result>
+</action>
+<action name="assignCarToBooking" class="carBookingAction" method="assignCarToBooking">
+	<result name="success" type="chain">carAllot</result>
+	<result name="input">/jsp/availableCarList.jsp</result>
+</action>
 
 	</package>
 </struts>

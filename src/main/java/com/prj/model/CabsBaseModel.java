@@ -1,5 +1,6 @@
 package com.prj.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -10,7 +11,7 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
 
 @MappedSuperclass
-public class CabsBaseModel {
+public class CabsBaseModel implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

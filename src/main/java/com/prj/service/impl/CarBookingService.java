@@ -4,11 +4,13 @@ import java.util.Date;
 import java.util.List;
 
 import org.appfuse.service.impl.GenericManagerImpl;
+import org.springframework.web.client.RestTemplate;
 
 import com.prj.dao.ICarDao;
 import com.prj.model.Car;
 import com.prj.model.CarHub;
 import com.prj.model.CarModel;
+import com.prj.model.CarStatusEnum;
 import com.prj.service.ICarBookingService;
 import com.prj.service.ICarPricingService;
 import com.prj.service.ISecurityDepositService;
@@ -20,6 +22,8 @@ public class CarBookingService extends GenericManagerImpl<Car,Integer> implement
 	private ICarPricingService pricingService;
 
 	private ISecurityDepositService securityDepositService;
+
+	private RestTemplate restTemplate;
 
 	public CarBookingService( ICarDao carDAO ) {
 
@@ -41,6 +45,12 @@ public class CarBookingService extends GenericManagerImpl<Car,Integer> implement
 	public List<Car> getAvailableCarsByModel( CarModel model , CarHub hub , Date startDate , Date endDate ) {
 
 		return getCarsWithPrice( model , hub , startDate , endDate );
+		/*String response = restTemplate.getForObject( ApplicationConstants.getCarsURL , String.class , ApplicationConstants.SystemId , ApplicationConstants.ClientId );
+
+		JSONObject jsonObject = new JSONObject( response );
+		JSONArray array = new JSONArray( jsonObject );
+
+		System.out.println( array.get( 0 ) );*/
 
 	}
 
@@ -76,6 +86,28 @@ public class CarBookingService extends GenericManagerImpl<Car,Integer> implement
 	public ISecurityDepositService getSecurityDepositService() {
 
 		return securityDepositService;
+	}
+
+	public RestTemplate getRestTemplate() {
+
+		return restTemplate;
+	}
+
+	public void setRestTemplate( RestTemplate restTemplate ) {
+
+		this.restTemplate = restTemplate;
+	}
+
+	public List<Car> getAvailableCarsByModel( CarModel model , CarStatusEnum available ) {
+
+		// TODO Auto-generated method stub
+		return carDAO.getAvailableCarsByModel( model , available );
+	}
+
+	public Car getCarByRegNo( String regNo ) {
+
+		return carDAO.getCarByRegNo( regNo );
+
 	}
 
 }

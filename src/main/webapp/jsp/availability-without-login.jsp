@@ -555,12 +555,12 @@ list-style-type: none;
 												<div class="col-lg-12">
 													<s:hidden name="customerRequestModel.carModel.name"	value="car.model" />
 													<div class="col-lg-7">
-														<img style="width: 171%;" src="img/car.png" alt=""
+														<img style="width: 171%;" src='http://<s:property value="imageURL"/>' alt=""
 															class="img-responsiv">
 													</div>
 													<div class="col-lg-12 text-success">
-														Available at:
-														<s:property value="hub.name" />
+														<%-- Available at:
+														<s:property value="hub.name" /> --%>
 														<br>
 														Car: <s:property value="model.name" /> 
 													</div>

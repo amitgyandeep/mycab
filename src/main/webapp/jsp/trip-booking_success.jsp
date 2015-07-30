@@ -173,7 +173,7 @@ span a:hover {
             </div>
 </div>
 		</div>
-<div class="col-md-7">
+<div class="col-md-7" style="margin-left: 5%;">
   <h3>Booking Information</h3>
 <br>
 <div class="row">
@@ -185,7 +185,7 @@ span a:hover {
   </span>
   <span style="width: 50%; float: left;">
   <fieldset >
-  <legend>Booking Information</legend>
+  
  <table>
 
       <tr><td>Booking Ref. </td><td><s:property value="#booking.bookingRef"/></td></tr>
@@ -194,8 +194,6 @@ span a:hover {
       <tr><td>Actual End Date</td><td><s:date  format="dd/MM/yyyy hh:mm a" name="#request.booking.actualDateTime"/></td></tr>
       <tr><td>Vehicle</td><td><s:property value="#request.estimatedInvoice.booking.carModel"/></td></tr>
       <tr><td>Security Deposit</td><td><s:property value="#request.securityDeposit"/></td>
-     
-
     </table>
       
   </fieldset>

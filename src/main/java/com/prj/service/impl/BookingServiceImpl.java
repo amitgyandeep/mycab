@@ -169,4 +169,10 @@ public class BookingServiceImpl extends GenericManagerImpl<Booking,Integer> impl
 		this.bookingServiceHelper = bookingServiceHelper;
 	}
 
+	public List<Booking> getUppcomingTrip( BookingStatus status ) {
+
+		// TODO Auto-generated method stub
+		return bookingDao.getUppcomingTrip( status );
+	}
+
 }

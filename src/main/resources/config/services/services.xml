@@ -26,6 +26,7 @@
 		<constructor-arg ref="carDAO" />
 		<property name="pricingService" ref="pricingService"/>
 		<property name="securityDepositService" ref="securityDepositService"/>
+		<property name="restTemplate" ref="restTemplate"/>
 		
 
 		

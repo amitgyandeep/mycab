@@ -1,27 +1,47 @@
 package com.prj.stubs;
 
-import java.util.ArrayList;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
-import org.hibernate.SessionFactory;
+import org.appfuse.dao.hibernate.GenericDaoHibernate;
+import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.orm.hibernate3.HibernateCallback;
 
 import com.prj.dao.ICarDao;
 import com.prj.model.Car;
 import com.prj.model.CarHub;
 import com.prj.model.CarModel;
+import com.prj.model.CarStatusEnum;
 
-public class CarDaoStub implements ICarDao {
+public class CarDaoStub extends GenericDaoHibernate<Car,Integer> implements ICarDao {
 
-	public List<Car> getAvailableCars( CarHub hub , Date startDate , Date endDate ) {
+	public CarDaoStub() {
 
-		// TODO Auto-generated method stub
-		return null;
+		super( Car.class );
 	}
 
-	public List<Car> getAvailableCarsByModel( CarModel model , CarHub hub , Date startDate , Date endDate ) {
+	@SuppressWarnings("unchecked")
+	public List<Car> getAvailableCarsByModel( final CarModel model , CarHub hub , Date startDate , Date endDate ) {
 
-		Car car1 = new Car();
+		return ( List<Car> ) getHibernateTemplate().execute( new HibernateCallback() {
+
+			public List<Car> doInHibernate( final Session session ) throws HibernateException, SQLException {
+
+				Criteria criteria = getSession().createCriteria( Car.class );
+				criteria.createAlias( "model" , "model" );
+				if ( model != null ) {
+
+					criteria.add( Restrictions.eq( "model.name" , model.getName() ) );
+				}
+				return criteria.list();
+			}
+		} );
+
+		/*Car car1 = new Car();
 		car1.setHub( hub );
 		car1.setModel( CarModelStub.AudiA6 );
 		car1.setSegment( CarSegmentStub.luxury );
@@ -94,10 +114,9 @@ public class CarDaoStub implements ICarDao {
 		Car car15 = new Car();
 		car15.setHub( hub );
 		car15.setModel( CarModelStub.Nissan_Terrano );
-		car15.setSegment( CarSegmentStub.crossover );
+		car15.setSegment( CarSegmentStub.crossover );*/
 
-		List<Car> cars = new ArrayList<Car>();
-		cars.add( car1 );
+		/*cars.add( car1 );
 		cars.add( car2 );
 		cars.add( car3 );
 		cars.add( car4 );
@@ -111,7 +130,7 @@ public class CarDaoStub implements ICarDao {
 		cars.add( car12 );
 		cars.add( car13 );
 		cars.add( car14 );
-		cars.add( car15 );
+		cars.add( car15 );*/
 
 		/*Car modelCar = new Car();
 		modelCar.setModel( model );
@@ -120,54 +139,52 @@ public class CarDaoStub implements ICarDao {
 			singleCarList.add(cars.get(cars.indexOf(modelCar)));
 			return singleCarList;
 		}*/
-		if ( model != null && model.getName().trim().length() > 0 ) {
-			for ( Car car : cars ) {
-				if ( car.getModel().getName().equalsIgnoreCase( model.getName() ) ) {
-					List<Car> singleCarList = new ArrayList<Car>();
-					singleCarList.add( car );
-					return singleCarList;
+		/*	if ( model != null && model.getName().trim().length() > 0 ) {
+				for ( Car car : cars ) {
+					if ( car.getModel().getName().equalsIgnoreCase( model.getName() ) ) {
+						List<Car> singleCarList = new ArrayList<Car>();
+						singleCarList.add( car );
+						return singleCarList;
+					}
 				}
 			}
-		}
 
-		return cars;
+			return cars;*/
 	}
 
-	public boolean exists( Integer arg0 ) {
+	@SuppressWarnings("unchecked")
+	public List<Car> getAvailableCarsByModel( final CarModel model , final CarStatusEnum available ) {
 
-		// TODO Auto-generated method stub
-		return false;
+		return ( List<Car> ) getHibernateTemplate().execute( new HibernateCallback() {
+
+			public List<Car> doInHibernate( final Session session ) throws HibernateException, SQLException {
+
+				Criteria criteria = getSession().createCriteria( Car.class );
+				criteria.createAlias( "model" , "model" );
+				if ( model != null ) {
+					criteria.add( Restrictions.eq( "model.name" , model.getName() ) );
+				}
+				criteria.add( Restrictions.eq( "status" , available ) );
+				return criteria.list();
+
+			}
+		} );
 	}
 
-	public Car get( Integer arg0 ) {
+	public Car getCarByRegNo( final String regNo ) {
 
-		// TODO Auto-generated method stub
-		return null;
-	}
+		return ( Car ) getHibernateTemplate().execute( new HibernateCallback() {
 
-	public List<Car> getAll() {
+			public Car doInHibernate( final Session session ) throws HibernateException, SQLException {
 
-		// TODO Auto-generated method stub
-		return null;
-	}
+				Criteria criteria = getSession().createCriteria( Car.class );
 
-	public void remove( Integer arg0 ) {
+				criteria.add( Restrictions.eq( "regNumber" , regNo ) );
+				return ( Car ) criteria.uniqueResult();
 
-		// TODO Auto-generated method stub
+			}
+		} );
 
-	}
-
-	public Car save( Car arg0 ) {
-
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	private SessionFactory sessionFactory;
-
-	public void setSessionFactory( SessionFactory sessionFactory ) {
-
-		this.sessionFactory = sessionFactory;
 	}
 
 }

@@ -47,7 +47,7 @@ public class DashboardAction extends ActionSupport implements RequestAware, Sess
 	public String execute() throws Exception {
 
 		List<Car> cars = carBookingService.getAvailableCarsByModel( null , null , null , null );
-		List<CarHub> carHubs = carHubService.getCarHubs();
+		List<CarHub> carHubs = carHubService.getAll();
 		session.put( "cars" , cars );
 		session.put( "carHubs" , carHubs );
 		User user = ( User ) session.get( "loggedUser" );

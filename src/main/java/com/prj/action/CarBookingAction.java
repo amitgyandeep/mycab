@@ -15,6 +15,7 @@ import com.prj.model.BookingStatus;
 import com.prj.model.Car;
 import com.prj.model.CarHub;
 import com.prj.model.CarModel;
+import com.prj.model.CarStatusEnum;
 import com.prj.model.CustomerRequestModel;
 import com.prj.model.InvoiceType;
 import com.prj.model.Penalty;
@@ -47,6 +48,10 @@ public class CarBookingAction extends ActionSupport implements SessionAware, Req
 	private String tripCost;
 
 	private String bookingId;
+
+	private String regNo;
+
+	private String modelName;
 
 	private IInvoiceService invoiceService;
 
@@ -102,6 +107,39 @@ public class CarBookingAction extends ActionSupport implements SessionAware, Req
 		List<Booking> userBookigs = bookingService.getUpcomingTripForUser( user );
 		request.put( "userBooking" , userBookigs );
 		return SUCCESS;
+	}
+
+	//populate upcoming trip which is not having reg. number
+	public String carAllotment() {
+
+		List<Booking> userBookigs = bookingService.getUpcomingTripForUser( null );
+
+		request.put( "userBooking" , userBookigs );
+		return SUCCESS;
+	}
+
+	public String getPreferedCar() {
+
+		Booking userBookig = bookingService.getBookingByReference( bookingId );
+		CarModel model = new CarModel();
+		model.setName( modelName );
+		List<Car> preferedcars = carBookingService.getAvailableCarsByModel( model , CarStatusEnum.AVAILABLE );
+		request.put( "preferedcars" , preferedcars );
+		request.put( "userBookig" , userBookig );
+		return SUCCESS;
+	}
+
+	public String assignCarToBooking() {
+
+		Booking userBookig = bookingService.getBookingByReference( bookingId );
+		userBookig.setVehicleRegNum( regNo );
+		bookingService.save( userBookig );
+		Car car = carBookingService.getCarByRegNo( regNo );
+		car.setStatus( CarStatusEnum.NOTAVAILABLE );
+		car = carBookingService.save( car );
+		addActionMessage( "CAR GOT ASSIGN TO BOOKING NO : " + bookingId );
+		return SUCCESS;
+
 	}
 
 	/**
@@ -254,6 +292,26 @@ public class CarBookingAction extends ActionSupport implements SessionAware, Req
 	public void setInvoiceService( IInvoiceService invoiceService ) {
 
 		this.invoiceService = invoiceService;
+	}
+
+	public String getModelName() {
+
+		return modelName;
+	}
+
+	public void setModelName( String modelName ) {
+
+		this.modelName = modelName;
+	}
+
+	public String getRegNo() {
+
+		return regNo;
+	}
+
+	public void setRegNo( String regNo ) {
+
+		this.regNo = regNo;
 	}
 
 }
