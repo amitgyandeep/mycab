@@ -211,10 +211,8 @@ span a:hover {
         <label class="sr-only" for="inputEmail">Email address</label>
         <input type="text" autofocus="" required="" id="customerEmail" placeholder="Email address" class="form-control"  name="customer.email" value='<s:property value="#request.customer.email"/>' />
   <br>
-  <label class="sr-only" for="inputEmail">Mobile</label>
-        <input type="text" autofocus="" required="" placeholder="Mobile" class="form-control" name="customer.mobileNumber" maxlength="10" value='<s:property value="#request.customer.mobileNumber"/>' />
-  <br>
-        <label class="sr-only" for="inputPassword">Address</label>
+
+<%--         <label class="sr-only" for="inputPassword">Address</label>
         <input type="text" required="" placeholder="Address" class="form-control"  name="customer.address" value='<s:property value="#request.customer.address"/>' />
   
   <br>
@@ -226,30 +224,32 @@ span a:hover {
   <br>
   <label class="sr-only" for="inputEmail">Emergency Contact Number</label>
         <input type="text" maxlength="10" autofocus="" required="" placeholder="Emergency Contact Number" class="form-control"  name="customer.contactNumber" value='<s:property value="#request.customer.contactNumber"/>' />
-  <br>
+  <br> --%>
        
 </div>
   
 
 <div class="col-lg-4">        
-        <label for="inputEmail" class="sr-only">Aadhar Card No.</label>
-        <input type="text"  class="form-control" placeholder="Aadhar Card No." required="" autofocus="" name="customer.adharNumber" value='<s:property value="#request.customer.adharNumber"/>' />
+       <%--  <label for="inputEmail" class="sr-only">Aadhar Card No.</label>
+        <input type="text"  class="form-control" placeholder="Aadhar Card No."  autofocus="" name="customer.adharNumber" value='<s:property value="#request.customer.adharNumber"/>' />
   <br>
   <label for="inputEmail" class="sr-only">Passport No</label>
-        <input type="text"  class="form-control" placeholder="Passport No" required="" autofocus="" name="customer.passportNumber" value='<s:property value="#request.customer.passportNumber"/>' />
-  <br>
+        <input type="text"  class="form-control" placeholder="Passport No"  autofocus="" name="customer.passportNumber" value='<s:property value="#request.customer.passportNumber"/>' />
+  <br> --%>
         <label for="inputPassword" class="sr-only">DL No.</label>
         <input type="text"  class="form-control" placeholder="DL No." required="" name="customer.dlNumber" value='<s:property value="#request.customer.dlNumber"/>' />
   
   <br>
-  <label for="inputEmail" class="sr-only">DL Issuing Authority</label>
+    <label class="sr-only" for="inputEmail">Mobile</label>
+        <input type="text" autofocus="" required="" placeholder="Mobile" class="form-control" name="customer.mobileNumber" maxlength="10" value='<s:property value="#request.customer.mobileNumber"/>' />
+ <%--  <label for="inputEmail" class="sr-only">DL Issuing Authority</label>
         <input type="text"  class="form-control" placeholder="DL Issuing Authority" required="" autofocus="" name="customer.drivingLicenceauthority" value='<s:property value="#request.customer.drivingLicenceauthority"/>' />
   <br>
   <label for="inputEmail" class="sr-only">DL Issuing State</label>
         <input type="text"  class="form-control" placeholder="DL Issuing State" required="" autofocus="" name="customer.drivingLicenceLocation"  value='<s:property value="#request.customer.drivingLicenceLocation"/>' />
   <br>
   <label for="inputEmail" class="sr-only">Preferred Car</label>
-       <%--  <input type="text"  class="form-control" placeholder="Preferred Car" required="" autofocus="" name="customer.preferedCar"  value='<s:property value="#request.customer.preferedCar"/>' /> --%>
+        <input type="text"  class="form-control" placeholder="Preferred Car" required="" autofocus="" name="customer.preferedCar"  value='<s:property value="#request.customer.preferedCar"/>' />
 <input list="cars1"  placeholder="Preferred Car" class="form-control hasDatepicker" name="customer.preferedCar" autocomplete="off" required="" autofocus="" value='<s:property value="#request.customer.preferedCar"/>'>
 													<datalist id="cars1">
 														<s:iterator value="#session.cars">
@@ -259,7 +259,7 @@ span a:hover {
 													</datalist>
 <br>
   <label for="inputEmail" class="sr-only">Preferred Hub</label>
-       <%--  <input type="text"  class="form-control" placeholder="Preferred Hub" required="" autofocus="" name="customer.pickupLocation" value='<s:property value="#request.customer.pickupLocation"/>' /> --%>
+        <input type="text"  class="form-control" placeholder="Preferred Hub" required="" autofocus="" name="customer.pickupLocation" value='<s:property value="#request.customer.pickupLocation"/>' />
  <input list="carHub1" name="customer.pickupLocation" placeholder="Preferred Hub" class="form-control hasDatepicker" autocomplete="off" value='<s:property value="#request.customer.pickupLocation"/>' required="">
 													<datalist id="carHub1">
 														<s:iterator value="#session.carHubs">
@@ -268,13 +268,13 @@ span a:hover {
 
 													</datalist>
   <br>
-       
+        --%>
 </div>
 <div class="col-lg-3">        
 <!-- <a onClick="$('#pdffile').click();" class="btn btn-default upload">Upload image</a> -->
-<input type="file"   name="adhar" class="btn btn-default upload" required=""><br/>
+<!-- <input type="file"   name="adhar" class="btn btn-default upload" ><br/> -->
 <!-- <a class="btn btn-default upload" onClick="$('#pdffile').click();">Upload image</a> -->
-<input type="file"   name="passport" class="btn btn-default upload" > <br/>
+<!-- <input type="file"   name="passport" class="btn btn-default upload" > <br/> -->
 <!-- <a class="btn btn-default upload" onClick="$('#pdffile').click();">Upload image</a> -->
 <input type="file"   name="drivingLicence" class="btn btn-default upload" ><br/>
 <div class="row">

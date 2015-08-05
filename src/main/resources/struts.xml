@@ -44,7 +44,7 @@
 			<result name="success">/jsp/availability.jsp</result>
 		</action>
 		<action name="hubAccess" class="hubDashboardAction">
-		<!-- <interceptor-ref name="checkUserInSessionInterceptorStack"></interceptor-ref> -->
+		<!--  <interceptor-ref name="checkUserInSessionInterceptorStack"></interceptor-ref> -->
 			<result name="success">/jsp/hubUser/hubDashboard.jsp</result>
 		</action>
 
@@ -137,18 +137,17 @@
 			<result name="success">/jsp/fleet.jsp</result>
 		</action>
 
-		<action name="availability" class="dashboardAction" method="getAvailableCars">
+		<action name="availability" class="carBookingAction" method="getAvailableCars">
 			<result name="success">/jsp/availability-without-login.jsp</result>
 			<result name="input">/jsp/home.jsp</result>
 		</action>
 
-		<action name="tripAvailability" class="dashboardAction" method="getAvailableCars">
+		<action name="tripAvailability" class="carBookingAction" method="getAvailableCars">
 			<result name="success">/jsp/availability-without-login.jsp</result>
 			<result name="input">/jsp/availability-without-login.jsp</result>
 		</action>
 		
-		<action name="tripDetailAvailability" class="dashboardAction"
-			method="getAvailableCars">
+		<action name="tripDetailAvailability" class="carBookingAction" method="getAvailableCars">
 				<interceptor-ref name="checkUserInSessionInterceptorStack"></interceptor-ref>
 			<result name="success">/jsp/availability.jsp</result>
 			<result name="input">/jsp/availability.jsp</result>
@@ -167,7 +166,15 @@
 		
 		<action name="cancelBooking" class="carBookingAction" method="cancelBooking">
 			 <interceptor-ref name="checkUserInSessionInterceptorStack"></interceptor-ref>
-			<result name="success">/jsp/trip-invoice.jsp</result>
+			  <result name="success" type="redirectAction">
+			    <param name="actionName">userUpcomingBooking</param>			        
+			   </result>
+			
+		</action>
+		
+		<action name="rescheduleBooking" class="carBookingAction" method="reschedule">
+			 <interceptor-ref name="checkUserInSessionInterceptorStack"></interceptor-ref>
+			<result name="success">/jsp/availability.jsp</result>
 		</action>
 		
 		<action name="tripBooking" class="carBookingAction" method="tripBooking">
@@ -182,7 +189,7 @@
 		</action>
 
 		<action name="approveUser" class="registrationAction" method="approveUser">
-			<interceptor-ref name="checkAdminInterceptorStack"></interceptor-ref>
+			<!-- <interceptor-ref name="checkAdminInterceptorStack"></interceptor-ref> -->
 			<result name="success" type="redirect">adminDashboard</result>
 			<result name="input">/jsp/adminDashboard.jsp</result>
 		</action>

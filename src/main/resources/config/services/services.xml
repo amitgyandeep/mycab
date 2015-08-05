@@ -59,6 +59,7 @@
 </bean>
  <bean name="carHubService" class="com.prj.service.impl.CarHubService" scope="prototype">
 <constructor-arg ref="carHubDao" />
+	<property name="restTemplate" ref="restTemplate"></property>
 </bean>
  <bean name="documentService" class="com.prj.service.impl.DocumentServiceImpl" scope="prototype">
 <constructor-arg ref="documentDao" />

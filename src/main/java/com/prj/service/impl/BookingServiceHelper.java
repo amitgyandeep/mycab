@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.prj.model.Penalty;
 import com.prj.model.PenaltyType;
-import com.prj.model.TripClosingModel;
+import com.prj.model.TripPenaltyModel;
 import com.prj.service.IPenaltyTypeService;
 
 @SuppressWarnings("serial")
@@ -18,7 +18,7 @@ public class BookingServiceHelper implements Serializable {
 
 	Penalty penalty;
 
-	public List<Penalty> getPenalties( TripClosingModel model ) {
+	public List<Penalty> getPenalties( TripPenaltyModel model ) {
 
 		List<Penalty> penalties = new ArrayList<Penalty>();
 

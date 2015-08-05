@@ -12,6 +12,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Parameter;
 import org.hibernate.annotations.Type;
@@ -55,6 +56,11 @@ public class TripInvoice extends CabsBaseModel implements Serializable {
 
 	@Type(type = "invoiceType")
 	private InvoiceType type;
+	
+	private Double rescheduleCharges;
+	
+	@Transient
+	private Double previousPaidCharges;
 
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "car_invoice_penalty", joinColumns = @JoinColumn(name = "invoice_id"), inverseJoinColumns = @JoinColumn(name = "penalty_id"))
@@ -179,5 +185,23 @@ public class TripInvoice extends CabsBaseModel implements Serializable {
 
 		this.penalties = penalties;
 	}
+
+	public Double getRescheduleCharges() {
+		return rescheduleCharges;
+	}
+
+	public void setRescheduleCharges(Double rescheduleCharges) {
+		this.rescheduleCharges = rescheduleCharges;
+	}
+
+	public Double getPreviousPaidCharges() {
+		return previousPaidCharges;
+	}
+
+	public void setPreviousPaidCharges(Double previousPaidCharges) {
+		this.previousPaidCharges = previousPaidCharges;
+	}
+	
+	
 
 }

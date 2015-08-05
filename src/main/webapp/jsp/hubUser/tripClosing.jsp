@@ -137,21 +137,21 @@ function addPenality(elementId){
                   <fieldset>
                 <legend >System</legend>
                  <table>
-                <tr><td>OverSpeed</td><td><s:if test="#request.tripClosingModel.overSpeedCount!=null ">
-									<input type="text" readonly="readonly" name="tripClosingModel.overSpeed" value='<s:property value="#request.overSpeedCount" />'/>
+                <tr><td>OverSpeed</td><td><s:if test="#request.tripPenaltyModel.overSpeedCount!=null ">
+									<input type="text" readonly="readonly" name="tripPenaltyModel.overSpeed" value='<s:property value="#request.overSpeedCount" />'/>
 								</s:if> <s:else>
 							N/A</s:else></td></tr>
-                 <tr><td>Reschedule</td><td><s:if test="#request.tripClosingModel.reschedule!=null ">
-									<input type="text" readonly="readonly" name="tripClosingModel.reschedule" value='<s:property value="#request.reschedule" />'/>
+                 <tr><td>Reschedule</td><td><s:if test="#request.tripPenaltyModel.reschedule!=null ">
+									<input type="text" readonly="readonly" name="tripPenaltyModel.reschedule" value='<s:property value="#request.reschedule" />'/>
 								</s:if> <s:else>
 							N/A</s:else></td></tr>
                   
-                  <tr><td>Delay return</td><td><s:if test="#request.tripClosingModel.delay!=null ">
-									<input type="text" readonly="readonly" name="tripClosingModel.delay" value='<s:property value="#request.delay" />'/>
+                  <tr><td>Delay return</td><td><s:if test="#request.tripPenaltyModel.delay!=null ">
+									<input type="text" readonly="readonly" name="tripPenaltyModel.delay" value='<s:property value="#request.delay" />'/>
 								</s:if> <s:else>
 							N/A</s:else></td></tr>
-                        <tr><td> Delay return(Ext.)</td><td><s:if test="#request.tripClosingModel.delayExt!=null ">
-									<input type="text" readonly="readonly" name="tripClosingModel.delayExt" value='<s:property value="#request.delayExt" />'/>
+                        <tr><td> Delay return(Ext.)</td><td><s:if test="#request.tripPenaltyModel.delayExt!=null ">
+									<input type="text" readonly="readonly" name="tripPenaltyModel.delayExt" value='<s:property value="#request.delayExt" />'/>
 								</s:if> <s:else>
 							N/A</s:else></td></tr>
                            
@@ -160,15 +160,15 @@ function addPenality(elementId){
                              <fieldset>
                 <legend >If Applicable </legend>
                          <table>
-                         <tr><td>Refuel charge</td><td><input type="text" placeholder="500" name="tripClosingModel.refuelCharge"/></td></tr>
-                         <tr><td>Towing</td><td><input type="text" placeholder="1000" name="tripClosingModel.towing"/></td></tr>
+                         <tr><td>Refuel charge</td><td><input type="text" placeholder="500" name="tripPenaltyModel.refuelCharge"/></td></tr>
+                         <tr><td>Towing</td><td><input type="text" placeholder="1000" name="tripPenaltyModel.towing"/></td></tr>
                          <tr><td>Others</td><td><input type="text"  name="other"/></td></tr>
                          
-                         <tr><td>Major Damage</td><td><input type="text" name="tripClosingModel.majorDamage"/></td></tr>
-						 <tr><td>Minor Damage</td><td><input type="text" name="tripClosingModel.minorDamage"/></td></tr>
-                         <tr><td><input type="checkbox" name="tripClosingModel.filthVomit" value="500" id="vomitId" onclick="javascript:addPenality(this.id);"/>Filth/vomit</td><td>500</td></tr>
-                         <tr><td><input type="checkbox" name="tripClosingModel.keyLost" value="1000" id="keyLostId" onclick="javascript:addPenality(this.id);"/>Key lost</td><td>1000</td></tr>
-                         <tr><td><input type="checkbox" name="tripClosingModel.documentLost" value="4000"  id="docLostId" onclick="javascript:addPenality(this.id);" />Document Lost</td><td>4000</td></tr>
+                         <tr><td>Major Damage</td><td><input type="text" name="tripPenaltyModel.majorDamage"/></td></tr>
+						 <tr><td>Minor Damage</td><td><input type="text" name="tripPenaltyModel.minorDamage"/></td></tr>
+                         <tr><td><input type="checkbox" name="tripPenaltyModel.filthVomit" value="500" id="vomitId" onclick="javascript:addPenality(this.id);"/>Filth/vomit</td><td>500</td></tr>
+                         <tr><td><input type="checkbox" name="tripPenaltyModel.keyLost" value="1000" id="keyLostId" onclick="javascript:addPenality(this.id);"/>Key lost</td><td>1000</td></tr>
+                         <tr><td><input type="checkbox" name="tripPenaltyModel.documentLost" value="4000"  id="docLostId" onclick="javascript:addPenality(this.id);" />Document Lost</td><td>4000</td></tr>
                         
                          
                      </table>

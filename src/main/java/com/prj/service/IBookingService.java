@@ -11,7 +11,7 @@ import com.prj.model.Car;
 import com.prj.model.CarHub;
 import com.prj.model.InvoiceType;
 import com.prj.model.Penalty;
-import com.prj.model.TripClosingModel;
+import com.prj.model.TripPenaltyModel;
 import com.prj.model.TripInvoice;
 import com.prj.model.User;
 
@@ -25,7 +25,9 @@ public interface IBookingService extends GenericManager<Booking,Integer> {
 	 * @param dropOffDate
 	 * @return TripInvoice
 	 */
-	public TripInvoice createInvoiceForPreview( List<Car> cars , User user , DateTime pickupDate , DateTime dropOffDate );
+	public TripInvoice createInvoiceForPreview(List<Car> cars, User user,
+			DateTime pickupDate, DateTime dropOffDate, boolean isReschedule,
+			TripInvoice previousEstimate);
 
 	public Booking createBookingAndFirstInvoice( Car car , User user , DateTime pickupDate , DateTime dropOffDate , TripInvoice invoice , CarHub carHub );
 
@@ -43,7 +45,7 @@ public interface IBookingService extends GenericManager<Booking,Integer> {
 
 	public TripInvoice getEstimatedInvoiceByBooking( String bookingRef , InvoiceType invoiceType );
 
-	public List<Penalty> getPenalties( TripClosingModel tripClosingModel );
+	public List<Penalty> getPenalties( TripPenaltyModel tripClosingModel );
 
 	public List<Booking> getUppcomingTrip( BookingStatus upcoming );
 

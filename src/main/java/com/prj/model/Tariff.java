@@ -21,6 +21,8 @@ public class Tariff extends BaseEntity {
 
 	private static final long serialVersionUID = 1L;
 
+	private Double cost;
+
 	@Column(name = "tariff_type")
 	@Type(type = "tariffTypeEnum")
 	private TariffType type;
@@ -32,15 +34,7 @@ public class Tariff extends BaseEntity {
 	@Transient
 	private List<DaysOfWeek> applicableDays;
 
-	private Double cost;
-
-	private Float cutOffHours;
-
-	private Float cutOffKMs;
-
 	private Float ratePerHour;
-
-	private Float ratePerKM;
 
 	public TariffType getType() {
 
@@ -62,36 +56,6 @@ public class Tariff extends BaseEntity {
 		this.applicableDays = applicableDays;
 	}
 
-	public Double getCost() {
-
-		return cost;
-	}
-
-	public void setCost( Double cost ) {
-
-		this.cost = cost;
-	}
-
-	public Float getCutOffHours() {
-
-		return cutOffHours;
-	}
-
-	public void setCutOffHours( Float cutOffHours ) {
-
-		this.cutOffHours = cutOffHours;
-	}
-
-	public Float getCutOffKMs() {
-
-		return cutOffKMs;
-	}
-
-	public void setCutOffKMs( Float cutOffKMs ) {
-
-		this.cutOffKMs = cutOffKMs;
-	}
-
 	public Float getRatePerHour() {
 
 		return ratePerHour;
@@ -102,16 +66,6 @@ public class Tariff extends BaseEntity {
 		this.ratePerHour = ratePerHour;
 	}
 
-	public Float getRatePerKM() {
-
-		return ratePerKM;
-	}
-
-	public void setRatePerKM( Float ratePerKM ) {
-
-		this.ratePerKM = ratePerKM;
-	}
-
 	public CarModel getModel() {
 
 		return model;
@@ -120,6 +74,16 @@ public class Tariff extends BaseEntity {
 	public void setModel( CarModel model ) {
 
 		this.model = model;
+	}
+
+	public Double getCost() {
+
+		return cost;
+	}
+
+	public void setCost( Double cost ) {
+
+		this.cost = cost;
 	}
 
 }

@@ -209,7 +209,7 @@ list-style-type: none;
                                  <s:select class="form-control" style="color:gray;"
 												name="customerRequestModel.startTime"
 												value="%{#request.startTime}"
-												list="#{'12:00 AM':'12:00 AM','1:00 AM':'1:00 AM','2:00 AM':'2:00 AM','3:00 AM':'3:00 AM','4:00 AM':'4:00 AM','5:00 AM':'5:00 AM','6:00 AM':'6:00 AM','7:00 AM':'7:00 AM','8:00 AM':'8:00 AM','9:00 AM':'9:00 AM','10:00 AM':'10:00 AM','11:00 AM':'11:00 AM','12:00 PM':'12:00 PM','1:00 PM':'1:00 PM','2:00 PM':'2:00 PM','3:00 PM':'3:00 PM','4:00 PM':'4:00 PM','5:00 PM':'5:00 PM','6:00 PM':'6:00 PM','7:00 PM':'7:00 PM','8:00 PM':'8:00 PM','9:00 PM':'9:00 PM','10:00 PM':'10:00 PM','11:00 PM':'11:00 PM'}"
+												list="#{'5:00 AM':'5:00 AM','6:00 AM':'6:00 AM','7:00 AM':'7:00 AM','8:00 AM':'8:00 AM','9:00 AM':'9:00 AM','10:00 AM':'10:00 AM','11:00 AM':'11:00 AM','12:00 PM':'12:00 PM','1:00 PM':'1:00 PM','2:00 PM':'2:00 PM','3:00 PM':'3:00 PM','4:00 PM':'4:00 PM','5:00 PM':'5:00 PM','6:00 PM':'6:00 PM','7:00 PM':'7:00 PM','8:00 PM':'8:00 PM','9:00 PM':'9:00 PM','10:00 PM':'10:00 PM','11:00 PM':'11:00 PM'}"
 												theme="simple">
 											</s:select>                                 </div>
                                  </div>
@@ -225,7 +225,7 @@ list-style-type: none;
                                 <s:select class="form-control" style="color:gray;"
 												name="customerRequestModel.endTime"
 												value="%{#request.endTime}"
-												list="#{'12:00 AM':'12:00 AM','1:00 AM':'1:00 AM','2:00 AM':'2:00 AM','3:00 AM':'3:00 AM','4:00 AM':'4:00 AM','5:00 AM':'5:00 AM','6:00 AM':'6:00 AM','7:00 AM':'7:00 AM','8:00 AM':'8:00 AM','9:00 AM':'9:00 AM','10:00 AM':'10:00 AM','11:00 AM':'11:00 AM','12:00 PM':'12:00 PM','1:00 PM':'1:00 PM','2:00 PM':'2:00 PM','3:00 PM':'3:00 PM','4:00 PM':'4:00 PM','5:00 PM':'5:00 PM','6:00 PM':'6:00 PM','7:00 PM':'7:00 PM','8:00 PM':'8:00 PM','9:00 PM':'9:00 PM','10:00 PM':'10:00 PM','11:00 PM':'11:00 PM'}"
+												list="#{'5:00 AM':'5:00 AM','6:00 AM':'6:00 AM','7:00 AM':'7:00 AM','8:00 AM':'8:00 AM','9:00 AM':'9:00 AM','10:00 AM':'10:00 AM','11:00 AM':'11:00 AM','12:00 PM':'12:00 PM','1:00 PM':'1:00 PM','2:00 PM':'2:00 PM','3:00 PM':'3:00 PM','4:00 PM':'4:00 PM','5:00 PM':'5:00 PM','6:00 PM':'6:00 PM','7:00 PM':'7:00 PM','8:00 PM':'8:00 PM','9:00 PM':'9:00 PM','10:00 PM':'10:00 PM','11:00 PM':'11:00 PM'}"
 												theme="simple">
 											</s:select>                                  </div>
                                  </div>
@@ -250,7 +250,7 @@ list-style-type: none;
 
 <div class="row">  
   <span class="col-lg-12">
-    <s:submit theme="simple"/>
+    <s:submit theme="simple" value="Check Availability"/>
     </span></div></div>
 </s:form>
 
@@ -266,7 +266,7 @@ list-style-type: none;
      <input type="text" hidden="" name="customerRequestModel.carModel.name" value='<s:property value="model.name"/>'/>
 <div class="row">
 <div class="col-lg-12">
-  <div class="col-lg-7"><img style="width:171%;" src="img/BMW-5-series.png" alt="" class="img-responsiv"></div>    
+  <div class="col-lg-7"><img style="width:171%;" src='http://<s:property value="imageURL"/>' alt="" class="img-responsiv"></div>    
    <div class="col-lg-12 text-success">Available at: <s:property value="hub.name"/><br/>
 														Car: <s:property value="model.name" /> </div>
 <div class="col-lg-12"><button class="btn btn-default " type="button"><span>Fare: Rs: &nbsp;<input type="text" hidden="" name="tripCost" value='<s:property value="getPrice()"  />'/><label><s:property value="getPrice()"  /></label>&nbsp;|&nbsp;</span> <span> <s:property value="#request.durationDays"/> Days   &nbsp;|&nbsp;</span><span><s:property value="#request.durationHours"/>Hours</span></button></div>

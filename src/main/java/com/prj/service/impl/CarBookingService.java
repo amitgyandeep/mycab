@@ -1,12 +1,18 @@
 package com.prj.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.appfuse.service.impl.GenericManagerImpl;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.web.client.RestTemplate;
 
 import com.prj.dao.ICarDao;
+import com.prj.model.ApplicationConstants;
 import com.prj.model.Car;
 import com.prj.model.CarHub;
 import com.prj.model.CarModel;
@@ -44,13 +50,19 @@ public class CarBookingService extends GenericManagerImpl<Car,Integer> implement
 
 	public List<Car> getAvailableCarsByModel( CarModel model , CarHub hub , Date startDate , Date endDate ) {
 
-		return getCarsWithPrice( model , hub , startDate , endDate );
-		/*String response = restTemplate.getForObject( ApplicationConstants.getCarsURL , String.class , ApplicationConstants.SystemId , ApplicationConstants.ClientId );
+		String response = restTemplate.getForObject( ApplicationConstants.availableCarsURL , String.class , 202 , 3354 , 111513 );
+
+		List<Car> cars = new ArrayList<Car>();
 
 		JSONObject jsonObject = new JSONObject( response );
-		JSONArray array = new JSONArray( jsonObject );
+		JSONArray detailArray = jsonObject.getJSONArray( "Cars" );
 
-		System.out.println( array.get( 0 ) );*/
+		for ( int i = 0 ; i < detailArray.length() ; i++ ) {
+			jsonObject = ( JSONObject ) detailArray.get( i );
+
+		}
+
+		return getCarsWithPrice( model , hub , startDate , endDate );
 
 	}
 
@@ -65,6 +77,30 @@ public class CarBookingService extends GenericManagerImpl<Car,Integer> implement
 			car.setSecurityDesposit( securityDepositService.getPrice( car.getSegment() ) );
 		}
 
+		return cars;
+	}
+
+	@Override
+	public List<Car> getAll() {
+
+		Car car;
+		CarModel carModel;
+		CarHub carHub;
+		List<Car> cars = new ArrayList<Car>();
+		Set<Car> carSet = new HashSet<Car>();
+
+		String response = restTemplate.getForObject( ApplicationConstants.allCarsURL , String.class , ApplicationConstants.SYSTEM_ID , ApplicationConstants.CLIENT_ID );
+		JSONObject jsonObject = new JSONObject( response );
+		JSONArray detailArray = jsonObject.getJSONArray( "Cars" );
+		for ( int i = 0 ; i < detailArray.length() ; i++ ) {
+			jsonObject = ( JSONObject ) detailArray.get( i );
+			car = new Car();
+			carModel = new CarModel( ( String ) jsonObject.get( "Model" ) );
+			car.setModel( carModel );
+
+			carSet.add( car );
+		}
+		cars.addAll( carSet );
 		return cars;
 	}
 

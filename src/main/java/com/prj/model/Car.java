@@ -2,22 +2,6 @@ package com.prj.model;
 
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-
-import org.hibernate.annotations.Parameter;
-import org.hibernate.annotations.Type;
-import org.hibernate.annotations.TypeDef;
-
-@Entity
-@Table(name = "tbl_car")
-@TypeDef(name = "bookingStatusEnum", typeClass = GenericEnumUserType.class, parameters = { @Parameter(name = "enumClassName", value = "com.prj.model.CarStatusEnum") ,
-	@Parameter(name = "identifierMethod", value = "toInt") , @Parameter(name = "valueOfMethod", value = "fromInt") })
 public class Car extends CabsBaseModel {
 
 	private static final long serialVersionUID = 1L;
@@ -26,28 +10,17 @@ public class Car extends CabsBaseModel {
 
 	private String imageURL;
 
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "segment_id", referencedColumnName = "id")
 	private CarSegment segment;
 
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "model_id", referencedColumnName = "id")
 	private CarModel model;
 
-	/*	@ManyToMany
-		@JoinTable(name = "tbl_car_hub_join", joinColumns = @JoinColumn(name = "car_id"), inverseJoinColumns = @JoinColumn(name = "hub_id"))
-		*/
-	@Transient
 	private CarHub hub;
 
-	@Transient
 	private List<Tariff> tariffs;
 
 	private double securityDesposit;
 
-	@Column(name = "status")
-	@Type(type = "bookingStatusEnum")
-	private CarStatusEnum status;
+	private Integer status;
 
 	public String getRegNumber() {
 
@@ -119,16 +92,6 @@ public class Car extends CabsBaseModel {
 		this.tariffs = tariffs;
 	}
 
-	public CarStatusEnum getStatus() {
-
-		return status;
-	}
-
-	public void setStatus( CarStatusEnum status ) {
-
-		this.status = status;
-	}
-
 	public String getImageURL() {
 
 		return imageURL;
@@ -137,6 +100,16 @@ public class Car extends CabsBaseModel {
 	public void setImageURL( String imageURL ) {
 
 		this.imageURL = imageURL;
+	}
+
+	public Integer getStatus() {
+
+		return status;
+	}
+
+	public void setStatus( Integer status ) {
+
+		this.status = status;
 	}
 
 }

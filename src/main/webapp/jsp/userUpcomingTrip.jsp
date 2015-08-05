@@ -64,6 +64,14 @@ span a{
 span a:hover{
 	color:#000;
 }
+
+table.dataTable tr.odd td.sorting_1 { background-color: #FFBF90; }
+
+table.dataTable tr.even td.sorting_1 { background-color: #E1D1C5; }
+
+
+table.dataTable tr.odd { background-color: #FFBF90; }
+table.dataTable tr.even { background-color: #E1D1C5; }
 </style>
 <style type="text/css">
 .table-condensed > thead > tr > th, .table-condensed > tbody > tr > th, .table-condensed > tfoot > tr > th, .table-condensed > thead > tr > td, .table-condensed > tbody > tr > td, .table-condensed > tfoot > tr > td {
@@ -195,6 +203,7 @@ list-style-type: none;
 <br>
 	<s:actionerror/>
 <div class="row">
+ <span class="col-lg-12">
   <table id="example">
     <thead>
       <tr>
@@ -215,12 +224,14 @@ list-style-type: none;
       <tr>
      
       <td><s:property value="bookingRef"/></td>
-      <td><s:date  format="dd/MM/yyyy hh:mm a" name="startDateTime" /></td>
-      <td><s:date  format="dd/MM/yyyy hh:mm a" name="endDateTime"/></td>
-     <td><s:property value="carModel"/></td>
+      <td><s:date  format="dd/MM/yy hh:mm a" name="startDateTime" /></td>
+      <td><s:date  format="dd/MM/yy hh:mm a" name="endDateTime"/></td>
+     <td><s:property value="carModel"/> 
+     <s:if test="vehicleRegNum!=null"><br>
+     <s:property value="vehicleRegNum"/></s:if></td>
      
      <td><s:property value="getEstimate().total"/></td>
-     <td><a href="cancelBooking?bookingId=<s:property value='bookingRef'/>">Change</a>&nbsp;&nbsp;<a href="confirmCancellation?bookingId=<s:property value='bookingRef'/>">Cancel</a>  </td>
+     <td><a href="rescheduleBooking?bookingId=<s:property value='bookingRef'/>">Change Trip</a>&nbsp;&nbsp;<a href="confirmCancellation?bookingId=<s:property value='bookingRef'/>">Cancel</a>  </td>
        
       
       
@@ -239,7 +250,7 @@ list-style-type: none;
 
   
 
-
+</span>
 </div>
 <div class="col-lg-1 pull-ight"></div>
 </div>

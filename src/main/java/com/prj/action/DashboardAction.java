@@ -5,8 +5,6 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.SessionAware;
-import org.joda.time.DateTime;
-import org.joda.time.Duration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,8 +17,8 @@ import com.prj.model.User;
 import com.prj.service.ICarBookingService;
 import com.prj.service.ICarHubService;
 import com.prj.service.ICarService;
-import com.prj.util.DateTimeUtility;
 
+@SuppressWarnings("serial")
 public class DashboardAction extends ActionSupport implements RequestAware, SessionAware {
 
 	private Map<String,Object> request;
@@ -35,19 +33,13 @@ public class DashboardAction extends ActionSupport implements RequestAware, Sess
 
 	private CustomerRequestModel customerRequestModel;
 
-	private Car car;
-
-	private DateTime dropOffDate;
-
-	private DateTime pickupDate;
-
 	private static final Logger LOGGER = LoggerFactory.getLogger( CarBookingAction.class );
 
 	@Override
 	public String execute() throws Exception {
 
-		List<Car> cars = carBookingService.getAvailableCarsByModel( null , null , null , null );
-		List<CarHub> carHubs = carHubService.getAll();
+		List<Car> cars = carBookingService.getAll();
+		List<CarHub> carHubs = carHubService.getCarHubs();
 		session.put( "cars" , cars );
 		session.put( "carHubs" , carHubs );
 		User user = ( User ) session.get( "loggedUser" );
@@ -63,47 +55,6 @@ public class DashboardAction extends ActionSupport implements RequestAware, Sess
 		}
 
 		return SUCCESS;
-
-	}
-
-	public String getAvailableCars() {
-
-		if ( customerRequestModel != null ) {
-			request.put( "startDate" , customerRequestModel.getStartDate() );
-			request.put( "startTime" , customerRequestModel.getStartTime() );
-			request.put( "endDate" , customerRequestModel.getEndDate() );
-			request.put( "endTime" , customerRequestModel.getEndTime() );
-			session.put( "carHub" , customerRequestModel.getCarHub() );
-			session.put( "carModel" , customerRequestModel.getCarModel() );
-
-			pickupDate = DateTimeUtility.getDateInitialized( customerRequestModel.getStartDate() , customerRequestModel.getStartTime() );
-			dropOffDate = DateTimeUtility.getDateInitialized( customerRequestModel.getEndDate() , customerRequestModel.getEndTime() );
-
-			Duration duration = new Duration( pickupDate , dropOffDate );
-
-			if ( duration.getStandardHours() < 0 || duration.getStandardHours() == 0 ) {
-				addActionError( "Invalid Date / Time selection" );
-				return INPUT;
-			}
-
-			session.put( "standardDays" , duration.getStandardDays() );
-			session.put( "standardHours" , duration.getStandardHours() );
-			session.put( "pickupDate" , pickupDate );
-			session.put( "dropOffDate" , dropOffDate );
-
-			LOGGER.info( "StartDate and EndDtae cunstructed" );
-
-			List<Car> cars = carBookingService.getAvailableCarsByModel( customerRequestModel.getCarModel() , customerRequestModel.getCarHub() , pickupDate.toDate() ,
-				dropOffDate.toDate() );
-
-			request.put( "durationDays" , new Duration( pickupDate , dropOffDate ).getStandardDays() );
-			request.put( "durationHours" , new Duration( pickupDate , dropOffDate ).getStandardHours() % 24 );
-
-			request.put( "availableCars" , cars );
-			return SUCCESS;
-		} else {
-			return INPUT;
-		}
 
 	}
 

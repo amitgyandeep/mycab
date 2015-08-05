@@ -30,8 +30,9 @@ public class HubDashboardAction extends ActionSupport implements RequestAware, S
 
 		CarHub carHub = new CarHub();
 		User user = ( User ) session.get( "loggedUser" );
-		carHub.setName( user.getHubName() );
-		List<Booking> bookings = bookingService.getAllBookingByHub( carHub , BookingStatus.INPROGRESS );
+		carHub.setName( "CHURCH ROAD" );
+
+		List<Booking> bookings = bookingService.getAllBookingByHub( carHub , BookingStatus.OPEN );
 		request.put( "bookings" , bookings );
 		return SUCCESS;
 

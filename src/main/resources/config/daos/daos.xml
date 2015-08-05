@@ -10,7 +10,7 @@
 	<bean id="userDao" class="com.prj.dao.impl.UserDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="carDAO" class="com.prj.stubs.CarDaoStub">
+	<bean id="carDAO" class="com.prj.dao.impl.CarDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="carHubDao" class="com.prj.stubs.CarHubStub">

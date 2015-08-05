@@ -19,7 +19,6 @@ public class CarModel extends BaseEntity {
 
 	public CarModel() {
 
-		// TODO Auto-generated constructor stub
 	}
 
 	@OneToMany(mappedBy = "model", fetch = FetchType.LAZY)

@@ -2,7 +2,7 @@ package com.prj.model;
 
 import java.io.Serializable;
 
-public class TripClosingModel implements Serializable {
+public class TripPenaltyModel implements Serializable {
 
 	/**
 	 * 

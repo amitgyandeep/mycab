@@ -77,14 +77,14 @@
 
 
 
-<div id="menu" >
+<!-- <div id="menu" >
     <ul >
         <li><a href="hubAccess">Home</a></li>
         <li><a href="#">Events</a></li>
         <li><a href="#">Close Trip</a></li>
         <li><a href="logoutAction">Logout</a></li>
     </ul>
-</div>
+</div> -->
 <br/><br/>
 <div style="width:80%; text-align: center; margin-left: 10%;">
 <table id="example">
@@ -117,7 +117,7 @@
             <a href="#">Option &#9662;</a>
             <ul class="dropdown">
              <li><a href='tripClosing?bookingId=<s:property value="bookingRef"/>'>Close</a></li>
-                <li><a  href="#">Cancel</a></li>
+                <!-- <li><a  href="#">Cancel</a></li> -->
             </ul>
         </li>
     </ul></td>

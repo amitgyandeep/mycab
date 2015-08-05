@@ -39,15 +39,7 @@ public class RegistrationAction extends ActionSupport implements RequestAware {
 
 	private ISmsService smsService;
 
-	private File adhar;
-
-	private String adharFileName;
-
 	private String adharContentType;
-
-	private File passport;
-
-	private String passportFileName;
 
 	private String passportContentType;
 
@@ -134,19 +126,6 @@ public class RegistrationAction extends ActionSupport implements RequestAware {
 
 		File destFile;
 
-		if ( adhar != null ) {
-			String path = userDirectory + File.separator + "ADHAR" + File.separator + adharFileName;
-			destFile = new File( ApplicationConstants.FILE_PATH_DIR + File.separator + path );
-			fileUpload( adhar , destFile , customer , path , FileTypeEnum.ADHAR );
-			LOGGER.info( "ADHAR FILE UPLOADED" );
-		}
-		if ( passport != null ) {
-			String path = userDirectory + File.separator + "PASSPORT" + File.separator + passportFileName;
-			destFile = new File( ApplicationConstants.FILE_PATH_DIR + File.separator + path );
-			fileUpload( passport , destFile , customer , path , FileTypeEnum.PASSPORT );
-
-			LOGGER.info( "PASSPORT FILE UPLOADED" );
-		}
 		if ( drivingLicence != null ) {
 			String path = userDirectory + File.separator + "DRIVING_LICENCE" + File.separator + drivingLicenceFileName;
 			destFile = new File( ApplicationConstants.FILE_PATH_DIR + File.separator + path );
@@ -281,26 +260,6 @@ public class RegistrationAction extends ActionSupport implements RequestAware {
 		this.customerService = customerService;
 	}
 
-	public File getAdhar() {
-
-		return adhar;
-	}
-
-	public void setAdhar( File adhar ) {
-
-		this.adhar = adhar;
-	}
-
-	public String getAdharFileName() {
-
-		return adharFileName;
-	}
-
-	public void setAdharFileName( String adharFileName ) {
-
-		this.adharFileName = adharFileName;
-	}
-
 	public String getAdharContentType() {
 
 		return adharContentType;
@@ -309,26 +268,6 @@ public class RegistrationAction extends ActionSupport implements RequestAware {
 	public void setAdharContentType( String adharContentType ) {
 
 		this.adharContentType = adharContentType;
-	}
-
-	public File getPassport() {
-
-		return passport;
-	}
-
-	public void setPassport( File passport ) {
-
-		this.passport = passport;
-	}
-
-	public String getPassportFileName() {
-
-		return passportFileName;
-	}
-
-	public void setPassportFileName( String passportFileName ) {
-
-		this.passportFileName = passportFileName;
 	}
 
 	public String getPassportContentType() {

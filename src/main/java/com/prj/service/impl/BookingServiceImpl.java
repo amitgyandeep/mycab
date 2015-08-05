@@ -1,5 +1,6 @@
 package com.prj.service.impl;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import com.prj.model.Car;
 import com.prj.model.CarHub;
 import com.prj.model.InvoiceType;
 import com.prj.model.Penalty;
-import com.prj.model.TripClosingModel;
+import com.prj.model.TripPenaltyModel;
 import com.prj.model.TripInvoice;
 import com.prj.model.User;
 import com.prj.service.IBookingService;
@@ -59,7 +60,8 @@ public class BookingServiceImpl extends GenericManagerImpl<Booking,Integer> impl
 
 	}
 
-	public TripInvoice createInvoiceForPreview( List<Car> cars , User user , DateTime pickupDate , DateTime dropOffDate ) {
+	public TripInvoice createInvoiceForPreview( List<Car> cars , User user , DateTime pickupDate , DateTime dropOffDate , boolean isReschedule ,
+		TripInvoice previousEstimate ) {
 
 		TripInvoice invoice = new TripInvoice();
 		Car car = cars.get( 0 );
@@ -78,6 +80,16 @@ public class BookingServiceImpl extends GenericManagerImpl<Booking,Integer> impl
 
 		invoice.setTotal( afterTax );
 
+		if ( isReschedule ) {
+			invoice.setRescheduleCharges( 200.0 );
+			invoice.setTotal( Double.parseDouble( new DecimalFormat( "#.##" ).format( afterTax - previousEstimate.getTotal() + 200 ) ) );
+			invoice.setPreviousPaidCharges( previousEstimate.getTotal() );
+			Booking booking = bookingDao.get( previousEstimate.getBooking().getId() );
+			booking.setStatus( BookingStatus.RESCHEDULED );
+			bookingDao.save( booking );
+
+		}
+
 		invoice.setType( InvoiceType.ESTIMATE );
 
 		return invoice;
@@ -93,7 +105,7 @@ public class BookingServiceImpl extends GenericManagerImpl<Booking,Integer> impl
 		booking.setEndDateTime( dropOffDate.toDate() );
 		booking.setCreationTime( new Date() );
 		booking.setLastUpdateTime( new Date() );
-		booking.setCarModel( car.getModel().getName() );
+		booking.setCar( car );
 		booking.setCarHub( carHub.getName() );
 		booking = save( booking );
 
@@ -133,7 +145,7 @@ public class BookingServiceImpl extends GenericManagerImpl<Booking,Integer> impl
 		return code;
 	}
 
-	public List<Penalty> getPenalties( TripClosingModel tripClosingModel ) {
+	public List<Penalty> getPenalties( TripPenaltyModel tripClosingModel ) {
 
 		return bookingServiceHelper.getPenalties( tripClosingModel );
 

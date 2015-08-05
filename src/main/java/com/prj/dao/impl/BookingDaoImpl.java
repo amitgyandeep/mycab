@@ -8,6 +8,7 @@ import org.appfuse.dao.hibernate.GenericDaoHibernate;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.HibernateCallback;
 
@@ -33,7 +34,7 @@ public class BookingDaoImpl extends GenericDaoHibernate<Booking,Integer> impleme
 
 				Criteria criteria = getSession().createCriteria( Booking.class );
 				criteria.add( Restrictions.eq( "carHub" , carHub.getName() ) );
-				criteria.add( Restrictions.eq( "status" , status ) );
+				criteria.add( Restrictions.eq( "status" , BookingStatus.INPROGRESS ) );
 				return criteria.list();
 			}
 		} );
@@ -53,7 +54,13 @@ public class BookingDaoImpl extends GenericDaoHibernate<Booking,Integer> impleme
 					criteria.add( Restrictions.ge( "user.id" , user.getId() ) );
 				}
 				criteria.add( Restrictions.ge( "startDateTime" , new Date() ) );
-				criteria.add( Restrictions.eq( "status" , BookingStatus.UPCOMING ) );
+
+				Disjunction disjunction = Restrictions.disjunction();
+				disjunction.add( Restrictions.eq( "status" , BookingStatus.UPCOMING ) );
+				disjunction.add( Restrictions.eq( "status" , BookingStatus.INPROGRESS ) );
+
+				criteria.add( disjunction );
+
 				return criteria.list();
 			}
 		} );

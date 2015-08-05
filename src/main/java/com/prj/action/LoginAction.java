@@ -45,7 +45,7 @@ public class LoginAction extends ActionSupport implements SessionAware, RequestA
 			if ( userDb != null ) {
 
 				session.put( "loggedUser" , userDb );
-				carHubs = carHubService.getCarHubs();
+				carHubs = carHubService.getAll();
 
 				session.put( "carHubs" , carHubs );
 

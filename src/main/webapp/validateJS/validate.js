@@ -24,7 +24,7 @@
 					'customer.address' : {
 						required : true
 					},
-					'customer.adharNumber' : {
+				/*	'customer.adharNumber' : {
 						specialChar:true,
 						required : true
 					},
@@ -35,7 +35,7 @@
 					'passport' : {
 						
 						required : true
-					},
+					},*/
 					'drivingLicence' : {
 						
 						required : true
@@ -71,14 +71,14 @@
 					'customer.pickupLocation':{
 						required:true
 					},
-					'customer.adharNumber':{
+					/*'customer.adharNumber':{
 						required:true,
 						specialChar:true
-					},
-					'customer.passportNumber':{
+					},*/
+					/*'customer.passportNumber':{
 						required:true,
 						specialChar:true
-					},
+					},*/
 			
 				},
 				messages : {
@@ -105,11 +105,11 @@
 						specialChar : "Letters only please!",
 						
 					},
-					'customer.adharNumber':{
+					/*'customer.adharNumber':{
 						required : "Please enter adhar Number",
 						specialChar : "Letters only please!",
 						
-					},
+					},*/
 					
 				},
 				submitHandler : function(form) {

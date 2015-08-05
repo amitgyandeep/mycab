@@ -1,21 +1,21 @@
 package com.prj.model;
 
 import java.io.Serializable;
+import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "tbl_car_hub")
 public class CarHub extends BaseEntity implements Serializable {
 
 	private String name;
+
+	private String hubId;
 
 	private String address;
 
 	private Double latitude;
 
 	private Double longitude;
+
+	List<Car> cars;
 
 	public CarHub( String name ) {
 
@@ -64,6 +64,26 @@ public class CarHub extends BaseEntity implements Serializable {
 	public void setName( String name ) {
 
 		this.name = name;
+	}
+
+	public List<Car> getCars() {
+
+		return cars;
+	}
+
+	public void setCars( List<Car> cars ) {
+
+		this.cars = cars;
+	}
+
+	public String getHubId() {
+
+		return hubId;
+	}
+
+	public void setHubId( String hubId ) {
+
+		this.hubId = hubId;
 	}
 
 }

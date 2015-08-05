@@ -17,22 +17,20 @@ import org.hibernate.annotations.TypeDef;
 
 @Entity
 @Table(name = "car_booking")
-@TypeDef(name = "bookingStatusEnum", typeClass = GenericEnumUserType.class, parameters = {
-		@Parameter(name = "enumClassName", value = "com.prj.model.BookingStatus"),
-		@Parameter(name = "identifierMethod", value = "toInt"),
-		@Parameter(name = "valueOfMethod", value = "fromInt") })
+@TypeDef(name = "bookingStatusEnum", typeClass = GenericEnumUserType.class, parameters = { @Parameter(name = "enumClassName", value = "com.prj.model.BookingStatus") ,
+	@Parameter(name = "identifierMethod", value = "toInt") , @Parameter(name = "valueOfMethod", value = "fromInt") })
 public class Booking extends CabsBaseModel {
 
 	@Column(name = "booking_ref")
 	private String bookingRef;
 
-	@Column(name = "car_model")
-	private String carModel;
+	@JoinColumn(name = "car_id", referencedColumnName = "id")
+	private Car car;
 
 	@Column(name = "car_hub")
 	private String carHub;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id", referencedColumnName = "id")
 	private User user;
 
@@ -60,7 +58,7 @@ public class Booking extends CabsBaseModel {
 		return bookingRef;
 	}
 
-	public void setBookingRef(String bookingRef) {
+	public void setBookingRef( String bookingRef ) {
 
 		this.bookingRef = bookingRef;
 	}
@@ -70,7 +68,7 @@ public class Booking extends CabsBaseModel {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser( User user ) {
 
 		this.user = user;
 	}
@@ -80,7 +78,7 @@ public class Booking extends CabsBaseModel {
 		return vehicleRegNum;
 	}
 
-	public void setVehicleRegNum(String vehicleRegNum) {
+	public void setVehicleRegNum( String vehicleRegNum ) {
 
 		this.vehicleRegNum = vehicleRegNum;
 	}
@@ -90,7 +88,7 @@ public class Booking extends CabsBaseModel {
 		return startDateTime;
 	}
 
-	public void setStartDateTime(Date startDateTime) {
+	public void setStartDateTime( Date startDateTime ) {
 
 		this.startDateTime = startDateTime;
 	}
@@ -100,7 +98,7 @@ public class Booking extends CabsBaseModel {
 		return endDateTime;
 	}
 
-	public void setEndDateTime(Date endDateTime) {
+	public void setEndDateTime( Date endDateTime ) {
 
 		this.endDateTime = endDateTime;
 	}
@@ -110,7 +108,7 @@ public class Booking extends CabsBaseModel {
 		return actualEndDateTime;
 	}
 
-	public void setActualEndDateTime(Date actualEndDateTime) {
+	public void setActualEndDateTime( Date actualEndDateTime ) {
 
 		this.actualEndDateTime = actualEndDateTime;
 	}
@@ -120,7 +118,7 @@ public class Booking extends CabsBaseModel {
 		return status;
 	}
 
-	public void setStatus(BookingStatus status) {
+	public void setStatus( BookingStatus status ) {
 
 		this.status = status;
 	}
@@ -130,19 +128,19 @@ public class Booking extends CabsBaseModel {
 		return invoices;
 	}
 
-	public void setInvoices(List<TripInvoice> invoices) {
+	public void setInvoices( List<TripInvoice> invoices ) {
 
 		this.invoices = invoices;
 	}
 
-	public String getCarModel() {
+	public Car getCar() {
 
-		return carModel;
+		return car;
 	}
 
-	public void setCarModel(String carModel) {
+	public void setCar( Car car ) {
 
-		this.carModel = carModel;
+		this.car = car;
 	}
 
 	public String getCarHub() {
@@ -150,15 +148,15 @@ public class Booking extends CabsBaseModel {
 		return carHub;
 	}
 
-	public void setCarHub(String carHub) {
+	public void setCarHub( String carHub ) {
 
 		this.carHub = carHub;
 	}
 
 	public TripInvoice getEstimate() {
 
-		for (TripInvoice tripInvoice : invoices) {
-			if (InvoiceType.ESTIMATE == tripInvoice.getType())
+		for ( TripInvoice tripInvoice : invoices ) {
+			if ( InvoiceType.ESTIMATE == tripInvoice.getType() )
 				return tripInvoice;
 
 		}
@@ -169,8 +167,8 @@ public class Booking extends CabsBaseModel {
 
 	public TripInvoice getInvoice() {
 
-		for (TripInvoice tripInvoice : invoices) {
-			if (InvoiceType.INVOICE == tripInvoice.getType())
+		for ( TripInvoice tripInvoice : invoices ) {
+			if ( InvoiceType.INVOICE == tripInvoice.getType() )
 				return tripInvoice;
 
 		}
