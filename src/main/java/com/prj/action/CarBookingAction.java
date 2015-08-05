@@ -86,8 +86,7 @@ public class CarBookingAction extends ActionSupport implements SessionAware, Req
 
 			List<Car> cars = carBookingService.getAvailableCarsByModel( carModel , carHub , pickupDate.toDate() , dropOffDate.toDate() );
 			session.put( "car" , cars.get( 0 ) );
-
-			TripInvoice prvInvoice = ( TripInvoice ) session.get( "previousInvoice" );
+            TripInvoice prvInvoice = ( TripInvoice ) session.get( "previousInvoice" );
 
 			TripInvoice invoice = bookingService.createInvoiceForPreview( cars , user , pickupDate , dropOffDate , prvInvoice != null , prvInvoice );
 

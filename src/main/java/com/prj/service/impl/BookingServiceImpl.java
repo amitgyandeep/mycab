@@ -15,8 +15,8 @@ import com.prj.model.Car;
 import com.prj.model.CarHub;
 import com.prj.model.InvoiceType;
 import com.prj.model.Penalty;
-import com.prj.model.TripPenaltyModel;
 import com.prj.model.TripInvoice;
+import com.prj.model.TripPenaltyModel;
 import com.prj.model.User;
 import com.prj.service.IBookingService;
 import com.prj.service.IInvoiceService;
@@ -79,6 +79,16 @@ public class BookingServiceImpl extends GenericManagerImpl<Booking,Integer> impl
 		invoice.setTripCost( car.getPrice() );
 
 		invoice.setTotal( afterTax );
+
+		if ( isReschedule ) {
+			invoice.setRescheduleCharges( 200.0 );
+			invoice.setTotal( Double.parseDouble( new DecimalFormat( "#.##" ).format( afterTax - previousEstimate.getTotal() + 200 ) ) );
+			invoice.setPreviousPaidCharges( previousEstimate.getTotal() );
+			Booking booking = bookingDao.get( previousEstimate.getBooking().getId() );
+			booking.setStatus( BookingStatus.RESCHEDULED );
+			bookingDao.save( booking );
+
+		}
 
 		if ( isReschedule ) {
 			invoice.setRescheduleCharges( 200.0 );

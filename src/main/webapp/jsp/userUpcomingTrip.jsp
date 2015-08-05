@@ -226,14 +226,19 @@ list-style-type: none;
       <td><s:property value="bookingRef"/></td>
       <td><s:date  format="dd/MM/yy hh:mm a" name="startDateTime" /></td>
       <td><s:date  format="dd/MM/yy hh:mm a" name="endDateTime"/></td>
+
      <td><s:property value="carModel"/> 
      <s:if test="vehicleRegNum!=null"><br>
      <s:property value="vehicleRegNum"/></s:if></td>
      
      <td><s:property value="getEstimate().total"/></td>
      <td><a href="rescheduleBooking?bookingId=<s:property value='bookingRef'/>">Change Trip</a>&nbsp;&nbsp;<a href="confirmCancellation?bookingId=<s:property value='bookingRef'/>">Cancel</a>  </td>
-       
-      
+
+     <td><s:property value="carModel"/></td>
+     
+     <td><s:property value="getEstimate().total"/></td>
+     <td><a href="rescheduleBooking?bookingId=<s:property value='bookingRef'/>">Reschedule</a>&nbsp;&nbsp;<a href="confirmCancellation?bookingId=<s:property value='bookingRef'/>">Cancel</a>  </td>
+
       
     </tr>
     </s:iterator>
