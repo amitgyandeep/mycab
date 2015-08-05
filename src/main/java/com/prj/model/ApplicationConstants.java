@@ -22,7 +22,7 @@ public class ApplicationConstants {
 
 	public static final Integer HubId = 111513;
 
-	public static String availableCarsURL = "http://www.t4udevice.com:8080/TelematicsRESTService/services/ServiceProcess/getAvailableCars?SystemId={systemId}&ClientId={clientId}&HubId={hubId}";
+	public static String availableCarsURL = "http://www.t4udevice.com:8080/TelematicsRESTService/services/ServiceProcess/getAvailableCars?SystemId={systemId}&ClientId={clientId}&HubId={hubId}&ModelId={modelId}";
 
 	public static String allCarsURL = "http://www.t4udevice.com:8080/TelematicsRESTService/services/ServiceProcess/getCars?SystemId={systemId}&ClientId={clientId}";
 

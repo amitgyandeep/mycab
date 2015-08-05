@@ -21,8 +21,8 @@ import com.prj.model.CarStatusEnum;
 import com.prj.model.CustomerRequestModel;
 import com.prj.model.InvoiceType;
 import com.prj.model.Penalty;
-import com.prj.model.TripPenaltyModel;
 import com.prj.model.TripInvoice;
+import com.prj.model.TripPenaltyModel;
 import com.prj.model.User;
 import com.prj.service.IBookingService;
 import com.prj.service.ICarHubService;
@@ -64,6 +64,10 @@ public class CarBookingAction extends ActionSupport implements SessionAware, Req
 
 	private IInvoiceService invoiceService;
 
+	private Integer carModelId;
+
+	private Integer hubId;
+
 	private static final Logger LOGGER = LoggerFactory.getLogger( CarBookingAction.class );
 
 	public String estimatedTripCost() {
@@ -86,7 +90,7 @@ public class CarBookingAction extends ActionSupport implements SessionAware, Req
 
 			List<Car> cars = carBookingService.getAvailableCarsByModel( carModel , carHub , pickupDate.toDate() , dropOffDate.toDate() );
 			session.put( "car" , cars.get( 0 ) );
-            TripInvoice prvInvoice = ( TripInvoice ) session.get( "previousInvoice" );
+			TripInvoice prvInvoice = ( TripInvoice ) session.get( "previousInvoice" );
 
 			TripInvoice invoice = bookingService.createInvoiceForPreview( cars , user , pickupDate , dropOffDate , prvInvoice != null , prvInvoice );
 

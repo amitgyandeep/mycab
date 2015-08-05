@@ -8,8 +8,6 @@ public class Car extends CabsBaseModel {
 
 	private String regNumber;
 
-	private String imageURL;
-
 	private CarSegment segment;
 
 	private CarModel model;
@@ -90,16 +88,6 @@ public class Car extends CabsBaseModel {
 	public void setTariffs( List<Tariff> tariffs ) {
 
 		this.tariffs = tariffs;
-	}
-
-	public String getImageURL() {
-
-		return imageURL;
-	}
-
-	public void setImageURL( String imageURL ) {
-
-		this.imageURL = imageURL;
 	}
 
 	public Integer getStatus() {

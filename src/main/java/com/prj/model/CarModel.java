@@ -2,15 +2,13 @@ package com.prj.model;
 
 import java.util.List;
 
-import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @SuppressWarnings("serial")
-@Entity
-@Table(name = "tbl_car_model")
 public class CarModel extends BaseEntity {
+
+	private String imageURL;
 
 	public CarModel( String name ) {
 
@@ -34,6 +32,16 @@ public class CarModel extends BaseEntity {
 	public void setName( String name ) {
 
 		this.name = name.trim();
+	}
+
+	public String getImageURL() {
+
+		return imageURL;
+	}
+
+	public void setImageURL( String imageURL ) {
+
+		this.imageURL = imageURL;
 	}
 
 }

@@ -2,15 +2,14 @@ package com.prj.service.impl;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.appfuse.service.impl.GenericManagerImpl;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.web.client.RestTemplate;
 
+import com.google.gson.Gson;
 import com.prj.dao.ICarDao;
 import com.prj.model.ApplicationConstants;
 import com.prj.model.Car;
@@ -50,25 +49,26 @@ public class CarBookingService extends GenericManagerImpl<Car,Integer> implement
 
 	public List<Car> getAvailableCarsByModel( CarModel model , CarHub hub , Date startDate , Date endDate ) {
 
-		String response = restTemplate.getForObject( ApplicationConstants.availableCarsURL , String.class , 202 , 3354 , 111513 );
-
-		List<Car> cars = new ArrayList<Car>();
-
-		JSONObject jsonObject = new JSONObject( response );
-		JSONArray detailArray = jsonObject.getJSONArray( "Cars" );
-
-		for ( int i = 0 ; i < detailArray.length() ; i++ ) {
-			jsonObject = ( JSONObject ) detailArray.get( i );
-
-		}
-
 		return getCarsWithPrice( model , hub , startDate , endDate );
 
 	}
 
 	private List<Car> getCarsWithPrice( CarModel model , CarHub hub , Date startDate , Date endDate ) {
 
-		List<Car> cars = carDAO.getAvailableCarsByModel( model , hub , startDate , endDate );
+		String response = restTemplate.getForObject( ApplicationConstants.availableCarsURL , String.class , ApplicationConstants.SYSTEM_ID ,
+			ApplicationConstants.CLIENT_ID , 111397 , 1140 );
+
+		List<Car> cars = new ArrayList<Car>();
+		Gson carJson = new Gson();
+		JSONObject jsonObject = new JSONObject( response );
+
+		JSONArray detailArray = jsonObject.getJSONArray( "Cars" );
+		for ( int i = 0 ; i < detailArray.length() ; i++ ) {
+			Car car = carJson.fromJson( detailArray.get( i ).toString() , Car.class );
+			cars.add( car );
+		}
+
+		//List<Car> cars = carDAO.getAvailableCarsByModel( model , hub , startDate , endDate );
 
 		for ( Car car : cars ) {
 
@@ -83,24 +83,17 @@ public class CarBookingService extends GenericManagerImpl<Car,Integer> implement
 	@Override
 	public List<Car> getAll() {
 
-		Car car;
-		CarModel carModel;
-		CarHub carHub;
 		List<Car> cars = new ArrayList<Car>();
-		Set<Car> carSet = new HashSet<Car>();
 
 		String response = restTemplate.getForObject( ApplicationConstants.allCarsURL , String.class , ApplicationConstants.SYSTEM_ID , ApplicationConstants.CLIENT_ID );
+		Gson carJson = new Gson();
 		JSONObject jsonObject = new JSONObject( response );
+
 		JSONArray detailArray = jsonObject.getJSONArray( "Cars" );
 		for ( int i = 0 ; i < detailArray.length() ; i++ ) {
-			jsonObject = ( JSONObject ) detailArray.get( i );
-			car = new Car();
-			carModel = new CarModel( ( String ) jsonObject.get( "Model" ) );
-			car.setModel( carModel );
-
-			carSet.add( car );
+			Car car = carJson.fromJson( detailArray.get( i ).toString() , Car.class );
+			cars.add( car );
 		}
-		cars.addAll( carSet );
 		return cars;
 	}
 

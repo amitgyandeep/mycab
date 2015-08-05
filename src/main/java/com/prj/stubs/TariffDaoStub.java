@@ -45,8 +45,8 @@ public class TariffDaoStub extends GenericDaoHibernate<Tariff,Integer> implement
 				}
 				Criteria criteria = getSession().createCriteria( Tariff.class );
 				criteria.add( Restrictions.eq( "type" , type ) );
-				criteria.createAlias( "model" , "model" );
-				criteria.add( Restrictions.eq( "model.id" , model.getId() ) );
+
+				criteria.add( Restrictions.eq( "modelId" , model.getId() ) );
 				Tariff tariff = ( Tariff ) criteria.uniqueResult();
 				if ( tariff != null ) {
 					tariff.setApplicableDays( days );

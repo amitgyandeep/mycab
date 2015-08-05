@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -27,9 +25,8 @@ public class Tariff extends BaseEntity {
 	@Type(type = "tariffTypeEnum")
 	private TariffType type;
 
-	@ManyToOne
-	@JoinColumn(name = "car_model", referencedColumnName = "id")
-	private CarModel model;
+	@Column(name = "car_model")
+	private Integer modelId;
 
 	@Transient
 	private List<DaysOfWeek> applicableDays;
@@ -64,16 +61,6 @@ public class Tariff extends BaseEntity {
 	public void setRatePerHour( Float ratePerHour ) {
 
 		this.ratePerHour = ratePerHour;
-	}
-
-	public CarModel getModel() {
-
-		return model;
-	}
-
-	public void setModel( CarModel model ) {
-
-		this.model = model;
 	}
 
 	public Double getCost() {
