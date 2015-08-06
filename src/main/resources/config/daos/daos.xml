@@ -13,13 +13,13 @@
 	<bean id="carDAO" class="com.prj.dao.impl.CarDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="carHubDao" class="com.prj.stubs.CarHubStub">
+	<bean id="carHubDao" class="com.prj.dao.impl.CarHubDao">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-		<bean id="securityDepositDao" class="com.prj.stubs.SecurityDeposityDaoStub">
+		<bean id="securityDepositDao" class="com.prj.dao.impl.SecurityDeposityDao">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="tariffDao" class="com.prj.stubs.TariffDaoStub">
+	<bean id="tariffDao" class="com.prj.dao.impl.TariffDao">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="documentDao" class="com.prj.dao.impl.DocumentDaoImpl">

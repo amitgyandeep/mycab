@@ -201,17 +201,13 @@ span a:hover {
   <span class="col-lg-9"><strong>Service Tax: </strong></span><span class="col-lg-3">Rs. <s:property value="#session.tripInvoice.serviceTax"/></span></div>
     <div class="row">  
   <span class="col-lg-9"><strong>Total:</strong></span><span class="col-lg-3"><b>Rs. <s:property value="#session.tripInvoice.total"/></b></span></div>
-  <div class="row">  
-  <span class="col-lg-6">T&amp;C Selection:</span><span class="col-lg-6"></span></div>
-
-</div>
 
   
-
-<div class="col-lg-3">
-<div class="row">
-<div class="col-lg-12">
-<form  action="jsp/posttozaakpay.jsp" theme="simple">
+  <div class="row">  
+  <span class="col-lg-6">T&amp;C Selection:</span><span class="col-lg-6"></span></div>
+ 
+    <div class="row">  
+  <span class="col-lg-6"><form  action="jsp/posttozaakpay.jsp" theme="simple">
 
 <input type="hidden" name="merchantIdentifier" value="c6263df20ab34292b576fc06aedda8d5" />
 	<input type="hidden" id="orderId" name="orderId" />
@@ -251,7 +247,16 @@ span a:hover {
 
 
 <button class="btn btn-warning" type="submit">Pay Now</button>
-</form>
+</form></span><span class="col-lg-6"></span></div>
+
+</div>
+
+  
+
+<div class="col-lg-3">
+<div class="row">
+<div class="col-lg-12">
+
 </div>
 </div>
 <div class="row">

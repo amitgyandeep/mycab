@@ -28,7 +28,7 @@ public class ApplicationConstants {
 
 	public static String preferedCarsURL = "http://www.t4udevice.com:8080/TelematicsRESTService/services/ServiceProcess/ getPrefferedCars";
 
-	public static String hubsURL = "http://www.t4udevice.com:8080/TelematicsRESTService/services/ServiceProcess/getOnlyHubs?SystemId={systemId}&ClientId={clientId}&UserId={userId}";
+	public static String hubsURL = "http://www.t4udevice.com:8080/TelematicsRESTService/services/ServiceProcess/getOnlyHubs?SystemId={systemId}&ClientId={clientId}";
 
 	public static final Object UserID = 2;
 }

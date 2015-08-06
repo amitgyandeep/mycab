@@ -8,6 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.web.client.RestTemplate;
 
+import com.google.gson.Gson;
 import com.prj.dao.ICarHubDao;
 import com.prj.model.ApplicationConstants;
 import com.prj.model.CarHub;
@@ -29,21 +30,15 @@ public class CarHubService extends GenericManagerImpl<CarHub,Integer> implements
 
 	public List<CarHub> getCarHubs() {
 
-		String response = restTemplate.getForObject( ApplicationConstants.hubsURL , String.class , ApplicationConstants.SYSTEM_ID , ApplicationConstants.CLIENT_ID ,
-			ApplicationConstants.UserID );
+		String response = restTemplate.getForObject( ApplicationConstants.hubsURL , String.class , ApplicationConstants.SYSTEM_ID , ApplicationConstants.CLIENT_ID );
 
 		List<CarHub> carHubs = new ArrayList<CarHub>();
-
+		Gson carHubJson = new Gson();
 		JSONObject jsonObject = new JSONObject( response );
-		JSONArray detailArray = jsonObject.getJSONArray( "Hubs" );
+		JSONArray detailArray = jsonObject.getJSONArray( "hubs" );
 
 		for ( int i = 0 ; i < detailArray.length() ; i++ ) {
-			jsonObject = ( JSONObject ) detailArray.get( i );
-			CarHub carHub = new CarHub();
-			carHub.setName( ( String ) jsonObject.get( "HubName" ) );
-			carHub.setLatitude( Double.parseDouble( ( String ) jsonObject.get( "Latitude" ) ) );
-			carHub.setLongitude( Double.parseDouble( ( String ) jsonObject.get( "Longitude" ) ) );
-			carHub.setId( ( Integer ) jsonObject.get( "HubId" ) );
+			CarHub carHub = carHubJson.fromJson( detailArray.get( i ).toString() , CarHub.class );
 			carHubs.add( carHub );
 		}
 

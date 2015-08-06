@@ -152,19 +152,18 @@ list-style-type: none;
                                  </div>
                                  <div class="row">
                                  <div class="form-group col-md-12 col-sm-6 col-xs-12">
-                                 <div class="input-group">
-                               <!--   <input type="text" placeholder="Enter Your City Or HUB" class="form-control hasDatepicker"> -->
-												<input list="carHub1" name="customerRequestModel.carHub.name" 
+                                  <div class="input-group">
+                              <!--    <input type="text" placeholder="Enter Your City Or HUB" class="form-control hasDatepicker"> -->
+                               	<input list="carHubs1"  
 														placeholder="Enter Your City Or HUB"
-														class="form-control hasDatepicker" autocomplete="off" >
-													<datalist id="carHub1">
+														class="form-control hasDatepicker" name="customerRequestModel.carHub.name" autocomplete="off">
+													<datalist id="carHubs1">
 														<s:iterator value="#session.carHubs">
-															<option value='<s:property value="HubId"/>' ><s:property value="HubId"/></option>
+															<option value='<s:property value="name"/>'>
 														</s:iterator>
 
-													</datalist> 
-						 
-													<div class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></div>
+													</datalist>
+                                 <div class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></div>
                                  </div>
                                  </div>
                                  </div>

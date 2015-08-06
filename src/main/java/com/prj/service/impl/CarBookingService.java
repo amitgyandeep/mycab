@@ -74,7 +74,7 @@ public class CarBookingService extends GenericManagerImpl<Car,Integer> implement
 
 			car.setTariffs( pricingService.getCarPrice( car.getModel() , startDate , endDate ) );
 
-			car.setSecurityDesposit( securityDepositService.getPrice( car.getSegment() ) );
+			car.setSecurityDesposit( securityDepositService.getPrice( car.getModel() ) );
 		}
 
 		return cars;

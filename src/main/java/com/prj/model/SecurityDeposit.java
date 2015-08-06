@@ -23,8 +23,7 @@ public class SecurityDeposit implements Serializable {
 	@Column(name = "id", nullable = false, unique = true)
 	private Integer id;
 
-	@Column(name = "car_segment")
-	private CarSegment type;
+	private Integer modelId;
 
 	private double cost;
 
@@ -38,14 +37,14 @@ public class SecurityDeposit implements Serializable {
 		this.id = id;
 	}
 
-	public CarSegment getType() {
+	public Integer getModelId() {
 
-		return type;
+		return modelId;
 	}
 
-	public void setType( CarSegment type ) {
+	public void setModelId( Integer modelId ) {
 
-		this.type = type;
+		this.modelId = modelId;
 	}
 
 	public double getCost() {

@@ -1,4 +1,4 @@
-package com.prj.stubs;
+/*package com.prj.stubs;
 
 import java.util.List;
 
@@ -72,3 +72,4 @@ public class SecurityDeposityDaoStub extends
 		return null;
 	}
 }
+*/

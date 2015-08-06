@@ -3,7 +3,7 @@ package com.prj.service.impl;
 import org.appfuse.service.impl.GenericManagerImpl;
 
 import com.prj.dao.ISecurityDepositDao;
-import com.prj.model.CarSegment;
+import com.prj.model.CarModel;
 import com.prj.model.SecurityDeposit;
 import com.prj.service.ISecurityDepositService;
 
@@ -17,10 +17,10 @@ public class SecurityDepositTariffService extends GenericManagerImpl<SecurityDep
 		this.securityDepositDao = securityDepositDAO;
 	}
 
-	public double getPrice( CarSegment segment ) {
+	public double getPrice( CarModel model ) {
 
 		// TODO Auto-generated method stub
-		return securityDepositDao.getPrice( segment );
+		return securityDepositDao.getPrice( model );
 	}
 
 	public void setSecurityDepositDAO( ISecurityDepositDao securityDepositDAO ) {
